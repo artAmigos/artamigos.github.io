@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профессиональный арбитражный калькулятор ставок</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #3498db;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+        
+        .glass-card-header {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-card-body {
+            padding: 20px;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            color: white;
+            font-weight: 700;
+        }
+        
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--light);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #2980b9);
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .indicator-text {
+            font-size: 0.9rem;
+        }
+        
+        .profit-badge {
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+        
+        .match-type-selector {
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .match-type-btn {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .match-type-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .team-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .team-card.team2 {
+            border-left-color: var(--success);
+        }
+        
+        .coefficient-display {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .probability-bar {
+            height: 10px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .probability-fill {
+            height: 100%;
+            border-radius: 5px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .chart-container {
+            height: 200px;
+            margin-top: 20px;
+        }
+        
+        .risk-meter {
+            height: 10px;
+            border-radius: 5px;
+            background: linear-gradient(to right, var(--success), var(--warning), var(--danger));
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .risk-indicator {
+            position: absolute;
+            top: -5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            transform: translateX(-50%);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .suggestion-card {
+            background: rgba(46, 204, 113, 0.2);
+            border-left: 4px solid var(--success);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+        }
+        
+        .time-indicator {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .input-group-text {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .coefficient-display {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center mb-4">
+            <h1><i class="fas fa-calculator"></i> Профессиональный арбитражный калькулятор</h1>
+            <p class="lead">Максимизируйте прибыль с помощью точных расчетов арбитражных ситуаций</p>
+        </div>
+        
+        <div class="glass-card fade-in">
+            <div class="glass-card-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0"><i class="fas fa-cog"></i> Параметры расчета</h4>
+                <div>
+                    <span class="time-indicator bg-primary" id="prematchIndicator">Прематч</span>
+                    <span class="time-indicator bg-warning d-none" id="liveIndicator">Лайв <span class="pulse">●</span></span>
+                </div>
+            </div>
+            <div class="glass-card-body">
+                <div class="match-type-selector">
+                    <button type="button" class="match-type-btn active" id="prematchBtn">Прематч</button>
+                    <button type="button" class="match-type-btn" id="liveBtn">Лайв-матч</button>
+                </div>
+                
+                <form id="arbitrageForm">
+                    <div class="form-group">
+                        <label for="balance"><i class="fas fa-wallet"></i> Имеющийся баланс (в евро)</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="balance" name="balance" required value="1000">
+                        </div>
+                        <small class="form-text text-muted">Введите сумму с точкой как разделитель (например: 1000.50)</small>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="coefficient1"><i class="fas fa-running"></i> Коэффициент команды 1</label>
+                                <input type="text" class="form-control" id="coefficient1" name="coefficient1" required value="2.10">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="coefficient2"><i class="fas fa-running"></i> Коэффициент команды 2</label>
+                                <input type="text" class="form-control" id="coefficient2" name="coefficient2" required value="1.90">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="strategy"><i class="fas fa-chess"></i> Стратегия распределения</label>
+                        <select class="form-control" id="strategy">
+                            <option value="optimal">Оптимальное распределение (максимальная прибыль)</option>
+                            <option value="balanced">Сбалансированное распределение</option>
+                            <option value="conservative">Консервативное распределение (минимизация рисков)</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block mt-4">
+                        <i class="fas fa-calculator"></i> Рассчитать арбитраж
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div id="resultsSection" class="d-none fade-in">
+            <div class="glass-card">
+                <div class="glass-card-header">
+                    <h4 class="mb-0"><i class="fas fa-chart-line"></i> Результаты расчета</h4>
+                </div>
+                <div class="glass-card-body">
+                    <div class="alert alert-success glass-card">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0"><i class="fas fa-check-circle"></i> Арбитраж возможен!</h5>
+                            <span class="profit-badge bg-success">Прибыль: <span id="profitValue">0.00</span> €</span>
+                        </div>
+                        <div class="risk-meter mt-3">
+                            <div class="risk-indicator" id="riskIndicator"></div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <small>Низкий риск</small>
+                            <small>Средний риск</small>
+                            <small>Высокий риск</small>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="team-card">
+                                <h5><i class="fas fa-user-shield"></i> Команда 1</h5>
+                                <div class="coefficient-display text-primary" id="coef1Display">2.10</div>
+                                <div class="indicator">
+                                    <div class="indicator-dot bg-primary"></div>
+                                    <div class="indicator-text">Рекомендуемая ставка: <strong id="bet1Value">0.00</strong> €</div>
+                                </div>
+                                <div class="probability-bar">
+                                    <div class="probability-fill bg-primary" id="prob1Bar" style="width: 50%"></div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <small>Вероятность: <strong id="prob1Value">0%</strong></small>
+                                    <small>Выигрыш: <strong id="win1Value">0.00</strong> €</strong></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="team-card team2">
+                                <h5><i class="fas fa-user-shield"></i> Команда 2</h5>
+                                <div class="coefficient-display text-success" id="coef2Display">1.90</div>
+                                <div class="indicator">
+                                    <div class="indicator-dot bg-success"></div>
+                                    <div class="indicator-text">Рекомендуемая ставка: <strong id="bet2Value">0.00</strong> €</div>
+                                </div>
+                                <div class="probability-bar">
+                                    <div class="probability-fill bg-success" id="prob2Bar" style="width: 50%"></div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <small>Вероятность: <strong id="prob2Value">0%</strong></small>
+                                    <small>Выигрыш: <strong id="win2Value">0.00</strong> €</strong></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value text-primary" id="arbPercent">0.00%</div>
+                            <div class="stat-label">Процент арбитража</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value text-info" id="roiValue">0.00%</div>
+                            <div class="stat-label">ROI (окупаемость)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value text-warning" id="totalBetValue">0.00 €</div>
+                            <div class="stat-label">Общая сумма ставок</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value text-success" id="netProfitValue">0.00 €</div>
+                            <div class="stat-label">Чистая прибыль</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="profitChart"></canvas>
+                    </div>
+                    
+                    <div class="suggestion-card mt-4">
+                        <h6><i class="fas fa-lightbulb"></i> Рекомендация</h6>
+                        <p id="suggestionText">На основе анализа коэффициентов, эта арбитражная ситуация выглядит перспективной. Рекомендуется разместить ставки как можно скорее, так как коэффициенты могут измениться.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="noArbitrageSection" class="d-none fade-in">
+            <div class="glass-card">
+                <div class="glass-card-header">
+                    <h4 class="mb-0"><i class="fas fa-exclamation-triangle"></i> Арбитраж невозможен</h4>
+                </div>
+                <div class="glass-card-body text-center">
+                    <i class="fas fa-times-circle fa-3x text-danger mb-3"></i>
+                    <h5>С данными коэффициентами арбитражная ситуация невозможна</h5>
+                    <p>Сумма обратных величин коэффициентов должна быть меньше 1 для возникновения арбитража.</p>
+                    <button class="btn btn-primary" onclick="adjustCoefficients()">Автоподбор коэффициентов</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            // Обработчики для переключения между прематч и лайв
+            document.getElementById('prematchBtn').addEventListener('click', function() {
+                document.getElementById('prematchBtn').classList.add('active');
+                document.getElementById('liveBtn').classList.remove('active');
+                document.getElementById('prematchIndicator').classList.remove('d-none');
+                document.getElementById('liveIndicator').classList.add('d-none');
+            });
+            
+            document.getElementById('liveBtn').addEventListener('click', function() {
+                document.getElementById('liveBtn').classList.add('active');
+                document.getElementById('prematchBtn').classList.remove('active');
+                document.getElementById('liveIndicator').classList.remove('d-none');
+                document.getElementById('prematchIndicator').classList.add('d-none');
+            });
+            
+            // Обработчик формы
+            document.getElementById('arbitrageForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                calculateArbitrage();
+            });
+            
+            // Автоматический расчет при изменении значений
+            document.getElementById('balance').addEventListener('input', calculateArbitrage);
+            document.getElementById('coefficient1').addEventListener('input', calculateArbitrage);
+            document.getElementById('coefficient2').addEventListener('input', calculateArbitrage);
+            document.getElementById('strategy').addEventListener('change', calculateArbitrage);
+            
+            // Первоначальный расчет
+            calculateArbitrage();
+        });
+        
+        // Функция расчета арбитража
+        function calculateArbitrage() {
+            // Получение значений из формы
+            const balance = parseFloat(document.getElementById('balance').value.replace(',', '.')) || 0;
+            const coefficient1 = parseFloat(document.getElementById('coefficient1').value.replace(',', '.')) || 1;
+            const coefficient2 = parseFloat(document.getElementById('coefficient2').value.replace(',', '.')) || 1;
+            const strategy = document.getElementById('strategy').value;
+            
+            // Проверка на валидность ввода
+            if (balance <= 0 || coefficient1 <= 1 || coefficient2 <= 1) {
+                document.getElementById('resultsSection').classList.add('d-none');
+                document.getElementById('noArbitrageSection').classList.remove('d-none');
+                return;
+            }
+            
+            // Расчет обратных величин
+            const inverseCoefficient1 = 1 / coefficient1;
+            const inverseCoefficient2 = 1 / coefficient2;
+            const totalInverse = inverseCoefficient1 + inverseCoefficient2;
+            
+            // Проверка возможности арбитража
+            if (totalInverse >= 1) {
+                document.getElementById('resultsSection').classList.add('d-none');
+                document.getElementById('noArbitrageSection').classList.remove('d-none');
+                return;
+            }
+            
+            // Расчет ставок в зависимости от стратегии
+            let bet1, bet2;
+            
+            if (strategy === 'optimal') {
+                // Оптимальное распределение для максимальной прибыли
+                bet1 = (balance * inverseCoefficient1) / totalInverse;
+                bet2 = (balance * inverseCoefficient2) / totalInverse;
+            } else if (strategy === 'balanced') {
+                // Сбалансированное распределение
+                const totalStake = balance * 0.95; // Оставляем 5% как буфер
+                bet1 = (totalStake * inverseCoefficient1) / totalInverse;
+                bet2 = (totalStake * inverseCoefficient2) / totalInverse;
+            } else {
+                // Консервативное распределение
+                const totalStake = balance * 0.9; // Оставляем 10% как буфер
+                bet1 = (totalStake * inverseCoefficient1) / totalInverse;
+                bet2 = (totalStake * inverseCoefficient2) / totalInverse;
+            }
+            
+            // Расчет прибыли
+            const profit1 = bet1 * coefficient1 - (bet1 + bet2);
+            const profit2 = bet2 * coefficient2 - (bet1 + bet2);
+            const profit = Math.min(profit1, profit2); // Гарантированная прибыль
+            
+            // Расчет процента арбитража и ROI
+            const arbitragePercentage = (1 - totalInverse) * 100;
+            const roi = (profit / (bet1 + bet2)) * 100;
+            
+            // Расчет вероятностей
+            const impliedProbability1 = (1 / coefficient1) * 100;
+            const impliedProbability2 = (1 / coefficient2) * 100;
+            const totalProbability = impliedProbability1 + impliedProbability2;
+            const actualProbability1 = (impliedProbability1 / totalProbability) * 100;
+            const actualProbability2 = (impliedProbability2 / totalProbability) * 100;
+            
+            // Определение уровня риска
+            let riskLevel;
+            if (arbitragePercentage > 5) {
+                riskLevel = 10; // Низкий риск
+            } else if (arbitragePercentage > 2) {
+                riskLevel = 50; // Средний риск
+            } else {
+                riskLevel = 90; // Высокий риск
+            }
+            
+            // Обновление интерфейса
+            updateUI(balance, coefficient1, coefficient2, bet1, bet2, profit, arbitragePercentage, 
+                    roi, actualProbability1, actualProbability2, riskLevel, totalInverse);
+            
+            // Показать результаты
+            document.getElementById('resultsSection').classList.remove('d-none');
+            document.getElementById('noArbitrageSection').classList.add('d-none');
+        }
+        
+        // Функция обновления интерфейса
+        function updateUI(balance, coef1, coef2, bet1, bet2, profit, arbPercent, roi, prob1, prob2, riskLevel, totalInverse) {
+            // Обновление основных значений
+            document.getElementById('coef1Display').textContent = coef1.toFixed(2);
+            document.getElementById('coef2Display').textContent = coef2.toFixed(2);
+            document.getElementById('bet1Value').textContent = bet1.toFixed(2);
+            document.getElementById('bet2Value').textContent = bet2.toFixed(2);
+            document.getElementById('profitValue').textContent = profit.toFixed(2);
+            document.getElementById('arbPercent').textContent = arbPercent.toFixed(2) + '%';
+            document.getElementById('roiValue').textContent = roi.toFixed(2) + '%';
+            document.getElementById('totalBetValue').textContent = (bet1 + bet2).toFixed(2) + ' €';
+            document.getElementById('netProfitValue').textContent = profit.toFixed(2) + ' €';
+            
+            // Обновление вероятностей
+            document.getElementById('prob1Value').textContent = prob1.toFixed(1) + '%';
+            document.getElementById('prob2Value').textContent = prob2.toFixed(1) + '%';
+            document.getElementById('prob1Bar').style.width = prob1 + '%';
+            document.getElementById('prob2Bar').style.width = prob2 + '%';
+            
+            // Обновление выигрышей
+            document.getElementById('win1Value').textContent = (bet1 * coef1).toFixed(2);
+            document.getElementById('win2Value').textContent = (bet2 * coef2).toFixed(2);
+            
+            // Обновление индикатора риска
+            document.getElementById('riskIndicator').style.left = riskLevel + '%';
+            
+            // Обновление рекомендации
+            updateSuggestion(arbPercent, riskLevel, totalInverse);
+            
+            // Обновление графика
+            updateChart(bet1, bet2, profit);
+        }
+        
+        // Функция обновления рекомендации
+        function updateSuggestion(arbPercent, riskLevel, totalInverse) {
+            const suggestionText = document.getElementById('suggestionText');
+            
+            if (arbPercent > 5) {
+                suggestionText.textContent = 'Отличная арбитражная возможность! Низкий риск и высокая прибыль. Рекомендуется действовать быстро, так как коэффициенты могут измениться.';
+            } else if (arbPercent > 2) {
+                suggestionText.textContent = 'Хорошая арбитражная возможность. Средний риск с умеренной прибылью. Убедитесь, что коэффициенты стабильны перед размещением ставок.';
+            } else {
+                suggestionText.textContent = 'Арбитраж возможен, но с высоким риском. Прибыль минимальна. Рекомендуется перепроверить коэффициенты и рассмотреть другие события.';
+            }
+            
+            // Добавление специфических рекомендаций для лайв-ставок
+            if (document.getElementById('liveBtn').classList.contains('active')) {
+                suggestionText.textContent += ' Учитывая, что это лайв-матч, коэффициенты могут быстро меняться. Будьте готовы к оперативному размещению ставок.';
+            }
+        }
+        
+        // Функция обновления графика
+        let profitChart = null;
+        
+        function updateChart(bet1, bet2, profit) {
+            const ctx = document.getElementById('profitChart').getContext('2d');
+            
+            if (profitChart) {
+                profitChart.destroy();
+            }
+            
+            profitChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Ставка на команду 1', 'Ставка на команду 2', 'Прибыль'],
+                    datasets: [{
+                        data: [bet1, bet2, profit],
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.8)',
+                            'rgba(46, 204, 113, 0.8)',
+                            'rgba(241, 196, 15, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(241, 196, 15, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: 'white',
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.raw.toFixed(2) + ' €';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Функция автоподбора коэффициентов
+        function adjustCoefficients() {
+            const coef1 = parseFloat(document.getElementById('coefficient1').value) || 2.10;
+            const coef2 = parseFloat(document.getElementById('coefficient2').value) || 1.90;
+            
+            // Увеличиваем разрыв между коэффициентами для создания арбитражной ситуации
+            const newCoef1 = (coef1 * 1.05).toFixed(2);
+            const newCoef2 = (coef2 * 0.95).toFixed(2);
+            
+            document.getElementById('coefficient1').value = newCoef1;
+            document.getElementById('coefficient2').value = newCoef2;
+            
+            calculateArbitrage();
+        }
+    </script>
+</body>
+</html>
