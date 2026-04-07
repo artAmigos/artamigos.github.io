@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title">AppArtA IT — Teie ettevõtte digitaalsed lahendused</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6a11cb;
+            --secondary: #8a2be2;
+            --accent: #9d4edd;
+            --light: #b19cd9;
+            --dark: #0f0f1a;
+            --text: #333;
+            --white: #ffffff;
+            --gray: #f5f5f7;
+            --success: #4CAF50;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --whatsapp: #25D366;
+            --telegram: #26A5E4;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: var(--white);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        header {
+            background: rgba(15, 15, 26, 0.95);
+            backdrop-filter: blur(20px);
+            color: var(--white);
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        header.scrolled {
+            padding: 0.8rem 0;
+            background: rgba(15, 15, 26, 0.98);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary), var(--light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: var(--transition);
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 2rem;
+        }
+        .nav-links li {
+            position: relative;
+        }
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 1.05rem;
+        }
+        .nav-links a:hover {
+            color: var(--light);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 1.5rem;
+        }
+        .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+        .nav-contact {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+            margin-left: 1.5rem;
+            text-decoration: none;
+        }
+        .nav-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(106, 17, 203, 0.4);
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: 8px;
+            z-index: 1001;
+        }
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .hero {
+            background: linear-gradient(135deg, rgba(15, 15, 26, 0.85), rgba(42, 15, 84, 0.9)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            padding: 15rem 0 10rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(157, 78, 221, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 20%, rgba(106, 17, 203, 0.15) 0%, transparent 50%);
+            z-index: 1;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, var(--light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(106, 17, 203, 0.4);
+            margin: 0 1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            transition: var(--transition);
+            z-index: -1;
+        }
+        .cta-button:hover::before {
+            left: 0;
+        }
+        .cta-button:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(106, 17, 203, 0.5);
+        }
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .cta-button.secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+            border-color: var(--white);
+        }
+        .services {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+            position: relative;
+        }
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.03"><polygon fill="%236a11cb" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.03) 0%, rgba(157, 78, 221, 0.05) 100%);
+            z-index: 1;
+        }
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+        .service-icon {
+            height: 140px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transform: rotate(30deg);
+        }
+        .service-content {
+            padding: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .service-content h3 {
+            font-size: 1.7rem;
+            margin-bottom: 1.2rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+        .service-content ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        .service-content li {
+            margin-bottom: 0.8rem;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.5;
+        }
+        .service-content li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .service-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .service-price span {
+            font-size: 1rem;
+            color: #888;
+            font-weight: normal;
+        }
+        .price-note {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        .service-cta {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .service-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            transition: var(--transition);
+            z-index: -1;
+        }
+        .service-cta:hover::before {
+            left: 0;
+        }
+        .service-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(106, 17, 203, 0.3);
+        }
+        .pricing {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--dark), #1a1a2e);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(157, 78, 221, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .pricing::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(106, 17, 203, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .pricing .section-title h2 {
+            color: var(--white);
+        }
+        .pricing .section-title p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 4rem 3rem;
+            margin: 0 auto;
+            max-width: 800px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        .pricing-card h3 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        .pricing-card p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        .discount-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), #ff6b6b);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            animation: pulse 2s infinite;
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.3);
+            font-size: 1.1rem;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 10px 20px rgba(157, 78, 221, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 15px 30px rgba(157, 78, 221, 0.4); }
+            100% { transform: scale(1); box-shadow: 0 10px 20px rgba(157, 78, 221, 0.3); }
+        }
+        .contact {
+            padding: 8rem 0;
+            background-color: var(--white);
+            position: relative;
+        }
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(106, 17, 203, 0.05) 0%, transparent 70%);
+        }
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        .contact-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+        .contact-info p {
+            margin-bottom: 2.5rem;
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        .contact-details {
+            margin-bottom: 3rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            padding: 1rem;
+            border-radius: 12px;
+        }
+        .contact-item:hover {
+            background: rgba(106, 17, 203, 0.05);
+            transform: translateX(10px);
+        }
+        .contact-item i {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.3);
+        }
+        .contact-form {
+            background: linear-gradient(135deg, #f8f9ff, #f0f2ff);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .form-group {
+            margin-bottom: 2rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .form-control {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 5px 20px rgba(106, 17, 203, 0.15);
+            transform: translateY(-2px);
+        }
+        textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+        .btn-whatsapp {
+            background: linear-gradient(135deg, var(--whatsapp), #075E54);
+            width: 100%;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        }
+        .form-divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        .form-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ccc, transparent);
+        }
+        .form-divider span {
+            background: linear-gradient(135deg, #f8f9ff, #f0f2ff);
+            padding: 0 1rem;
+            position: relative;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        footer {
+            background: linear-gradient(135deg, var(--dark), #1a1a2e);
+            color: var(--white);
+            padding: 5rem 0 2rem;
+            position: relative;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.8rem;
+            position: relative;
+            font-weight: 700;
+        }
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        .footer-links a i {
+            margin-right: 0.8rem;
+            font-size: 0.9rem;
+            width: 20px;
+            text-align: center;
+        }
+        .footer-links a:hover {
+            color: var(--light);
+            padding-left: 5px;
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.3);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+        @media (max-width: 1100px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            .contact-container {
+                gap: 3rem;
+            }
+        }
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(15, 15, 26, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 2rem 0;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                z-index: 999;
+                gap: 2rem;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+                width: 100%;
+            }
+            .nav-links a {
+                display: block;
+                padding: 1rem 0;
+                font-size: 1.5rem;
+                width: 100%;
+            }
+            .language-switcher {
+                margin: 1rem 0;
+                justify-content: center;
+            }
+            .mobile-menu-btn {
+                display: block;
+                position: relative;
+                z-index: 1001;
+            }
+            .hero {
+                padding: 12rem 0 7rem;
+                background-attachment: scroll;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .cta-button {
+                display: block;
+                margin: 1.5rem auto;
+                max-width: 280px;
+            }
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            .services, .pricing, .contact {
+                padding: 6rem 0;
+            }
+            .service-content {
+                padding: 2rem;
+            }
+            .contact-form {
+                padding: 2.5rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .service-card {
+                margin: 0 auto;
+                max-width: 350px;
+            }
+            .pricing-card {
+                padding: 3rem 2rem;
+            }
+            .contact-form {
+                padding: 2rem;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-column h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        html {
+            zoom: 0.85;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container nav-container">
+            <div class="logo" data-i18n="logo">AppArtA IT</div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#services" data-i18n="nav_services">Teenused</a></li>
+                <li><a href="#pricing" data-i18n="nav_pricing">Hinnad</a></li>
+                <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
+                <li class="language-switcher">
+                    <a href="#" onclick="switchLanguage('et'); return false;" class="lang-btn active" id="lang-et">ET</a>
+                    <a href="#" onclick="switchLanguage('ru'); return false;" class="lang-btn" id="lang-ru">RU</a>
+                    <a href="#" onclick="switchLanguage('en'); return false;" class="lang-btn" id="lang-en">EN</a>
+                </li>
+                <li><a href="#contact" class="nav-contact" data-i18n="nav_contact_btn">Võta meiega ühendust</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 data-i18n="hero_title">Digitaalsed lahendused teie ettevõtte kasvuks</h1>
+            <p data-i18n="hero_desc">Teie toote arendamine ja reklaamimine parimas töökorralduses. Loome tehnoloogiaid, mis töötavad teie heaks ööpäevaringselt ja toovad reaalseid tulemusi.</p>
+            <a href="#contact" class="cta-button" data-i18n="hero_cta1">Alusta projekti</a>
+            <a href="#services" class="cta-button secondary" data-i18n="hero_cta2">Meie teenused</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="services_title">Meie teenused</h2>
+                <p data-i18n="services_subtitle">Teie ettevõtte digitaalse kohaloleku terviklikud lahendused. Iga projekt on individuaalne lähenemine ja maksimaalne tulemus.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Web -->
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-code"></i></div>
+                    <div class="service-content">
+                        <h3 data-i18n="web_title">Veebiarendus</h3>
+                        <ul>
+                            <li data-i18n="web_list1">Ettevõtete veebisaidid ja maandumislehed</li>
+                            <li data-i18n="web_list2">E-poed</li>
+                            <li data-i18n="web_list3">Veebirakendused</li>
+                            <li data-i18n="web_list4">CRM-i ja API integreerimine</li>
+                            <li data-i18n="web_list5">Tugi ja uuendused</li>
+                        </ul>
+                        <div class="service-price"><span data-i18n="web_price">alates 390€</span> <span data-i18n="web_price_note">/ projekt</span></div>
+                        <div class="price-note" data-i18n="price_note_suffix">* täpne hind määratakse pärast arutelu</div>
+                        <a href="#contact" class="service-cta" data-i18n="web_btn">Aruta projekti</a>
+                    </div>
+                </div>
+                <!-- Mobile -->
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="service-content">
+                        <h3 data-i18n="mobile_title">Mobiiliarendus</h3>
+                        <ul>
+                            <li data-i18n="mobile_list1">Androidi rakendused</li>
+                            <li data-i18n="mobile_list2">Platvormidevahelised lahendused</li>
+                            <li data-i18n="mobile_list3">UX/UI disain</li>
+                            <li data-i18n="mobile_list4">Serveri integreerimine</li>
+                            <li data-i18n="mobile_list5">Avaldamine Google Play's</li>
+                        </ul>
+                        <div class="service-price"><span data-i18n="mobile_price">alates 590€</span> <span data-i18n="mobile_price_note">/ rakendus</span></div>
+                        <div class="price-note" data-i18n="price_note_suffix">* täpne hind määratakse pärast arutelu</div>
+                        <a href="#contact" class="service-cta" data-i18n="mobile_btn">Loo rakendus</a>
+                    </div>
+                </div>
+                <!-- SEO -->
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="service-content">
+                        <h3 data-i18n="seo_title">SEO ja turundus</h3>
+                        <ul>
+                            <li data-i18n="seo_list1">Veebilehtede põhjalik turundus</li>
+                            <li data-i18n="seo_list2">SEO audit ja optimeerimine</li>
+                            <li data-i18n="seo_list3">Kontekstreklaam</li>
+                            <li data-i18n="seo_list4">Kampaaniate analüütika</li>
+                            <li data-i18n="seo_list5">Orgaanilise liikluse suurendamine</li>
+                        </ul>
+                        <div class="service-price"><span data-i18n="seo_price">alates 190€</span> <span data-i18n="seo_price_note">/ kuu</span></div>
+                        <div class="price-note" data-i18n="price_note_suffix">* täpne hind määratakse pärast arutelu</div>
+                        <a href="#contact" class="service-cta" data-i18n="seo_btn">Suurenda liiklust</a>
+                    </div>
+                </div>
+                <!-- SMM -->
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-hashtag"></i></div>
+                    <div class="service-content">
+                        <h3 data-i18n="smm_title">Sotsiaalmeedia turundus ja bränding</h3>
+                        <ul>
+                            <li data-i18n="smm_list1">Sotsiaalmeedia haldamine</li>
+                            <li data-i18n="smm_list2">Visuaalse sisu loomine</li>
+                            <li data-i18n="smm_list3">Sihtotstarbeline reklaam</li>
+                            <li data-i18n="smm_list4">Brändi identiteedi arendamine</li>
+                            <li data-i18n="smm_list5">Kaasatuse suurendamine</li>
+                        </ul>
+                        <div class="service-price"><span data-i18n="smm_price">alates 250€</span> <span data-i18n="smm_price_note">/ kuu</span></div>
+                        <div class="price-note" data-i18n="price_note_suffix">* täpne hind määratakse pärast arutelu</div>
+                        <a href="#contact" class="service-cta" data-i18n="smm_btn">Tugevda brändi</a>
+                    </div>
+                </div>
+                <!-- Design -->
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-palette"></i></div>
+                    <div class="service-content">
+                        <h3 data-i18n="design_title">Disain ja UX/UI</h3>
+                        <ul>
+                            <li data-i18n="design_list1">Veebisaitide ja liideste disain</li>
+                            <li data-i18n="design_list2">Prototüüpimine</li>
+                            <li data-i18n="design_list3">Bännerite ja makettide loomine</li>
+                            <li data-i18n="design_list4">Brändi identiteedi kohandamine</li>
+                            <li data-i18n="design_list5">Kasutajauuringud</li>
+                        </ul>
+                        <div class="service-price"><span data-i18n="design_price">alates 190€</span> <span data-i18n="design_price_note">/ projekt</span></div>
+                        <div class="price-note" data-i18n="price_note_suffix">* täpne hind määratakse pärast arutelu</div>
+                        <a href="#contact" class="service-cta" data-i18n="design_btn">Telli disain</a>
+                    </div>
+                </div>
+                <!-- Games -->
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-gamepad"></i></div>
+                    <div class="service-content">
+                        <h3 data-i18n="games_title">Mängud ja tarkvara</h3>
+                        <ul>
+                            <li data-i18n="games_list1">Mängude arendamine</li>
+                            <li data-i18n="games_list2">Töölaudrakendused</li>
+                            <li data-i18n="games_list3">Automatiseerimine ja botid</li>
+                            <li data-i18n="games_list4">Kunstlik intelligents</li>
+                            <li data-i18n="games_list5">Tehniline tugi</li>
+                        </ul>
+                        <div class="service-price"><span data-i18n="games_price">alates 450€</span> <span data-i18n="games_price_note">/ projekt</span></div>
+                        <div class="price-note" data-i18n="price_note_suffix">* täpne hind määratakse pärast arutelu</div>
+                        <a href="#contact" class="service-cta" data-i18n="games_btn">Aruta ideed</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="pricing_title">Paindlik hinnapoliitika</h2>
+                <p data-i18n="pricing_subtitle">Loome lahendusi, mis vastavad teie eelarvele ja äri eesmärkidele</p>
+            </div>
+            <div class="pricing-card fade-in">
+                <div class="discount-badge" data-i18n="discount_badge">Kuni 30% allahindlust mitme teenuse tellimisel!</div>
+                <h3 data-i18n="pricing_heading">Individuaalne lähenemine hinnakujundusele</h3>
+                <p data-i18n="pricing_text1">Mõistame, et iga ettevõte on ainulaadne, seetõttu ei paku me standardseid lahendusi. Kõik näidatud hinnad on ligikaudsed ja lõplik maksumus määratakse pärast teie vajaduste ja eesmärkide põhjalikku arutelu.</p>
+                <p data-i18n="pricing_text2">Meie eesmärk on luua toode, mis toob maksimaalset kasu optimaalsete kuludega. Oleme alati valmis klientidele vastu tulema ja pakume paindlikke koostöötingimusi.</p>
+                <a href="#contact" class="cta-button" data-i18n="pricing_cta">Hangi hinnapakkumine</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="contact_title">Võta meiega ühendust</h2>
+                <p data-i18n="contact_subtitle">Kas olete valmis projekti alustama? Jätke taotlus ja me võtame teiega ühendust 24 tunni jooksul tasuta konsultatsiooni jaoks</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 data-i18n="contact_info_heading">Loome koos midagi suurepärast!</h3>
+                    <p data-i18n="contact_info_text">Oleme alati kättesaadavad ja valmis vastama kõigile teie küsimustele. Valige mugav suhtlusviis või täitke tagasisidevorm:</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4 data-i18n="contact_email_label">E-post</h4>
+                                <p>info@apparta.ee</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4 data-i18n="contact_phone_label">Telefon / WhatsApp</h4>
+                                <p>+372 5625 0266</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4 data-i18n="contact_address_label">Aadress</h4>
+                                <p>Tallinn, Eesti</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://wa.me/37256250266" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://t.me/apparta_it" title="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="https://www.instagram.com/app.arta/" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61575928795804" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form fade-in">
+                    <form id="contactForm" onsubmit="sendToWhatsApp(event)">
+                        <div class="form-group">
+                            <label for="name" data-i18n="form_name">Teie nimi *</label>
+                            <input type="text" id="name" name="name" class="form-control" required data-i18n-placeholder="form_name_placeholder" placeholder="Kuidas teid kutsuda?">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-i18n="form_email">E-post *</label>
+                            <input type="email" id="email" name="email" class="form-control" required data-i18n-placeholder="form_email_placeholder" placeholder="näide@meil.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" data-i18n="form_phone">Telefon</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" data-i18n-placeholder="form_phone_placeholder" placeholder="+372 ...">
+                        </div>
+                        <div class="form-group">
+                            <label for="service" data-i18n="form_service">Huvipakkuv teenus</label>
+                            <select id="service" name="service" class="form-control">
+                                <option data-i18n="form_service_option1" value="">Vali teenus</option>
+                                <option data-i18n="form_service_option2" value="web">Veebiarendus</option>
+                                <option data-i18n="form_service_option3" value="mobile">Mobiiliarendus</option>
+                                <option data-i18n="form_service_option4" value="seo">SEO ja turundus</option>
+                                <option data-i18n="form_service_option5" value="smm">Sotsiaalmeedia turundus ja bränding</option>
+                                <option data-i18n="form_service_option6" value="design">Disain ja UX/UI</option>
+                                <option data-i18n="form_service_option7" value="games">Mängud ja tarkvara</option>
+                                <option data-i18n="form_service_option8" value="consultation">Konsultatsioon</option>
+                                <option data-i18n="form_service_option9" value="other">Muu</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-i18n="form_message">Sõnum</label>
+                            <textarea id="message" name="message" class="form-control" data-i18n-placeholder="form_message_placeholder">Kirjeldage oma projekti, esitage küsimus või märkige soovid...</textarea>
+                        </div>
+                        <button type="submit" class="cta-button" style="width: 100%; background: linear-gradient(135deg, var(--whatsapp), #075E54);" data-i18n="form_submit">
+                            <i class="fab fa-whatsapp"></i> Saada taotlus WhatsAppi
+                        </button>
+                    </form>
+                    <div class="form-divider">
+                        <span data-i18n="or_text">või</span>
+                    </div>
+                    <a href="https://wa.me/37256250266?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5%20%D0%BE%20%D0%B2%D0%B0%D1%88%D0%B8%D1%85%20%D1%83%D1%81%D0%BB%D1%83%D0%B3%D0%B0%D1%85." target="_blank" class="cta-button btn-whatsapp" style="text-align: center; display: block; text-decoration: none;" data-i18n="whatsapp_btn">
+                        <i class="fab fa-whatsapp"></i> 💬 Kiire kontakt WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4 data-i18n="logo">AppArtA IT</h4>
+                    <p data-i18n="footer_about_text">Teie toote arendamine ja reklaamimine parimas töökorralduses. Loome digitaalseid lahendusi, mis toovad tulemusi.</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/37256250266" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://t.me/apparta_it" title="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="https://www.instagram.com/app.arta/" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61575928795804" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 data-i18n="footer_services_title">Teenused</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services" data-i18n="footer_services_web">Veebiarendus</a></li>
+                        <li><a href="#services" data-i18n="footer_services_mobile">Mobiiliarendus</a></li>
+                        <li><a href="#services" data-i18n="footer_services_seo">SEO ja turundus</a></li>
+                        <li><a href="#services" data-i18n="footer_services_smm">Sotsiaalmeedia turundus ja bränding</a></li>
+                        <li><a href="#services" data-i18n="footer_services_design">Disain ja UX/UI</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 data-i18n="footer_company_title">Ettevõte</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services" data-i18n="footer_company_services">Teenused</a></li>
+                        <li><a href="#pricing" data-i18n="footer_company_pricing">Hinnad</a></li>
+                        <li><a href="#contact" data-i18n="footer_company_contact">Kontakt</a></li>
+                        <li><a href="#" data-i18n="footer_company_portfolio">Portfell</a></li>
+                        <li><a href="#" data-i18n="footer_company_blog">Blogi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 data-i18n="footer_contact_title">Kontakt</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:info@apparta.ee"><i class="fas fa-envelope"></i> info@apparta.ee</a></li>
+                        <li><a href="tel:+37256250266"><i class="fas fa-phone"></i> +372 5625 0266</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Tallinn, Eesti</a></li>
+                        <li><a href="https://wa.me/37256250266" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p data-i18n="footer_copyright">© 2025 AppArtA IT — Kõik õigused kaitstud. | Teie toote arendamine ja reklaamimine</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ====================== MULTI-LANGUAGE SYSTEM (полностью статический) ======================
+        const translations = {
+            'et': {
+                'title': 'AppArtA IT — Teie ettevõtte digitaalsed lahendused',
+                'logo': 'AppArtA IT',
+                'nav_services': 'Teenused',
+                'nav_pricing': 'Hinnad',
+                'nav_contact': 'Kontakt',
+                'nav_contact_btn': 'Võta meiega ühendust',
+                'hero_title': 'Digitaalsed lahendused teie ettevõtte kasvuks',
+                'hero_desc': 'Teie toote arendamine ja reklaamimine parimas töökorralduses. Loome tehnoloogiaid, mis töötavad teie heaks ööpäevaringselt ja toovad reaalseid tulemusi.',
+                'hero_cta1': 'Alusta projekti',
+                'hero_cta2': 'Meie teenused',
+                'services_title': 'Meie teenused',
+                'services_subtitle': 'Teie ettevõtte digitaalse kohaloleku terviklikud lahendused. Iga projekt on individuaalne lähenemine ja maksimaalne tulemus.',
+                'web_title': 'Veebiarendus',
+                'web_list1': 'Ettevõtete veebisaidid ja maandumislehed',
+                'web_list2': 'E-poed',
+                'web_list3': 'Veebirakendused',
+                'web_list4': 'CRM-i ja API integreerimine',
+                'web_list5': 'Tugi ja uuendused',
+                'web_price': 'alates 390€',
+                'web_price_note': '/ projekt',
+                'web_btn': 'Aruta projekti',
+                'mobile_title': 'Mobiiliarendus',
+                'mobile_list1': 'Androidi rakendused',
+                'mobile_list2': 'Platvormidevahelised lahendused',
+                'mobile_list3': 'UX/UI disain',
+                'mobile_list4': 'Serveri integreerimine',
+                'mobile_list5': 'Avaldamine Google Play\'s',
+                'mobile_price': 'alates 590€',
+                'mobile_price_note': '/ rakendus',
+                'mobile_btn': 'Loo rakendus',
+                'seo_title': 'SEO ja turundus',
+                'seo_list1': 'Veebilehtede põhjalik turundus',
+                'seo_list2': 'SEO audit ja optimeerimine',
+                'seo_list3': 'Kontekstreklaam',
+                'seo_list4': 'Kampaaniate analüütika',
+                'seo_list5': 'Orgaanilise liikluse suurendamine',
+                'seo_price': 'alates 190€',
+                'seo_price_note': '/ kuu',
+                'seo_btn': 'Suurenda liiklust',
+                'smm_title': 'Sotsiaalmeedia turundus ja bränding',
+                'smm_list1': 'Sotsiaalmeedia haldamine',
+                'smm_list2': 'Visuaalse sisu loomine',
+                'smm_list3': 'Sihtotstarbeline reklaam',
+                'smm_list4': 'Brändi identiteedi arendamine',
+                'smm_list5': 'Kaasatuse suurendamine',
+                'smm_price': 'alates 250€',
+                'smm_price_note': '/ kuu',
+                'smm_btn': 'Tugevda brändi',
+                'design_title': 'Disain ja UX/UI',
+                'design_list1': 'Veebisaitide ja liideste disain',
+                'design_list2': 'Prototüüpimine',
+                'design_list3': 'Bännerite ja makettide loomine',
+                'design_list4': 'Brändi identiteedi kohandamine',
+                'design_list5': 'Kasutajauuringud',
+                'design_price': 'alates 190€',
+                'design_price_note': '/ projekt',
+                'design_btn': 'Telli disain',
+                'games_title': 'Mängud ja tarkvara',
+                'games_list1': 'Mängude arendamine',
+                'games_list2': 'Töölaudrakendused',
+                'games_list3': 'Automatiseerimine ja botid',
+                'games_list4': 'Kunstlik intelligents',
+                'games_list5': 'Tehniline tugi',
+                'games_price': 'alates 450€',
+                'games_price_note': '/ projekt',
+                'games_btn': 'Aruta ideed',
+                'price_note_suffix': '* täpne hind määratakse pärast arutelu',
+                'pricing_title': 'Paindlik hinnapoliitika',
+                'pricing_subtitle': 'Loome lahendusi, mis vastavad teie eelarvele ja äri eesmärkidele',
+                'discount_badge': 'Kuni 30% allahindlust mitme teenuse tellimisel!',
+                'pricing_heading': 'Individuaalne lähenemine hinnakujundusele',
+                'pricing_text1': 'Mõistame, et iga ettevõte on ainulaadne, seetõttu ei paku me standardseid lahendusi. Kõik näidatud hinnad on ligikaudsed ja lõplik maksumus määratakse pärast teie vajaduste ja eesmärkide põhjalikku arutelu.',
+                'pricing_text2': 'Meie eesmärk on luua toode, mis toob maksimaalset kasu optimaalsete kuludega. Oleme alati valmis klientidele vastu tulema ja pakume paindlikke koostöötingimusi.',
+                'pricing_cta': 'Hangi hinnapakkumine',
+                'contact_title': 'Võta meiega ühendust',
+                'contact_subtitle': 'Kas olete valmis projekti alustama? Jätke taotlus ja me võtame teiega ühendust 24 tunni jooksul tasuta konsultatsiooni jaoks',
+                'contact_info_heading': 'Loome koos midagi suurepärast!',
+                'contact_info_text': 'Oleme alati kättesaadavad ja valmis vastama kõigile teie küsimustele. Valige mugav suhtlusviis või täitke tagasisidevorm:',
+                'contact_email_label': 'E-post',
+                'contact_phone_label': 'Telefon / WhatsApp',
+                'contact_address_label': 'Aadress',
+                'form_name': 'Teie nimi *',
+                'form_name_placeholder': 'Kuidas teid kutsuda?',
+                'form_email': 'E-post *',
+                'form_email_placeholder': 'näide@meil.com',
+                'form_phone': 'Telefon',
+                'form_phone_placeholder': '+372 ...',
+                'form_service': 'Huvipakkuv teenus',
+                'form_service_option1': 'Vali teenus',
+                'form_service_option2': 'Veebiarendus',
+                'form_service_option3': 'Mobiiliarendus',
+                'form_service_option4': 'SEO ja turundus',
+                'form_service_option5': 'Sotsiaalmeedia turundus ja bränding',
+                'form_service_option6': 'Disain ja UX/UI',
+                'form_service_option7': 'Mängud ja tarkvara',
+                'form_service_option8': 'Konsultatsioon',
+                'form_service_option9': 'Muu',
+                'form_message': 'Sõnum',
+                'form_message_placeholder': 'Kirjeldage oma projekti, esitage küsimus või märkige soovid...',
+                'form_submit': 'Saada taotlus WhatsAppi',
+                'whatsapp_btn': '💬 Kiire kontakt WhatsApp',
+                'or_text': 'või',
+                'footer_about_text': 'Teie toote arendamine ja reklaamimine parimas töökorralduses. Loome digitaalseid lahendusi, mis toovad tulemusi.',
+                'footer_services_title': 'Teenused',
+                'footer_services_web': 'Veebiarendus',
+                'footer_services_mobile': 'Mobiiliarendus',
+                'footer_services_seo': 'SEO ja turundus',
+                'footer_services_smm': 'Sotsiaalmeedia turundus ja bränding',
+                'footer_services_design': 'Disain ja UX/UI',
+                'footer_company_title': 'Ettevõte',
+                'footer_company_services': 'Teenused',
+                'footer_company_pricing': 'Hinnad',
+                'footer_company_contact': 'Kontakt',
+                'footer_company_portfolio': 'Portfell',
+                'footer_company_blog': 'Blogi',
+                'footer_contact_title': 'Kontakt',
+                'footer_copyright': '© 2025 AppArtA IT — Kõik õigused kaitstud. | Teie toote arendamine ja reklaamimine',
+                'alert_fill_fields': 'Palun täitke kohustuslikud väljad (nimi ja e-post)',
+                'alert_whatsapp': 'Aitäh! Suuname teid WhatsAppi vestlusesse. Palun saatke sõnum, et meiega ühendust võtta.'
+            },
+            'ru': {
+                'title': 'AppArtA IT — Цифровые решения для вашего бизнеса',
+                'logo': 'AppArtA IT',
+                'nav_services': 'Услуги',
+                'nav_pricing': 'Цены',
+                'nav_contact': 'Контакты',
+                'nav_contact_btn': 'Связаться с нами',
+                'hero_title': 'Цифровые решения для роста вашего бизнеса',
+                'hero_desc': 'Разработка и продвижение вашего продукта в лучшем формате. Мы создаем технологии, которые работают для вас 24/7 и приносят реальные результаты.',
+                'hero_cta1': 'Начать проект',
+                'hero_cta2': 'Наши услуги',
+                'services_title': 'Наши услуги',
+                'services_subtitle': 'Комплексные решения для цифрового присутствия вашего бизнеса. Каждый проект — это индивидуальный подход и максимальный результат.',
+                'web_title': 'Веб-разработка',
+                'web_list1': 'Корпоративные сайты и лендинги',
+                'web_list2': 'Интернет-магазины',
+                'web_list3': 'Веб-приложения',
+                'web_list4': 'Интеграция CRM и API',
+                'web_list5': 'Поддержка и обновления',
+                'web_price': 'от 390€',
+                'web_price_note': '/ проект',
+                'web_btn': 'Обсудить проект',
+                'mobile_title': 'Мобильная разработка',
+                'mobile_list1': 'Приложения для Android',
+                'mobile_list2': 'Кроссплатформенные решения',
+                'mobile_list3': 'UX/UI дизайн',
+                'mobile_list4': 'Серверная интеграция',
+                'mobile_list5': 'Публикация в Google Play',
+                'mobile_price': 'от 590€',
+                'mobile_price_note': '/ приложение',
+                'mobile_btn': 'Создать приложение',
+                'seo_title': 'SEO и маркетинг',
+                'seo_list1': 'Комплексный маркетинг сайтов',
+                'seo_list2': 'SEO-аудит и оптимизация',
+                'seo_list3': 'Контекстная реклама',
+                'seo_list4': 'Аналитика кампаний',
+                'seo_list5': 'Увеличение органического трафика',
+                'seo_price': 'от 190€',
+                'seo_price_note': '/ месяц',
+                'seo_btn': 'Увеличить трафик',
+                'smm_title': 'SMM и брендинг',
+                'smm_list1': 'Ведение социальных сетей',
+                'smm_list2': 'Создание визуального контента',
+                'smm_list3': 'Таргетированная реклама',
+                'smm_list4': 'Разработка идентичности бренда',
+                'smm_list5': 'Повышение вовлеченности',
+                'smm_price': 'от 250€',
+                'smm_price_note': '/ месяц',
+                'smm_btn': 'Укрепить бренд',
+                'design_title': 'Дизайн и UX/UI',
+                'design_list1': 'Дизайн сайтов и интерфейсов',
+                'design_list2': 'Прототипирование',
+                'design_list3': 'Создание баннеров и макетов',
+                'design_list4': 'Адаптация идентичности бренда',
+                'design_list5': 'Юзабилити-исследования',
+                'design_price': 'от 190€',
+                'design_price_note': '/ проект',
+                'design_btn': 'Заказать дизайн',
+                'games_title': 'Игры и ПО',
+                'games_list1': 'Разработка игр',
+                'games_list2': 'Десктопные приложения',
+                'games_list3': 'Автоматизация и боты',
+                'games_list4': 'Искусственный интеллект',
+                'games_list5': 'Техническая поддержка',
+                'games_price': 'от 450€',
+                'games_price_note': '/ проект',
+                'games_btn': 'Обсудить идею',
+                'price_note_suffix': '* точная цена определяется после обсуждения',
+                'pricing_title': 'Гибкая ценовая политика',
+                'pricing_subtitle': 'Мы создаем решения, соответствующие вашему бюджету и бизнес-целям',
+                'discount_badge': 'Скидка до 30% при заказе нескольких услуг!',
+                'pricing_heading': 'Индивидуальный подход к ценообразованию',
+                'pricing_text1': 'Мы понимаем, что каждый бизнес уникален, поэтому не предлагаем стандартных решений. Все указанные цены являются приблизительными, а окончательная стоимость определяется после детального обсуждения ваших потребностей и целей.',
+                'pricing_text2': 'Наша цель — создать продукт, который приносит максимальную пользу при оптимальных затратах. Мы всегда готовы идти навстречу клиентам и предлагаем гибкие условия сотрудничества.',
+                'pricing_cta': 'Получить предложение',
+                'contact_title': 'Свяжитесь с нами',
+                'contact_subtitle': 'Готовы начать проект? Оставьте заявку, и мы свяжемся с вами в течение 24 часов для бесплатной консультации',
+                'contact_info_heading': 'Создадим что-то великое вместе!',
+                'contact_info_text': 'Мы всегда на связи и готовы ответить на все ваши вопросы. Выберите удобный способ связи или заполните форму обратной связи:',
+                'contact_email_label': 'Электронная почта',
+                'contact_phone_label': 'Телефон / WhatsApp',
+                'contact_address_label': 'Адрес',
+                'form_name': 'Ваше имя *',
+                'form_name_placeholder': 'Как к вам обращаться?',
+                'form_email': 'Электронная почта *',
+                'form_email_placeholder': 'example@mail.com',
+                'form_phone': 'Телефон',
+                'form_phone_placeholder': '+372 ...',
+                'form_service': 'Интересующая услуга',
+                'form_service_option1': 'Выберите услугу',
+                'form_service_option2': 'Веб-разработка',
+                'form_service_option3': 'Мобильная разработка',
+                'form_service_option4': 'SEO и маркетинг',
+                'form_service_option5': 'SMM и брендинг',
+                'form_service_option6': 'Дизайн и UX/UI',
+                'form_service_option7': 'Игры и ПО',
+                'form_service_option8': 'Консультация',
+                'form_service_option9': 'Другое',
+                'form_message': 'Сообщение',
+                'form_message_placeholder': 'Опишите ваш проект, задайте вопрос или укажите пожелания...',
+                'form_submit': 'Отправить заявку в WhatsApp',
+                'whatsapp_btn': '💬 Быстрый контакт WhatsApp',
+                'or_text': 'или',
+                'footer_about_text': 'Разработка и продвижение вашего продукта в лучшем формате. Мы создаем цифровые решения, которые приносят результаты.',
+                'footer_services_title': 'Услуги',
+                'footer_services_web': 'Веб-разработка',
+                'footer_services_mobile': 'Мобильная разработка',
+                'footer_services_seo': 'SEO и маркетинг',
+                'footer_services_smm': 'SMM и брендинг',
+                'footer_services_design': 'Дизайн и UX/UI',
+                'footer_company_title': 'Компания',
+                'footer_company_services': 'Услуги',
+                'footer_company_pricing': 'Цены',
+                'footer_company_contact': 'Контакты',
+                'footer_company_portfolio': 'Портфолио',
+                'footer_company_blog': 'Блог',
+                'footer_contact_title': 'Контакты',
+                'footer_copyright': '© 2025 AppArtA IT — Все права защищены. | Разработка и продвижение вашего продукта',
+                'alert_fill_fields': 'Пожалуйста, заполните обязательные поля (имя и электронная почта)',
+                'alert_whatsapp': 'Спасибо! Вы будете перенаправлены в WhatsApp. Пожалуйста, отправьте сообщение, чтобы связаться с нами.'
+            },
+            'en': {
+                'title': 'AppArtA IT — Digital Solutions for Your Business',
+                'logo': 'AppArtA IT',
+                'nav_services': 'Services',
+                'nav_pricing': 'Pricing',
+                'nav_contact': 'Contact',
+                'nav_contact_btn': 'Contact Us',
+                'hero_title': 'Digital Solutions for Your Business Growth',
+                'hero_desc': 'Development and promotion of your product in the best way. We create technologies that work for you 24/7 and deliver real results.',
+                'hero_cta1': 'Start a Project',
+                'hero_cta2': 'Our Services',
+                'services_title': 'Our Services',
+                'services_subtitle': 'Comprehensive solutions for your business\'s digital presence. Each project is an individual approach and maximum results.',
+                'web_title': 'Web Development',
+                'web_list1': 'Corporate websites and landing pages',
+                'web_list2': 'E-commerce stores',
+                'web_list3': 'Web applications',
+                'web_list4': 'CRM and API integration',
+                'web_list5': 'Support and updates',
+                'web_price': 'from €390',
+                'web_price_note': '/ project',
+                'web_btn': 'Discuss Project',
+                'mobile_title': 'Mobile Development',
+                'mobile_list1': 'Android applications',
+                'mobile_list2': 'Cross-platform solutions',
+                'mobile_list3': 'UX/UI design',
+                'mobile_list4': 'Server integration',
+                'mobile_list5': 'Google Play publishing',
+                'mobile_price': 'from €590',
+                'mobile_price_note': '/ app',
+                'mobile_btn': 'Create App',
+                'seo_title': 'SEO & Marketing',
+                'seo_list1': 'Comprehensive website marketing',
+                'seo_list2': 'SEO audit and optimization',
+                'seo_list3': 'Contextual advertising',
+                'seo_list4': 'Campaign analytics',
+                'seo_list5': 'Organic traffic growth',
+                'seo_price': 'from €190',
+                'seo_price_note': '/ month',
+                'seo_btn': 'Increase Traffic',
+                'smm_title': 'Social Media & Branding',
+                'smm_list1': 'Social media management',
+                'smm_list2': 'Visual content creation',
+                'smm_list3': 'Targeted advertising',
+                'smm_list4': 'Brand identity development',
+                'smm_list5': 'Engagement boost',
+                'smm_price': 'from €250',
+                'smm_price_note': '/ month',
+                'smm_btn': 'Strengthen Brand',
+                'design_title': 'Design & UX/UI',
+                'design_list1': 'Website and interface design',
+                'design_list2': 'Prototyping',
+                'design_list3': 'Banners and mockups',
+                'design_list4': 'Brand identity adaptation',
+                'design_list5': 'User research',
+                'design_price': 'from €190',
+                'design_price_note': '/ project',
+                'design_btn': 'Order Design',
+                'games_title': 'Games & Software',
+                'games_list1': 'Game development',
+                'games_list2': 'Desktop applications',
+                'games_list3': 'Automation and bots',
+                'games_list4': 'Artificial intelligence',
+                'games_list5': 'Technical support',
+                'games_price': 'from €450',
+                'games_price_note': '/ project',
+                'games_btn': 'Discuss Idea',
+                'price_note_suffix': '* exact price determined after discussion',
+                'pricing_title': 'Flexible Pricing Policy',
+                'pricing_subtitle': 'We create solutions that fit your budget and business goals',
+                'discount_badge': 'Up to 30% discount when ordering multiple services!',
+                'pricing_heading': 'Individual Approach to Pricing',
+                'pricing_text1': 'We understand that every business is unique, so we don\'t offer standard solutions. All prices shown are approximate, and the final cost is determined after a detailed discussion of your needs and goals.',
+                'pricing_text2': 'Our goal is to create a product that delivers maximum benefit at optimal cost. We are always ready to meet clients and offer flexible cooperation terms.',
+                'pricing_cta': 'Get a Quote',
+                'contact_title': 'Contact Us',
+                'contact_subtitle': 'Ready to start a project? Leave a request and we will contact you within 24 hours for a free consultation',
+                'contact_info_heading': 'Let\'s create something great together!',
+                'contact_info_text': 'We are always available and ready to answer all your questions. Choose a convenient way to communicate or fill out the feedback form:',
+                'contact_email_label': 'Email',
+                'contact_phone_label': 'Phone / WhatsApp',
+                'contact_address_label': 'Address',
+                'form_name': 'Your Name *',
+                'form_name_placeholder': 'How should we address you?',
+                'form_email': 'Email *',
+                'form_email_placeholder': 'example@mail.com',
+                'form_phone': 'Phone',
+                'form_phone_placeholder': '+372 ...',
+                'form_service': 'Service of Interest',
+                'form_service_option1': 'Select a service',
+                'form_service_option2': 'Web Development',
+                'form_service_option3': 'Mobile Development',
+                'form_service_option4': 'SEO & Marketing',
+                'form_service_option5': 'Social Media & Branding',
+                'form_service_option6': 'Design & UX/UI',
+                'form_service_option7': 'Games & Software',
+                'form_service_option8': 'Consultation',
+                'form_service_option9': 'Other',
+                'form_message': 'Message',
+                'form_message_placeholder': 'Describe your project, ask a question or specify wishes...',
+                'form_submit': 'Send via WhatsApp',
+                'whatsapp_btn': '💬 Quick WhatsApp Contact',
+                'or_text': 'or',
+                'footer_about_text': 'Development and promotion of your product in the best way. We create digital solutions that deliver results.',
+                'footer_services_title': 'Services',
+                'footer_services_web': 'Web Development',
+                'footer_services_mobile': 'Mobile Development',
+                'footer_services_seo': 'SEO & Marketing',
+                'footer_services_smm': 'Social Media & Branding',
+                'footer_services_design': 'Design & UX/UI',
+                'footer_company_title': 'Company',
+                'footer_company_services': 'Services',
+                'footer_company_pricing': 'Pricing',
+                'footer_company_contact': 'Contact',
+                'footer_company_portfolio': 'Portfolio',
+                'footer_company_blog': 'Blog',
+                'footer_contact_title': 'Contact',
+                'footer_copyright': '© 2025 AppArtA IT — All rights reserved. | Development and promotion of your product',
+                'alert_fill_fields': 'Please fill in the required fields (name and email)',
+                'alert_whatsapp': 'Thank you! You will be redirected to WhatsApp. Please send a message to contact us.'
+            }
+        };
+
+        let currentLang = 'et';
+
+        // Перевод всех элементов с data-i18n
+        function translatePage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        // Плейсхолдеры
+                        if (el.hasAttribute('data-i18n-placeholder')) {
+                            el.placeholder = translations[currentLang][el.getAttribute('data-i18n-placeholder')] || el.placeholder;
+                        }
+                    } else {
+                        el.textContent = translations[currentLang][key];
+                    }
+                }
+            });
+
+            // Заголовок страницы
+            if (translations[currentLang].title) {
+                document.title = translations[currentLang].title;
+            }
+
+            // Обновляем активную кнопку языка
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                const langCode = btn.id.replace('lang-', '');
+                btn.classList.toggle('active', langCode === currentLang);
+            });
+        }
+
+        // Переключение языка (без перезагрузки страницы)
+        function switchLanguage(lang) {
+            if (!translations[lang]) return;
+            currentLang = lang;
+            localStorage.setItem('user_language', lang);
+
+            // Обновляем URL (GitHub Pages поддерживает ?lang=)
+            const url = new URL(window.location);
+            url.searchParams.set('lang', lang);
+            window.history.pushState({ lang: lang }, '', url);
+
+            translatePage();
+        }
+
+        // Определяем язык при загрузке
+        function getInitialLang() {
+            // 1. Из URL
+            const params = new URLSearchParams(window.location.search);
+            let lang = params.get('lang');
+            if (lang && ['et', 'ru', 'en'].indexOf(lang) !== -1) return lang;
+
+            // 2. Из localStorage
+            lang = localStorage.getItem('user_language');
+            if (lang && ['et', 'ru', 'en'].indexOf(lang) !== -1) return lang;
+
+            // 3. Из браузера
+            const browserLang = (navigator.language || navigator.userLanguage || 'et').substring(0, 2);
+            if (['et', 'ru', 'en'].indexOf(browserLang) !== -1) return browserLang;
+
+            return 'et';
+        }
+
+        // Форма WhatsApp (статическая, работает на GitHub Pages)
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const serviceSelect = document.getElementById('service');
+            const service = serviceSelect.options[serviceSelect.selectedIndex]?.text || 'Не выбрано';
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email) {
+                alert(translations[currentLang]['alert_fill_fields']);
+                return;
+            }
+
+            const phoneNumber = '37256250266';
+            let whatsappMessage = `*Новая заявка с сайта AppArtA IT*%0A%0A`;
+            whatsappMessage += `*Имя:* ${encodeURIComponent(name)}%0A`;
+            whatsappMessage += `*Email:* ${encodeURIComponent(email)}%0A`;
+            whatsappMessage += `*Телефон:* ${encodeURIComponent(phone || 'Не указан')}%0A`;
+            whatsappMessage += `*Услуга:* ${encodeURIComponent(service)}%0A`;
+            whatsappMessage += `*Сообщение:* ${encodeURIComponent(message || 'Не указано')}%0A%0A`;
+            whatsappMessage += `_Отправлено с сайта ${window.location.href}_`;
+
+            window.open(`https://wa.me/${phoneNumber}?text=${whatsappMessage}`, '_blank');
+
+            alert(translations[currentLang]['alert_whatsapp']);
+
+            document.getElementById('contactForm').reset();
+        }
+
+        // Инициализация сайта
+        window.onload = function () {
+            currentLang = getInitialLang();
+
+            // Переводим всю страницу
+            translatePage();
+
+            // Мобильное меню (остаётся как было)
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    navLinks.classList.toggle('active');
+                    mobileMenuBtn.innerHTML = navLinks.classList.contains('active')
+                        ? '<i class="fas fa-times"></i>'
+                        : '<i class="fas fa-bars"></i>';
+                });
+            }
+
+            // Закрытие меню при клике вне
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.nav-container') && navLinks && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    if (mobileMenuBtn) mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+
+            // Плавный скролл и fade-in
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if (this.getAttribute('href') === '#') return;
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        if (navLinks) navLinks.classList.remove('active');
+                        if (mobileMenuBtn) mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            });
+
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 100);
+            });
+
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const fadeInOnScroll = () => {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    if (elementTop < window.innerHeight - 150) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            window.addEventListener('scroll', fadeInOnScroll);
+            fadeInOnScroll();
+
+            console.log('%c✅ AppArtA IT успешно загружен как статический сайт для GitHub Pages!', 'color:#9d4edd; font-size:14px; font-weight:bold');
+        };
+    </script>
+</body>
+</html>
