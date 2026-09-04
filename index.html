@@ -1,214 +1,1329 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>RIMI EMPIRE — Sovereign Order | Rise of Kingdoms</title>
-    <meta name="description" content="RIMI EMPIRE — the most structured Rise of Kingdoms empire. A fresh sovereign kingdom. Elite migration, KvK domination, total discipline. Join the sovereign order.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AppArtA IT — разработка сайтов, SEO, реклама, аналитика, автоматизация. Estonia, Tallinn, Baltics, Europe.">
+    <title>AppArtA IT — Digital-агентство в Таллинне</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
+        :root {
+            --primary: #4a2bb7;
+            --primary-light: #6b4fd9;
+            --primary-dark: #351f8a;
+            --accent: #2b7be4;
+            --gradient: linear-gradient(135deg, #4a2bb7 0%, #2b7be4 100%);
+            --text-dark: #0f111a;
+            --text-muted: #5a6278;
+            --text-light: #8e96ab;
+            --bg-body: #eef1f7;
+            --bg-white: #ffffff;
+            --border: #e2e6ef;
+            --shadow-card: 0 4px 24px rgba(0,0,0,0.04);
+            --shadow-card-hover: 0 12px 48px rgba(74,43,183,0.08);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #0a0000; font-family: 'Inter', system-ui, sans-serif; color: #fff5ea; scroll-behavior: smooth; line-height: 1.5; overflow-x: hidden; }
-        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.25), transparent 55%), radial-gradient(circle at 85% 70%, rgba(180, 0, 0, 0.35), transparent 60%), radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.12), transparent 50%); pointer-events: none; z-index: -2; }
-        .orb { position: fixed; border-radius: 50%; filter: blur(100px); opacity: 0.45; z-index: -1; animation: floatOrb 22s infinite alternate ease-in-out; }
-        .orb1 { width: 70vw; height: 70vw; background: #d4af37; top: -25vh; left: -25vw; }
-        .orb2 { width: 55vw; height: 55vw; background: #b22222; bottom: -20vh; right: -20vw; animation-duration: 28s; }
-        .orb3 { width: 40vw; height: 40vw; background: #ff4500; top: 50%; left: 40%; animation-duration: 35s; opacity: 0.2; }
-        @keyframes floatOrb { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(5%, 5%) scale(1.15); } }
-        .glass-panel, .hero-card, .card, .alliance-card, .stat, .king-portrait, .panel-glow { background: rgba(5, 3, 8, 0.55); backdrop-filter: blur(16px); border: 1px solid rgba(212, 175, 55, 0.4); box-shadow: 0 25px 45px -15px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.1); }
-        .container { max-width: 1300px; margin: 0 auto; padding: 0 28px; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #0a0505; }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(#d4af37, #b22222); border-radius: 10px; }
-        .topbar { position: sticky; top: 0; z-index: 200; backdrop-filter: blur(24px); background: rgba(0, 0, 0, 0.85); border-bottom: 2px solid rgba(212, 175, 55, 0.6); box-shadow: 0 5px 25px rgba(0,0,0,0.5); }
-        .nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; flex-wrap: wrap; gap: 20px; }
-        .brand { display: flex; align-items: center; gap: 12px; }
-        .brand-icon { width: 52px; height: 52px; background: linear-gradient(145deg, #f3d382, #b8860b, #8b0000); border-radius: 50%; display: grid; place-items: center; font-size: 24px; font-weight: 800; box-shadow: 0 0 20px rgba(212,175,55,0.9); color: white; }
-        .brand-text { font-weight: 800; font-size: 1.4rem; background: linear-gradient(135deg, #fff, #d4af37); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .brand-sub { font-size: 0.65rem; letter-spacing: 1px; color: #ffcc77; }
-        .nav-links { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
-        .nav-links a { text-decoration: none; font-weight: 600; font-size: 0.85rem; color: #f5e7cf; transition: 0.2s; }
-        .nav-links a:hover { color: #ffd966; transform: translateY(-2px); }
-        .lang-switch { display: flex; gap: 6px; margin-left: 16px; }
-        .lang-btn { background: rgba(212,175,55,0.18); border: 1px solid rgba(212,175,55,0.5); color: #ffeaac; padding: 5px 12px; border-radius: 40px; font-size: 0.7rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
-        .lang-btn:hover, .lang-btn.active { background: linear-gradient(135deg, #d4af37, #b8860b); color: #0a0000; border-color: #ffd700; }
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 60px; font-weight: 800; transition: 0.3s; cursor: pointer; text-decoration: none; font-size: 0.75rem; }
-        .btn-gold { background: linear-gradient(115deg, #d4af37, #f3d382, #b8860b); color: #1a0f00; }
-        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(212,175,55,0.5); }
-        .btn-outline { border: 2px solid rgba(212,175,55,0.85); background: rgba(0,0,0,0.5); color: #ffeaac; }
-        .btn-outline:hover { background: rgba(212,175,55,0.25); }
-        .btn-red { background: linear-gradient(115deg, #8b0000, #cc3300); color: white; }
-        .btn-telegram { background: linear-gradient(115deg, #2a6d8f, #1f4e6e); color: white; border: 1px solid rgba(212,175,55,0.4); }
-        .btn-telegram:hover { transform: translateY(-2px); background: linear-gradient(115deg, #3b8bb3, #2a6d8f); }
-        .btn-discord { background: linear-gradient(115deg, #5865F2, #4752c4); color: white; }
-        .hero { padding: 80px 0 60px; }
-        .hero-grid { display: grid; grid-template-columns: 1.3fr 0.9fr; gap: 36px; align-items: stretch; }
-        .hero-card { border-radius: 48px; padding: 40px 36px; border: 1px solid rgba(212, 175, 55, 0.5); }
-        .badge-royal { display: inline-flex; background: linear-gradient(95deg, rgba(180,0,0,0.7), rgba(212,175,55,0.3)); border-radius: 100px; padding: 6px 18px; font-size: 0.65rem; font-weight: 800; color: #ffeaac; margin-bottom: 24px; }
-        h1 { font-size: clamp(2.8rem, 8vw, 5.8rem); line-height: 1.05; background: linear-gradient(135deg, #ffffff, #ffeaac, #d4af37, #b22222); background-clip: text; -webkit-background-clip: text; color: transparent; margin-bottom: 16px; }
-        .lead-text { font-size: 1rem; color: #f0e2cc; line-height: 1.55; }
-        .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 25px 0 18px; }
-        .stat { border-radius: 28px; padding: 18px 12px; text-align: center; border-bottom: 3px solid #d4af37; background: rgba(0,0,0,0.5); }
-        .stat strong { font-size: 2rem; display: block; color: #ffdd99; }
-        .quote { border-left: 5px solid #d4af37; background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(139,0,0,0.2)); border-radius: 24px; padding: 20px; font-style: italic; }
-        section { padding: 70px 0; }
-        .section-title { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; background: linear-gradient(135deg, #ffffff, #ffdd99, #d4af37); background-clip: text; -webkit-background-clip: text; color: transparent; margin-bottom: 14px; }
-        .section-desc { color: #e6d5b8; max-width: 700px; margin-bottom: 40px; }
-        .grid-3, .grid-4 { display: grid; gap: 28px; }
-        .grid-3 { grid-template-columns: repeat(3,1fr); }
-        .grid-4 { grid-template-columns: repeat(4,1fr); }
-        .card { border-radius: 38px; padding: 28px; transition: all 0.25s; border: 1px solid rgba(212,175,55,0.3); }
-        .card:hover { transform: translateY(-8px); border-color: #d4af37; background: rgba(25, 15, 20, 0.7); }
-        .card h3 { font-size: 1.2rem; margin: 12px 0 8px; }
-        .card p { font-size: 0.85rem; color: #cdc2aa; }
-        .badge-card { background: linear-gradient(95deg, rgba(139,0,0,0.6), rgba(212,175,55,0.3)); color: #ffddbb; border-radius: 60px; padding: 4px 12px; font-size: 0.65rem; font-weight: 800; display: inline-block; margin-bottom: 14px; }
-        
-        /* Альянсы в виде красивых карточек с кнопками */
-        .alliances-grid { display: flex; flex-direction: column; gap: 20px; }
-        .alliance-card { background: rgba(0,0,0,0.6); backdrop-filter: blur(12px); border-radius: 40px; border: 1px solid rgba(212,175,55,0.4); overflow: hidden; transition: 0.2s; }
-        .alliance-card:hover { border-color: #d4af37; background: rgba(10,5,8,0.8); transform: translateX(5px); }
-        .alliance-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 18px 28px; background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(0,0,0,0.4)); border-bottom: 1px solid rgba(212,175,55,0.3); }
-        .alliance-name { font-size: 1.4rem; font-weight: 800; color: #ffdd99; display: flex; align-items: center; gap: 12px; }
-        .alliance-name i { font-size: 1.6rem; color: #d4af37; }
-        .alliance-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-        .alliance-tag { background: rgba(180,0,0,0.6); border-radius: 60px; padding: 4px 14px; font-size: 0.7rem; font-weight: 600; border: 1px solid rgba(212,175,55,0.5); }
-        .alliance-body { padding: 20px 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
-        .alliance-desc { color: #cdc2aa; font-size: 0.85rem; flex: 2; min-width: 180px; }
-        .alliance-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
-        .btn-sm { padding: 6px 14px; font-size: 0.7rem; gap: 6px; }
-        
-        .path { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 20px; background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(139,0,0,0.3)); border-radius: 100px; padding: 24px 32px; backdrop-filter: blur(12px); }
-        .path-step { background: linear-gradient(135deg, #1a0f10, #2a1515); padding: 10px 28px; border-radius: 60px; font-weight: 800; border-left: 4px solid #d4af37; color: #ffeaac; }
-        .arrow { font-size: 28px; color: #ff6633; }
-        .king-box { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 32px; }
-        .king-portrait { border-radius: 48px; display: flex; align-items: center; justify-content: center; font-size: 90px; min-height: 320px; background: radial-gradient(circle at 30% 30%, rgba(212,175,55,0.3), #0a0202); }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(12px); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s; }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-container { max-width: 480px; width: 90%; background: linear-gradient(135deg, rgba(10,5,8,0.95), rgba(20,10,15,0.95)); backdrop-filter: blur(20px); border: 2px solid rgba(212,175,55,0.6); border-radius: 48px; padding: 42px 36px; position: relative; transform: scale(0.9); transition: transform 0.4s; text-align: center; }
-        .modal-overlay.active .modal-container { transform: scale(1); }
-        .modal-close { position: absolute; top: 20px; right: 24px; font-size: 28px; cursor: pointer; color: #d4af37; background: none; border: none; }
-        .modal-close:hover { color: #ff4500; transform: rotate(90deg); }
-        .modal-icon { font-size: 56px; background: linear-gradient(135deg, #d4af37, #ff4500); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 16px; }
-        .modal-title { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #fff, #d4af37); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .sticky-discord { position: fixed; bottom: 28px; right: 28px; z-index: 200; }
-        footer { border-top: 2px solid rgba(212,175,55,0.4); padding: 36px 0; margin-top: 20px; background: rgba(0,0,0,0.6); font-size: 0.8rem; text-align: center; }
-        @media (max-width: 1050px) { .hero-grid, .king-box, .grid-4, .grid-3 { grid-template-columns: 1fr; } .path { flex-direction: column; border-radius: 48px; } .arrow { transform: rotate(90deg); } .nav-links { display: none; } }
-        @media (max-width: 768px) { .alliance-header { flex-direction: column; align-items: flex-start; gap: 10px; } .alliance-body { flex-direction: column; align-items: flex-start; } .stats { grid-template-columns: 1fr; } }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; }
+
+        .container-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== HEADER ===== */
+        .navbar-custom {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 14px 0;
+            background: rgba(255,255,255,0.90);
+            backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            transition: 0.3s;
+        }
+
+        .navbar-custom.scrolled {
+            box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.3px;
+            color: var(--text-dark);
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--gradient);
+            display: grid;
+            place-items: center;
+            font-size: 18px;
+            font-weight: 900;
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(74,43,183,0.25);
+        }
+
+        .brand span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link-custom {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            font-size: 14px;
+            transition: 0.2s;
+            padding: 6px 0 !important;
+            position: relative;
+        }
+
+        .nav-link-custom::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: 0.3s;
+            border-radius: 4px;
+        }
+
+        .nav-link-custom:hover {
+            color: var(--text-dark) !important;
+        }
+        .nav-link-custom:hover::after { width: 100%; }
+
+        .btn-primary-custom {
+            background: var(--gradient);
+            border: none;
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #fff;
+            transition: 0.3s;
+            box-shadow: 0 4px 20px rgba(74,43,183,0.20);
+            font-family: inherit;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(74,43,183,0.30);
+            color: #fff;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border: 1.5px solid var(--border);
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-dark);
+            transition: 0.3s;
+            font-family: inherit;
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--primary);
+            background: rgba(74,43,183,0.04);
+            transform: translateY(-2px);
+        }
+
+        .mobile-toggle {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-dark);
+            padding: 4px 8px;
+        }
+
+        /* ===== HERO ===== */
+        .hero-section {
+            padding: 140px 0 80px;
+            background: linear-gradient(165deg, #e8ecf6 0%, #ffffff 50%, #f4f2fa 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(74,43,183,0.04), transparent 70%);
+            top: -150px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 14px 4px 10px;
+            border-radius: 50px;
+            background: rgba(74,43,183,0.06);
+            border: 1px solid rgba(74,43,183,0.08);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .hero-badge .dot-pulse {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: inline-block;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.7); }
+        }
+
+        .hero-title {
+            font-size: clamp(40px, 6vw, 68px);
+            line-height: 1.0;
+            letter-spacing: -2.5px;
+            font-weight: 900;
+            color: var(--text-dark);
+        }
+
+        .hero-title .highlight {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 480px;
+        }
+
+        /* ===== STATS ===== */
+        .stat-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 16px 20px;
+            transition: 0.3s;
+            box-shadow: var(--shadow-card);
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .stat-card .num {
+            font-size: 26px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat-card .label {
+            color: var(--text-light);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* ===== TERMINAL ===== */
+        .terminal-wrapper {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px;
+            box-shadow: 0 20px 60px rgba(74,43,183,0.06);
+            transition: 0.3s;
+        }
+
+        .terminal-wrapper:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 72px rgba(74,43,183,0.10);
+        }
+
+        .terminal {
+            background: #0b0d17;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+
+        .terminal-head {
+            display: flex;
+            gap: 8px;
+            padding: 12px 16px;
+            background: #141824;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot:nth-child(1) { background: #ff5f56; }
+        .dot:nth-child(2) { background: #ffbd2e; }
+        .dot:nth-child(3) { background: #27c93f; }
+
+        .terminal-body {
+            padding: 24px 22px;
+            font-family: 'Fira Code', 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #b8c4dd;
+            line-height: 2.2;
+        }
+
+        .terminal-body .tk { color: #c084fc; }
+        .terminal-body .str { color: #6ee7b7; }
+        .terminal-body .fn { color: #60a5fa; }
+        .terminal-body .val { color: #fcd34d; }
+
+        .terminal-body .cursor-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .terminal-body .cursor-line span {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: #60a5fa;
+            animation: blink 1s step-end infinite;
+            border-radius: 2px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* ===== SECTION HEADERS ===== */
+        .section-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary);
+            background: rgba(74,43,183,0.06);
+            padding: 4px 14px;
+            border-radius: 50px;
+            border: 1px solid rgba(74,43,183,0.06);
+        }
+
+        .section-title {
+            font-size: clamp(30px, 4vw, 44px);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.05;
+            margin-top: 6px;
+        }
+
+        .section-sub {
+            color: var(--text-muted);
+            font-size: 17px;
+            max-width: 480px;
+        }
+
+        /* ===== SERVICE CARDS ===== */
+        .service-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            cursor: pointer;
+            transition: 0.3s;
+            height: 100%;
+            position: relative;
+            min-height: 200px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .service-card .icon {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            opacity: 0.7;
+        }
+
+        .service-card .num {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+            opacity: 0.3;
+        }
+
+        .service-card h5 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 8px 0 4px;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .service-card .arrow {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 16px;
+            color: var(--primary);
+            opacity: 0.2;
+            transition: 0.3s;
+        }
+
+        .service-card:hover .arrow {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+
+        /* ===== PROCESS ===== */
+        .process-step {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            transition: 0.3s;
+            height: 100%;
+            box-shadow: var(--shadow-card);
+        }
+
+        .process-step:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-card-hover);
+            transform: translateY(-4px);
+        }
+
+        .process-step .num {
+            font-size: 36px;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0.12;
+        }
+
+        .process-step h5 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 4px 0 2px;
+        }
+
+        .process-step p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        /* ===== FEATURE ===== */
+        .feature-panel {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px 32px;
+            transition: 0.3s;
+            height: 100%;
+            box-shadow: var(--shadow-card);
+        }
+
+        .feature-panel:hover {
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .feature-panel h4 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .checklist li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .checklist li:last-child { border-bottom: none; }
+        .checklist li::before {
+            content: "◆";
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        /* ===== CTA ===== */
+        .cta-block {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px 44px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            transition: 0.3s;
+            box-shadow: var(--shadow-card);
+            background: linear-gradient(135deg, #ffffff 0%, #f8f7fc 100%);
+        }
+
+        .cta-block:hover {
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .cta-block h3 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .cta-block p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+
+        /* ===== FORM ===== */
+        .form-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: 0.3s;
+            box-shadow: var(--shadow-card);
+        }
+
+        .form-card:hover {
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .form-control-custom {
+            background: var(--bg-body);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            font-size: 14px;
+            color: var(--text-dark);
+            transition: 0.3s;
+            font-family: inherit;
+        }
+
+        .form-control-custom:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74,43,183,0.06);
+            background: var(--bg-white);
+        }
+
+        .form-control-custom::placeholder {
+            color: var(--text-light);
+        }
+
+        .form-label-custom {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 48px 0 24px;
+            background: var(--bg-white);
+            margin-top: 20px;
+            box-shadow: 0 -2px 20px rgba(0,0,0,0.02);
+        }
+
+        .footer .brand {
+            font-size: 18px;
+            display: inline-flex;
+        }
+
+        .footer .brand-icon {
+            width: 36px;
+            height: 36px;
+            font-size: 16px;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 6px;
+        }
+
+        .footer strong {
+            font-weight: 600;
+            color: var(--text-dark);
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--primary);
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .footer a:hover { text-decoration: underline; color: var(--primary-dark); }
+
+        .footer-bottom {
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--bg-body);
+            color: var(--text-muted);
+            transition: 0.3s;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .social-links a:hover {
+            background: rgba(74,43,183,0.08);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-contact-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .footer-contact-line i {
+            width: 18px;
+            color: var(--primary);
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+        }
+
+        /* ===== MODAL ===== */
+        .modal-custom {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0,0,0,0.35);
+            backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-custom.active { display: flex; }
+
+        .modal-box {
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            max-width: 700px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 28px 32px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+        }
+
+        .modal-header-custom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .modal-header-custom h2 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: var(--bg-body);
+            border: 1px solid var(--border);
+            color: var(--text-dark);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .modal-close:hover {
+            border-color: var(--primary);
+            background: rgba(74,43,183,0.04);
+        }
+
+        .modal-services {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 12px 0 20px;
+        }
+
+        .modal-service {
+            background: var(--bg-body);
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            color: var(--text-muted);
+            font-size: 13px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .modal-service:hover {
+            border-color: var(--primary-light);
+            background: rgba(74,43,183,0.02);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 991px) {
+            .hero-section { padding: 120px 0 60px; }
+            .hero-title { font-size: 40px; letter-spacing: -1.5px; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section { padding: 100px 0 40px; }
+            .hero-title { font-size: 32px; letter-spacing: -1px; }
+            .hero-desc { font-size: 16px; }
+            .stat-card .num { font-size: 22px; }
+            .service-card { min-height: 160px; padding: 20px; }
+            .cta-block { padding: 28px 24px; text-align: center; flex-direction: column; }
+            .cta-block h3 { font-size: 22px; }
+            .modal-services { grid-template-columns: 1fr; }
+            .form-card { padding: 20px; }
+            .footer { padding: 32px 0 20px; }
+            .footer .row > div { margin-bottom: 24px; }
+            .footer .row > div:last-child { margin-bottom: 0; }
+            .social-links { justify-content: flex-start; }
+        }
+
+        @media (max-width: 576px) {
+            .footer .row > div { 
+                text-align: center; 
+            }
+            .social-links { 
+                justify-content: center; 
+            }
+            .footer-contact-line {
+                justify-content: center;
+            }
+            .footer-links {
+                align-items: center;
+            }
+            .brand {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
-<div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
 
-<header class="topbar">
-    <div class="container nav">
-        <div class="brand"><div class="brand-icon"><i class="fas fa-crown"></i></div><div><div class="brand-text">RIMI EMPIRE</div><div class="brand-sub" data-i18n="subtitle">SOVEREIGN ORDER</div></div></div>
-        <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 12px;">
-            <nav class="nav-links">
-                <a href="#about" data-i18n="nav_philosophy"><i class="fas fa-chess-queen"></i> Philosophy</a>
-                <a href="#structure" data-i18n="nav_hierarchy"><i class="fas fa-sitemap"></i> Hierarchy</a>
-                <a href="#king" data-i18n="nav_monarch"><i class="fas fa-crown"></i> Monarch</a>
-                <a href="#apply" data-i18n="nav_oath"><i class="fas fa-scroll"></i> Immortal Oath</a>
-            </nav>
-            <div class="lang-switch">
-                <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
-                <button class="lang-btn" data-lang="ru">🇷🇺 RU</button>
-                <button class="lang-btn" data-lang="vi">🇻🇳 VI</button>
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar-custom" id="navbar">
+    <div class="container-custom">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="#" class="brand">
+                <span class="brand-icon">A</span>
+                <span>AppArtA IT</span>
+            </a>
+
+            <button class="mobile-toggle d-md-none" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="d-none d-md-flex align-items-center gap-4" id="navLinks">
+                <a href="#services" class="nav-link-custom">Услуги</a>
+                <a href="#process" class="nav-link-custom">Процесс</a>
+                <a href="#growth" class="nav-link-custom">Продвижение</a>
+                <a href="#contact" class="nav-link-custom">Контакты</a>
+                <button class="btn-primary-custom" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                    Обсудить проект
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="d-md-none mt-3" id="mobileMenu" style="display:none;">
+            <div class="d-flex flex-column gap-3 pb-2">
+                <a href="#services" class="nav-link-custom">Услуги</a>
+                <a href="#process" class="nav-link-custom">Процесс</a>
+                <a href="#growth" class="nav-link-custom">Продвижение</a>
+                <a href="#contact" class="nav-link-custom">Контакты</a>
+                <button class="btn-primary-custom w-100" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                    Обсудить проект
+                </button>
             </div>
         </div>
     </div>
-</header>
+</nav>
 
-<main>
-    <section class="hero">
-        <div class="container hero-grid">
-            <div class="hero-card glass-panel">
-                <div class="badge-royal"><i class="fas fa-skull-crossbones"></i> <span data-i18n="badge_elite">A NEW KINGDOM · ELITE MIGRATION · KVK DOMINATION</span></div>
-                <h1>RIMI <span data-i18n="empire_word">EMPIRE</span></h1>
-                <div style="font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; color: #ffdd99;" data-i18n="hero_tagline">Born as a New Kingdom. Total Control.</div>
-                <p class="lead-text" data-i18n="hero_text1">A fresh sovereign kingdom built for warriors who demand order, progression, and victory. Not a migration project — a new empire rising from zero.</p>
-                <p class="lead-text" style="margin-top: 14px;" data-i18n="hero_text2">The Crown is a tool for strategy, not vanity. We are building a brand new seed kingdom to attract elite pioneers, protect the loyal, and dominate KvK through discipline.</p>
-                <div style="display: flex; gap: 16px; margin-top: 30px; flex-wrap: wrap;">
-                    <button onclick="openModal()" class="btn btn-gold" data-i18n="btn_allegiance"><i class="fas fa-feather-alt"></i> Swear Allegiance</button>
-                    <a href="https://discord.gg/ds6ev4gwra" target="_blank" class="btn btn-red" data-i18n="btn_war_council"><i class="fab fa-discord"></i> War Council</a>
+<!-- ===== HERO ===== -->
+<section class="hero-section">
+    <div class="container-custom">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="hero-badge mb-3">
+                    <span class="dot-pulse"></span>
+                    Tallinn · Estonia · Baltics · Europe
+                </div>
+                <h1 class="hero-title">
+                    Мы делаем <br>
+                    <span class="highlight">бизнес видимым</span>
+                </h1>
+                <p class="hero-desc mb-4">
+                    Сайты, SEO, Google Ads, Meta Ads, аналитика и автоматизация — всё в одном месте.
+                    Работаем по всей Европе, базируемся в Таллинне.
+                </p>
+                <div class="d-flex gap-3 flex-wrap mb-4">
+                    <button class="btn-primary-custom" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                        Получить предложение
+                    </button>
+                    <button class="btn-outline-custom" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+                        Смотреть услуги
+                    </button>
+                </div>
+                <div class="row g-3">
+                    <div class="col-4">
+                        <div class="stat-card">
+                            <div class="num">8</div>
+                            <div class="label">направлений</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="stat-card">
+                            <div class="num">360°</div>
+                            <div class="label">полный цикл</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="stat-card">
+                            <div class="num">EE/RU/EN</div>
+                            <div class="label">многоязычность</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <aside class="hero-card">
-                <div class="stats">
-                    <div class="stat"><strong>#1</strong><span data-i18n="stat_alliance"> Fresh Kingdom</span></div>
-                    <div class="stat"><strong>KvK</strong><span data-i18n="stat_war"> Total War Focus</span></div>
-                    <div class="stat"><strong>1</strong><span data-i18n="stat_command"> Central Command</span></div>
-                    <div class="stat"><strong data-i18n="stat_elite_label">Elite</strong><span data-i18n="stat_path"> Path to Glory</span></div>
+
+            <div class="col-lg-6">
+                <div class="terminal-wrapper">
+                    <div class="terminal">
+                        <div class="terminal-head">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                        <div class="terminal-body">
+                            <div><span class="tk">&lt;AppArtA_IT&gt;</span></div>
+                            <div>&nbsp;&nbsp;<span class="val">website</span> = <span class="str">"high-conversion"</span>;</div>
+                            <div>&nbsp;&nbsp;<span class="val">seo</span> = <span class="str">"top-rank"</span>;</div>
+                            <div>&nbsp;&nbsp;<span class="val">ads</span> = <span class="str">"qualified-leads"</span>;</div>
+                            <div>&nbsp;&nbsp;<span class="val">analytics</span> = <span class="str">"data-driven"</span>;</div>
+                            <div>&nbsp;&nbsp;<span class="val">automation</span> = <span class="str">"scalable"</span>;</div>
+                            <div><span class="tk">&lt;/AppArtA_IT&gt;</span></div>
+                            <div class="cursor-line">
+                                <span style="color: #60a5fa;">➜</span> system ready
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="quote"><i class="fas fa-quote-left" style="color: #ffd700;"></i> <span data-i18n="quote_text">RIMI EMPIRE is not a random cluster — it's a newborn kingdom built from scratch to be a machine. Progression, loyalty, and the iron will to conquer.</span></div>
-            </aside>
-        </div>
-    </section>
-
-    <section id="about"><div class="container"><h2 class="section-title"><i class="fas fa-dragon"></i> <span data-i18n="about_title">The Imperial Codex</span></h2><p class="section-desc" data-i18n="about_desc">A brand new kingdom with structured leadership, clear progression, and a culture that rewards activity and loyalty. We are starting from zero, building an empire of elite warriors.</p>
-        <div class="grid-3"><div class="card"><div class="badge-card"><i class="fas fa-gavel"></i> <span data-i18n="card1_badge">IRON COMMAND</span></div><h3 data-i18n="card1_title">Centralized Strategy</h3><p data-i18n="card1_text">One vision, one command. No internal wars, no confusion — pure coordination for KvK dominance from the very first day.</p></div>
-        <div class="card"><div class="badge-card"><i class="fas fa-meteor"></i> <span data-i18n="card2_badge">PIONEER RECRUITMENT</span></div><h3 data-i18n="card2_title">Seed Kingdom Elite</h3><p data-i18n="card2_text">Built to attract top fighters and organized leaders who want to shape a kingdom from the ground up.</p></div>
-        <div class="card"><div class="badge-card"><i class="fas fa-shield-alt"></i> <span data-i18n="card3_badge">KNIGHT'S CODE</span></div><h3 data-i18n="card3_title">Honor & Strength</h3><p data-i18n="card3_text">Protect the innocent, respect allies, crush enemies with discipline. No toxicity, only fire.</p></div></div></div></section>
-
-    <section id="structure">
-        <div class="container">
-            <h2 class="section-title"><i class="fas fa-landmark"></i> <span data-i18n="structure_title">Empire Legions</span></h2>
-            <p class="section-desc" data-i18n="structure_desc">Each alliance has its own R4 and R5 command. Contact them directly for recruitment or questions. All legions are part of the new kingdom foundation.</p>
-            <div class="alliances-grid">
-                <!-- RIMI IMPERIUM -->
-                <div class="alliance-card"><div class="alliance-header"><div class="alliance-name"><i class="fas fa-crown"></i> RIMI IMPERIUM</div><div class="alliance-tags"><span class="alliance-tag">Flagship · Core</span><span class="alliance-tag">New Kingdom Command</span></div></div><div class="alliance-body"><div class="alliance-desc"><i class="fas fa-flag-checkered"></i> The heart of the empire. Elite fighters, strict discipline, KvK spearhead.</div><div class="alliance-buttons"><a href="https://t.me/kj_v_dele" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R4</a><a href="https://t.me/kj_v_dele" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R5</a></div></div></div>
-                <!-- RIMI GRANDEUR -->
-                <div class="alliance-card"><div class="alliance-header"><div class="alliance-name"><i class="fas fa-star"></i> RIMI GRANDEUR</div><div class="alliance-tags"><span class="alliance-tag">Elite Command</span><span class="alliance-tag">High Activity</span></div></div><div class="alliance-body"><div class="alliance-desc"><i class="fas fa-chart-line"></i> Strategic masterminds, high activity, backbone of imperial might.</div><div class="alliance-buttons"><a href="https://t.me/VigArm" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R4</a><a href="https://t.me/VigArm" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R5</a></div></div></div>
-                <!-- RIMI CONQUEST -->
-                <div class="alliance-card"><div class="alliance-header"><div class="alliance-name"><i class="fas fa-bolt"></i> RIMI CONQUEST</div><div class="alliance-tags"><span class="alliance-tag">Strike Force</span><span class="alliance-tag">Vanguard</span></div></div><div class="alliance-body"><div class="alliance-desc"><i class="fas fa-crosshairs"></i> Offensive specialists, first into battle, relentless aggression.</div><div class="alliance-buttons"><a href="https://t.me/kj_v_dele" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R4</a><a href="https://t.me/kj_v_dele" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R5</a></div></div></div>
-                <!-- RIMI HEGEMONY -->
-                <div class="alliance-card"><div class="alliance-header"><div class="alliance-name"><i class="fas fa-dragon"></i> RIMI HEGEMONY</div><div class="alliance-tags"><span class="alliance-tag">Warlords</span><span class="alliance-tag">Veterans</span></div></div><div class="alliance-body"><div class="alliance-desc"><i class="fas fa-fist-raised"></i> Veteran fighters, territorial control, dominance in open field.</div><div class="alliance-buttons"><a href="https://t.me/kj_v_dele" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R4</a><a href="https://t.me/kj_v_dele" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R5</a></div></div></div>
-                <!-- RIMI LEGIONS -->
-                <div class="alliance-card"><div class="alliance-header"><div class="alliance-name"><i class="fas fa-shield-virus"></i> RIMI LEGIONS</div><div class="alliance-tags"><span class="alliance-tag">Iron Wall</span><span class="alliance-tag">Defense</span></div></div><div class="alliance-body"><div class="alliance-desc"><i class="fas fa-shield-alt"></i> Defensive backbone, garrison specialists, unbreakable resolve.</div><div class="alliance-buttons"><a href="https://t.me/kj_v_dele" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R4</a><a href="https://t.me/kj_v_dele" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R5</a></div></div></div>
-                <!-- RIMI PHAKANX -->
-                <div class="alliance-card"><div class="alliance-header"><div class="alliance-name"><i class="fas fa-gripfire"></i> RIMI PHAKANX</div><div class="alliance-tags"><span class="alliance-tag">Phalanx Spears</span><span class="alliance-tag">Tactical</span></div></div><div class="alliance-body"><div class="alliance-desc"><i class="fas fa-arrows-alt"></i> Tactical formation experts, deadly coordination, swift strikes.</div><div class="alliance-buttons"><a href="https://t.me/kj_v_dele" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R4</a><a href="https://t.me/kj_v_dele" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R5</a></div></div></div>
-                <!-- RIMI VALOR -->
-                <div class="alliance-card"><div class="alliance-header"><div class="alliance-name"><i class="fas fa-feather-alt"></i> RIMI VALOR</div><div class="alliance-tags"><span class="alliance-tag">Honor Guard</span><span class="alliance-tag">Disciplined</span></div></div><div class="alliance-body"><div class="alliance-desc"><i class="fas fa-medal"></i> Knights of honor, protectors of the realm, disciplined warriors.</div><div class="alliance-buttons"><a href="https://t.me/kj_v_dele" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R4</a><a href="https://t.me/kj_v_dele" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R5</a></div></div></div>
-                <!-- RIMI WRATH -->
-                <div class="alliance-card"><div class="alliance-header"><div class="alliance-name"><i class="fas fa-fist-raised"></i> RIMI WRATH</div><div class="alliance-tags"><span class="alliance-tag">Vanguard Fury</span><span class="alliance-tag">Shock Troops</span></div></div><div class="alliance-body"><div class="alliance-desc"><i class="fas fa-skull"></i> Shock troops, relentless assault, the emperor's executioners.</div><div class="alliance-buttons"><a href="https://t.me/kj_v_dele" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R4</a><a href="https://t.me/kj_v_dele" target="_blank" class="btn btn-telegram btn-sm"><i class="fab fa-telegram-plane"></i> R5</a></div></div></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section><div class="container grid-4"><div class="card"><i class="fas fa-chart-line" style="font-size: 1.8rem; color: #ffd700;"></i><h3 data-i18n="feat1_title">Organized Leadership</h3><p data-i18n="feat1_text">Clear hierarchy, no kingdom drift. A fresh start.</p></div>
-    <div class="card"><i class="fas fa-arrow-up" style="font-size: 1.8rem; color: #ffd700;"></i><h3 data-i18n="feat2_title">Progression System</h3><p data-i18n="feat2_text">Growth → War → Elite → Core. From day one.</p></div>
-    <div class="card"><i class="fas fa-trophy" style="font-size: 1.8rem; color: #ffd700;"></i><h3 data-i18n="feat3_title">KvK Domination</h3><p data-i18n="feat3_text">Victory is the only standard for our new kingdom.</p></div>
-    <div class="card"><i class="fas fa-users" style="font-size: 1.8rem; color: #ffd700;"></i><h3 data-i18n="feat4_title">Brotherhood</h3><p data-i18n="feat4_text">Strong bonds, stronger kingdom. We build together.</p></div></div></section>
+<!-- ===== SERVICES ===== -->
+<section class="py-5" id="services">
+    <div class="container-custom">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+            <div>
+                <span class="section-label">Services</span>
+                <h2 class="section-title">Всё, что нужно<br>для digital-лидерства</h2>
+            </div>
+            <p class="section-sub">Нажмите на карточку — полный список работ внутри направления.</p>
+        </div>
 
-    <section><div class="container"><h2 class="section-title"><i class="fas fa-road"></i> <span data-i18n="path_title">Path of the Warrior</span></h2><div class="path"><div class="path-step"><i class="fas fa-seedling"></i> <span data-i18n="path_initiate">INITIATE</span></div><div class="arrow">→</div><div class="path-step"><i class="fas fa-fist-raised"></i> <span data-i18n="path_warrior">WARRIOR</span></div><div class="arrow">→</div><div class="path-step"><i class="fas fa-skull"></i> <span data-i18n="path_elite">ELITE</span></div><div class="arrow">→</div><div class="path-step"><i class="fas fa-crown"></i> <span data-i18n="path_kingsguard">KING'S GUARD</span></div></div></div></section>
+        <div class="row g-4" id="servicesGrid">
+            <div class="col-md-6 col-lg-3">
+                <div class="service-card" data-service="web">
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    <span class="num">01</span>
+                    <h5>Web Development</h5>
+                    <p>Сайты, магазины, кабинеты, API</p>
+                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="service-card" data-service="seo">
+                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    <span class="num">02</span>
+                    <h5>SEO</h5>
+                    <p>Google, локальный рост, трафик</p>
+                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="service-card" data-service="google">
+                    <div class="icon"><i class="fab fa-google"></i></div>
+                    <span class="num">03</span>
+                    <h5>Google Ads</h5>
+                    <p>Поиск, Performance Max, лиды</p>
+                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="service-card" data-service="social">
+                    <div class="icon"><i class="fas fa-share-alt"></i></div>
+                    <span class="num">04</span>
+                    <h5>Meta & Social</h5>
+                    <p>Facebook, Instagram, TikTok</p>
+                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="service-card" data-service="analytics">
+                    <div class="icon"><i class="fas fa-database"></i></div>
+                    <span class="num">05</span>
+                    <h5>Analytics</h5>
+                    <p>GA4, GTM, конверсии, воронки</p>
+                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="service-card" data-service="automation">
+                    <div class="icon"><i class="fas fa-robot"></i></div>
+                    <span class="num">06</span>
+                    <h5>Automation</h5>
+                    <p>CRM, боты, API, интеграции</p>
+                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="service-card" data-service="support">
+                    <div class="icon"><i class="fas fa-headset"></i></div>
+                    <span class="num">07</span>
+                    <h5>Support</h5>
+                    <p>Поддержка, хостинг, доработки</p>
+                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="service-card" data-service="full">
+                    <div class="icon"><i class="fas fa-rocket"></i></div>
+                    <span class="num">08</span>
+                    <h5>Full Solution</h5>
+                    <p>Всё включено: сайт + трафик + рост</p>
+                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <section id="king"><div class="container king-box"><div class="king-portrait"><i class="fas fa-crown" style="font-size: 80px; color: #ffd700;"></i></div><div class="panel-glow" style="padding: 32px; border-radius: 42px; background: rgba(0,0,0,0.5);"><h2 class="section-title"><span data-i18n="king_title">The Sovereign</span></h2><p data-i18n="king_desc">The King is not a vanity title — it's the architect of strategy, coordinator of alliances, and guardian of the imperial vision. Leading a brand new kingdom from the ground up.</p><div class="card" style="margin-bottom: 18px;"><h3><i class="fas fa-bullseye"></i> <span data-i18n="king_mission_title">Royal Mission</span></h3><p data-i18n="king_mission_text">Build a fresh kingdom that attracts the best pioneers, enforces order, and creates a home where warriors thrive from day one.</p></div><div class="card"><h3><i class="fas fa-scroll"></i> <span data-i18n="king_code_title">Code of Knights</span></h3><p data-i18n="king_code_text">Protect the realm, serve the empire, respect the loyal, and fight with honor. This is our new kingdom's foundation.</p></div></div></div></section>
+<!-- ===== PROCESS ===== -->
+<section class="py-5 bg-white" id="process">
+    <div class="container-custom">
+        <div class="mb-4">
+            <span class="section-label">Process</span>
+            <h2 class="section-title">От идеи<br>до результата</h2>
+        </div>
 
-    <section id="apply"><div class="container"><div class="glass-panel" style="padding: 42px 36px; border-radius: 48px; text-align: center;"><i class="fas fa-scroll" style="font-size: 56px; color: #d4af37;"></i><h2 class="section-title"><span data-i18n="apply_title">The Immortal Oath</span></h2><p class="section-desc" style="margin: 0 auto 32px auto;" data-i18n="apply_desc">We don't accept everyone. Only warriors ready for structure, war, and loyalty. Join our new sovereign kingdom.</p>
-        <div class="apply-btn-wrapper"><a href="https://forms.gle/iEDwmAtBFYgDEALR6" target="_blank" class="btn btn-gold" data-i18n="modal_apply_btn"><i class="fas fa-feather-alt"></i> Go to Application Form</a></div>
-        <div style="margin-top: 28px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;"><div><i class="fas fa-check-circle" style="color: #ffd700;"></i> <span data-i18n="selection_value_title">What We Value</span></div><div><i class="fas fa-user-astronaut" style="color: #ffd700;"></i> <span data-i18n="selection_ideal_title">Ideal Candidate</span></div><div><i class="fas fa-envelope" style="color: #ffd700;"></i> <span data-i18n="selection_next_title">Next Steps</span></div></div></div></div></section>
-</main>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="process-step">
+                    <div class="num">01</div>
+                    <h5>Заявка</h5>
+                    <p>Вы описываете задачу и цели</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="process-step">
+                    <div class="num">02</div>
+                    <h5>Обсуждение</h5>
+                    <p>Детали, сроки, приоритеты</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="process-step">
+                    <div class="num">03</div>
+                    <h5>Предложение</h5>
+                    <p>Объём работ и индивидуальная цена</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="process-step">
+                    <div class="num">04</div>
+                    <h5>Реализация</h5>
+                    <p>Разработка, запуск, продвижение</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<div class="sticky-discord"><a href="https://discord.gg/ds6ev4gwra" target="_blank" class="btn btn-red"><i class="fab fa-discord"></i> <span data-i18n="sticky_discord">JOIN WAR COUNCIL</span></a></div>
+<!-- ===== GROWTH ===== -->
+<section class="py-5" id="growth">
+    <div class="container-custom">
+        <div class="row g-4 align-items-stretch">
+            <div class="col-lg-6">
+                <span class="section-label">AppArtA IT</span>
+                <h2 class="section-title">Один подрядчик<br>вместо пяти</h2>
+                <p class="text-muted fs-5" style="max-width: 500px;">
+                    Разработка, SEO, реклама, аналитика и автоматизация — всё в одной экосистеме.
+                    Экономьте время и деньги, работая с одной командой.
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <div class="feature-panel">
+                    <h4>Что мы закрываем</h4>
+                    <ul class="checklist">
+                        <li>Custom Web Development</li>
+                        <li>SEO и органический рост</li>
+                        <li>Google Ads & Meta Ads</li>
+                        <li>GA4, GTM, конверсионный трекинг</li>
+                        <li>CRM, API, автоматизация</li>
+                        <li>Поддержка после запуска</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<footer><div class="container"><strong style="color: #ffd700;">RIMI EMPIRE</strong> — <span data-i18n="footer_tagline">A New Sovereign Kingdom. Total Control.</span> | Rise of Kingdoms Fresh Seed Project</div></footer>
+<!-- ===== CTA ===== -->
+<section class="py-5">
+    <div class="container-custom">
+        <div class="cta-block">
+            <div>
+                <h3>Kirjelda oma projekti</h3>
+                <p>Опишите проект → получите индивидуальное предложение</p>
+            </div>
+            <button class="btn-primary-custom" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                Оставить заявку
+            </button>
+        </div>
+    </div>
+</section>
 
-<div id="applyModal" class="modal-overlay"><div class="modal-container"><button class="modal-close" onclick="closeModal()">✕</button><div class="modal-icon"><i class="fas fa-crown"></i></div><h3 class="modal-title" data-i18n="modal_title">Join the Empire</h3><p class="modal-text" data-i18n="modal_text">Click the button below to fill out the application form. Our officers will review your submission and contact you on Discord.</p><div class="modal-buttons"><a href="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform" target="_blank" class="btn btn-gold" data-i18n="modal_apply_btn">Go to Application Form</a><button onclick="closeModal()" class="btn btn-outline" data-i18n="modal_cancel">Cancel</button></div><p style="margin-top: 20px; font-size: 0.65rem;" data-i18n="modal_note">You will be redirected to Google Forms. All data is secure.</p></div></div>
+<!-- ===== CONTACT ===== -->
+<section class="py-5 bg-white" id="contact">
+    <div class="container-custom">
+        <div class="row g-5">
+            <div class="col-lg-5">
+                <span class="section-label">Start a project</span>
+                <h2 class="section-title">Расскажите<br>о своём проекте</h2>
+                <p class="text-muted fs-5">Форма готова к отправке. Мы свяжемся с вами для обсуждения деталей.</p>
+                <div class="feature-panel mt-4">
+                    <ul class="checklist">
+                        <li>Опишите проект</li>
+                        <li>Выберите направление</li>
+                        <li>Укажите контакт</li>
+                        <li>Получите предложение</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="form-card">
+                    <form id="contactForm" action="#" method="POST">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label-custom">Ваше имя</label>
+                                <input type="text" class="form-control form-control-custom" placeholder="Иван Иванов" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label-custom">Компания</label>
+                                <input type="text" class="form-control form-control-custom" placeholder="Название компании">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label-custom">Email</label>
+                                <input type="email" class="form-control form-control-custom" placeholder="ivan@company.com" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label-custom">Телефон</label>
+                                <input type="tel" class="form-control form-control-custom" placeholder="+372 5555 5555" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label-custom">Направление</label>
+                                <select class="form-control form-control-custom">
+                                    <option value="">Выберите услугу</option>
+                                    <option>Web Development</option>
+                                    <option>SEO</option>
+                                    <option>Google Ads</option>
+                                    <option>Meta & Social</option>
+                                    <option>Analytics</option>
+                                    <option>Automation</option>
+                                    <option>Support</option>
+                                    <option>Full Solution</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label-custom">Бюджет</label>
+                                <select class="form-control form-control-custom">
+                                    <option value="">Не указывать</option>
+                                    <option>до 500 €</option>
+                                    <option>500–1 000 €</option>
+                                    <option>1 000–2 500 €</option>
+                                    <option>2 500–5 000 €</option>
+                                    <option>5 000 €+</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label-custom">Описание проекта</label>
+                                <textarea class="form-control form-control-custom" rows="4" placeholder="Что нужно сделать? Какие цели и пожелания?" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn-primary-custom w-100 py-3">
+                                    <i class="fas fa-paper-plane me-2"></i> Отправить заявку
+                                </button>
+                                <div class="text-muted mt-2 small">* Мы свяжемся с вами в течение 24 часов</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="container-custom">
+        <div class="row g-4">
+            <!-- Колонка 1: Логотип + описание + соцсети -->
+            <div class="col-12 col-md-5 col-lg-4">
+                <a href="#" class="brand">
+                    <span class="brand-icon">A</span>
+                    <span>AppArtA IT</span>
+                </a>
+                <p class="mt-2" style="max-width: 300px;">
+                    Web Development • SEO • Google Ads • Meta Ads • Analytics • Automation
+                </p>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                </div>
+            </div>
+
+            <!-- Колонка 2: Владелец + Адрес -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <strong>Владелец</strong>
+                <p>Артём Артюхин</p>
+
+                <strong>Адрес</strong>
+                <p>Tallinn, Estonia</p>
+            </div>
+
+            <!-- Колонка 3: Контакты + якоря -->
+            <div class="col-6 col-md-3 col-lg-5">
+                <strong>Контакты</strong>
+                <div class="footer-contact-line">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:hello@apparta.ee">hello@apparta.ee</a>
+                </div>
+                <div class="footer-contact-line">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+3725555555">+372 5555 5555</a>
+                </div>
+
+                <strong class="mt-2">Разделы</strong>
+                <div class="footer-links">
+                    <a href="#services">Услуги</a>
+                    <a href="#process">Процесс</a>
+                    <a href="#growth">Продвижение</a>
+                    <a href="#contact">Контакты</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center">
+            <span>© 2025 AppArtA IT. Все права защищены.</span>
+            <span>Сделано в Таллинне 🇪🇪</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-custom" id="serviceModal">
+    <div class="modal-box">
+        <div class="modal-header-custom">
+            <h2 id="modalTitle">Услуги</h2>
+            <button class="modal-close" id="modalClose">✕</button>
+        </div>
+        <p id="modalDescription" style="color: var(--text-muted);"></p>
+        <div class="modal-services" id="modalServices"></div>
+        <button class="btn-primary-custom w-100" id="modalCta">Обсудить проект</button>
+    </div>
+</div>
 
 <script>
-    const translations = {
-        en: { subtitle:"SOVEREIGN ORDER", nav_philosophy:"Philosophy", nav_hierarchy:"Hierarchy", nav_monarch:"Monarch", nav_oath:"Immortal Oath", badge_elite:"A NEW KINGDOM · ELITE MIGRATION · KVK DOMINATION", empire_word:"EMPIRE", hero_tagline:"Born as a New Kingdom. Total Control.", hero_text1:"A fresh sovereign kingdom built for warriors who demand order, progression, and victory. Not a migration project — a new empire rising from zero.", hero_text2:"The Crown is a tool for strategy, not vanity. We are building a brand new seed kingdom to attract elite pioneers, protect the loyal, and dominate KvK through discipline.", btn_allegiance:"Swear Allegiance", btn_war_council:"War Council", stat_alliance:" Fresh Kingdom", stat_war:" Total War Focus", stat_command:" Central Command", stat_elite_label:"Elite", stat_path:" Path to Glory", quote_text:"RIMI EMPIRE is not a random cluster — it's a newborn kingdom built from scratch to be a machine. Progression, loyalty, and the iron will to conquer.", about_title:"The Imperial Codex", about_desc:"A brand new kingdom with structured leadership, clear progression, and a culture that rewards activity and loyalty. We are starting from zero, building an empire of elite warriors.", card1_badge:"IRON COMMAND", card1_title:"Centralized Strategy", card1_text:"One vision, one command. No internal wars, no confusion — pure coordination for KvK dominance from the very first day.", card2_badge:"PIONEER RECRUITMENT", card2_title:"Seed Kingdom Elite", card2_text:"Built to attract top fighters and organized leaders who want to shape a kingdom from the ground up.", card3_badge:"KNIGHT'S CODE", card3_title:"Honor & Strength", card3_text:"Protect the innocent, respect allies, crush enemies with discipline. No toxicity, only fire.", structure_title:"Empire Legions", structure_desc:"Each alliance has its own R4 and R5 command. Contact them directly for recruitment or questions. All legions are part of the new kingdom foundation.", feat1_title:"Organized Leadership", feat1_text:"Clear hierarchy, no kingdom drift. A fresh start.", feat2_title:"Progression System", feat2_text:"Growth → War → Elite → Core. From day one.", feat3_title:"KvK Domination", feat3_text:"Victory is the only standard for our new kingdom.", feat4_title:"Brotherhood", feat4_text:"Strong bonds, stronger kingdom. We build together.", path_title:"Path of the Warrior", path_initiate:"INITIATE", path_warrior:"WARRIOR", path_elite:"ELITE", path_kingsguard:"KING'S GUARD", king_title:"The Sovereign", king_desc:"The King is the architect of strategy. Leading a brand new kingdom from the ground up.", king_mission_title:"Royal Mission", king_mission_text:"Build a fresh kingdom that attracts the best pioneers, enforces order, and creates a home where warriors thrive from day one.", king_code_title:"Code of Knights", king_code_text:"Protect the realm, serve the empire. This is our new kingdom's foundation.", apply_title:"The Immortal Oath", apply_desc:"We don't accept everyone. Only warriors ready for structure. Join our new sovereign kingdom.", selection_value_title:"What We Value", selection_ideal_title:"Ideal Candidate", selection_next_title:"Next Steps", modal_apply_btn:"Go to Application Form", sticky_discord:"JOIN WAR COUNCIL", footer_tagline:"A New Sovereign Kingdom. Total Control.", modal_title:"Join the Empire", modal_text:"Fill out the application form. Officers will contact you on Discord.", modal_cancel:"Cancel", modal_note:"Redirect to Google Forms." },
-        ru: { subtitle:"СУВЕРЕННЫЙ ОРДЕН", nav_philosophy:"Философия", nav_hierarchy:"Иерархия", nav_monarch:"Монарх", nav_oath:"Клятва", badge_elite:"НОВОЕ КОРОЛЕВСТВО · ЭЛИТНАЯ МИГРАЦИЯ · ДОМИНИРОВАНИЕ В KVK", empire_word:"ИМПЕРИЯ", hero_tagline:"Рождено как новое королевство. Полный Контроль.", hero_text1:"Свежее суверенное королевство для воинов, требующих порядка и побед. Не миграционный проект — новая империя с нуля.", hero_text2:"Корона — инструмент стратегии. Мы строим совершенно новое королевство, чтобы привлечь элитных первопроходцев.", btn_allegiance:"Принести клятву", btn_war_council:"Военный совет", stat_alliance:" Новое королевство", stat_war:" Фокус на войну", stat_command:" Центр командования", stat_elite_label:"Элита", stat_path:" Путь к славе", quote_text:"RIMI EMPIRE — это не кластер, а новорождённое королевство, созданное с нуля как машина.", about_title:"Имперский кодекс", about_desc:"Абсолютно новое королевство со структурным лидерством. Начинаем с нуля, строим империю элитных воинов.", card1_badge:"ЖЕЛЕЗНАЯ ВЛАСТЬ", card1_title:"Централизованная стратегия", card1_text:"Одно видение, одна команда. Никаких внутренних войн.", card2_badge:"НАБОР ПИОНЕРОВ", card2_title:"Элита нового королевства", card2_text:"Привлекаем топовых бойцов, чтобы построить королевство с нуля.", card3_badge:"РЫЦАРСКИЙ КОДЕКС", card3_title:"Честь и сила", card3_text:"Защищай невинных, круши врагов.", structure_title:"Легионы Империи", structure_desc:"У каждого альянса свои R4 и R5. Все легионы — часть нового королевства.", feat1_title:"Организованное лидерство", feat1_text:"Чёткая иерархия. Свежий старт.", feat2_title:"Система прогрессии", feat2_text:"Рост → Воин → Элита → Ядро.", feat3_title:"Доминирование в KvK", feat3_text:"Победа — стандарт нашего королевства.", feat4_title:"Братство", feat4_text:"Крепкие узы. Строим вместе.", path_title:"Путь воина", path_initiate:"НОВОБРАНЕЦ", path_warrior:"ВОИН", path_elite:"ЭЛИТА", path_kingsguard:"ГВАРДИЯ", king_title:"Суверен", king_desc:"Король — архитектор стратегии. Ведёт новое королевство с нуля.", king_mission_title:"Миссия", king_mission_text:"Построить свежее королевство, которое привлекает лучших первопроходцев.", king_code_title:"Кодекс", king_code_text:"Защищать королевство, служить империи. Основа нашего нового королевства.", apply_title:"Бессмертная клятва", apply_desc:"Мы принимаем не всех. Только воинов.", selection_value_title:"Что ценим", selection_ideal_title:"Идеальный кандидат", selection_next_title:"Шаги", modal_apply_btn:"Перейти к форме", sticky_discord:"ПРИСОЕДИНИТЬСЯ", footer_tagline:"Новое Суверенное Королевство.", modal_title:"Вступить в Империю", modal_text:"Заполните форму. Офицеры свяжутся с вами.", modal_cancel:"Отмена", modal_note:"Перенаправление в Google Forms." },
-        vi: { subtitle:"TRẬT TỰ TỐI CAO", nav_philosophy:"Triết lý", nav_hierarchy:"Hệ thống", nav_monarch:"Quốc vương", nav_oath:"Lời thề", badge_elite:"VƯƠNG QUỐC MỚI · DI DÂN TINH HOA · THỐNG TRỊ KVK", empire_word:"ĐẾ CHẾ", hero_tagline:"Ra đời như Vương quốc mới. Toàn Quyền Kiểm Soát.", hero_text1:"Vương quốc có chủ quyền mới được xây dựng cho chiến binh. Không phải dự án di dân — đế chế mới từ con số không.", hero_text2:"Vương miện là công cụ chiến lược. Chúng tôi đang xây dựng vương quốc hạt giống hoàn toàn mới.", btn_allegiance:"Thề trung thành", btn_war_council:"Hội đồng chiến tranh", stat_alliance:" Vương quốc mới", stat_war:" Tập trung chiến tranh", stat_command:" Bộ chỉ huy", stat_elite_label:"Tinh hoa", stat_path:" Đường vinh quang", quote_text:"RIMI EMPIRE là cỗ máy — vương quốc mới được tạo ra từ đầu.", about_title:"Bộ luật Đế chế", about_desc:"Vương quốc mới với lãnh đạo có cấu trúc. Bắt đầu từ số không, xây dựng đế chế.", card1_badge:"MỆNH LỆNH THÉP", card1_title:"Chiến lược tập trung", card1_text:"Một tầm nhìn, một chỉ huy.", card2_badge:"TUYỂN MỘ TIÊN PHONG", card2_title:"Tinh hoa vương quốc mới", card2_text:"Thu hút chiến binh hàng đầu để xây dựng vương quốc từ đầu.", card3_badge:"HIỆP SĨ", card3_title:"Danh dự & Sức mạnh", card3_text:"Bảo vệ người vô tội.", structure_title:"Các Quân đoàn", structure_desc:"Mỗi liên minh có R4 và R5 riêng. Tất cả đều thuộc vương quốc mới.", feat1_title:"Lãnh đạo có tổ chức", feat1_text:"Hệ thống rõ ràng. Khởi đầu mới.", feat2_title:"Thăng tiến", feat2_text:"Phát triển → Chiến binh → Tinh hoa.", feat3_title:"Thống trị KvK", feat3_text:"Chiến thắng là tiêu chuẩn.", feat4_title:"Huynh đệ", feat4_text:"Xây dựng cùng nhau.", path_title:"Con đường chiến binh", path_initiate:"TÂN BINH", path_warrior:"CHIẾN BINH", path_elite:"TINH HOA", path_kingsguard:"CẬN VỆ", king_title:"Quốc vương", king_desc:"Quốc vương là kiến trúc sư. Dẫn dắt vương quốc mới.", king_mission_title:"Sứ mệnh", king_mission_text:"Xây dựng vương quốc thu hút người giỏi nhất.", king_code_title:"Quy tắc", king_code_text:"Bảo vệ vương quốc, phục vụ đế chế. Nền tảng của vương quốc mới.", apply_title:"Lời thề bất tử", apply_desc:"Chỉ chiến binh thực sự.", selection_value_title:"Giá trị", selection_ideal_title:"Ứng viên", selection_next_title:"Các bước", modal_apply_btn:"Đi đến mẫu", sticky_discord:"THAM GIA", footer_tagline:"Vương Quốc Có Chủ Quyền Mới.", modal_title:"Tham gia Đế chế", modal_text:"Điền đơn. Sĩ quan sẽ liên hệ.", modal_cancel:"Hủy", modal_note:"Chuyển hướng đến Google Forms." }
+    // ===== NAVBAR SCROLL =====
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // ===== MOBILE TOGGLE =====
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileToggle.addEventListener('click', () => {
+        mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
+    });
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+        link.addEventListener('click', () => { mobileMenu.style.display = 'none'; });
+    });
+
+    // ===== SERVICES DATA =====
+    const servicesData = {
+        web: { title: "Web Development", description: "Разработка сайтов и веб-систем под ключ.",
+            items: ["Сайты под ключ", "Landing Page", "Корпоративные сайты", "Интернет-магазины", "Каталоги", "Мультиязычные сайты", "Custom PHP", "Личные кабинеты", "Админ-панели", "CRM", "Онлайн-запись", "Калькуляторы", "API-интеграции", "Платёжные системы", "Редизайн", "Оптимизация скорости", "Мобильная адаптация"] },
+        seo: { title: "SEO", description: "Увеличение видимости и органического трафика.",
+            items: ["SEO-аудит", "Техническое SEO", "Local SEO", "SEO для Эстонии", "SEO для Балтии", "Анализ конкурентов", "Сбор ключевых слов", "On-page SEO", "Title/Description", "H1-H6", "Внутренняя перелинковка", "Индексация", "Google Search Console", "Core Web Vitals", "Multilingual SEO", "Hreflang", "Мониторинг позиций"] },
+        google: { title: "Google Ads", description: "Настройка рекламы с упором на заявки и продажи.",
+            items: ["Google Search Ads", "Performance Max", "Display Ads", "Remarketing", "Google Maps Ads", "Local Business Ads", "E-commerce Ads", "Подбор ключевых слов", "Минус-слова", "Создание объявлений", "Геотаргетинг", "Conversion Tracking", "Оптимизация бюджета", "Оптимизация стоимости лида", "Ежемесячное ведение"] },
+        social: { title: "Meta & Social", description: "Продвижение в социальных сетях и Meta Ads.",
+            items: ["Facebook Ads", "Instagram Ads", "Meta Ads", "Lead Ads", "Stories Ads", "Reels Ads", "Реклама на сообщения", "Retargeting", "Meta Pixel", "Настройка аудиторий", "Lookalike Audiences", "Instagram Growth", "Facebook Growth", "TikTok Promotion", "YouTube Promotion", "Контент-стратегия", "Social Analytics"] },
+        analytics: { title: "Analytics", description: "Настройка измерения трафика, конверсий и эффективности.",
+            items: ["Google Analytics 4", "Google Tag Manager", "Google Search Console", "Meta Pixel", "Google Ads Conversion Tracking", "Meta Conversion Tracking", "Events", "Goals", "Lead Tracking", "Purchase Tracking", "Click Tracking", "Traffic Analysis", "Ad Performance Reports", "Marketing Dashboards"] },
+        automation: { title: "Automation", description: "Автоматизация процессов и коммуникаций.",
+            items: ["CRM-интеграции", "Telegram-боты", "Боты для бизнеса", "Автоматизация заявок", "Email automation", "Уведомления", "Системы бронирования", "Order automation", "Internal dashboards", "API integrations", "Интеграция мессенджеров"] },
+        support: { title: "Support", description: "Поддержка, обслуживание и развитие проектов.",
+            items: ["Техническая поддержка", "Исправление ошибок", "Добавление функций", "Добавление страниц", "Перенос сайтов", "Настройка домена", "DNS", "Хостинг", "SSL", "Backups", "Monitoring", "Performance Optimization", "Обновление контента"] },
+        full: { title: "Full Solution", description: "Комплексное решение: сайт + трафик + рост.",
+            items: ["Сайт + SEO", "Сайт + Google Ads", "Сайт + Meta Ads", "Сайт + SEO + Ads", "Сайт + Analytics", "Сайт + Automation", "Development + Promotion", "Full Online Launch", "Digital Strategy", "Traffic Acquisition", "Conversion Tracking", "Monthly Growth Support"] }
     };
-    let currentLang = 'en';
-    function setLanguage(lang) { currentLang = lang; const t = translations[lang]; document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if(t[key] !== undefined) el.innerHTML = t[key]; }); document.querySelectorAll('.lang-btn').forEach(btn => { if(btn.getAttribute('data-lang') === lang) btn.classList.add('active'); else btn.classList.remove('active'); }); }
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang'))));
-    setLanguage('en');
-    function openModal() { document.getElementById('applyModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeModal() { document.getElementById('applyModal').classList.remove('active'); document.body.style.overflow = ''; }
-    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
-    document.getElementById('applyModal').addEventListener('click', e => { if(e.target === e.currentTarget) closeModal(); });
+
+    // ===== MODAL =====
+    const modal = document.getElementById('serviceModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDescription');
+    const modalServices = document.getElementById('modalServices');
+    const modalClose = document.getElementById('modalClose');
+    const modalCta = document.getElementById('modalCta');
+
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const key = card.dataset.service;
+            const data = servicesData[key];
+            if (!data) return;
+            modalTitle.textContent = data.title;
+            modalDesc.textContent = data.description;
+            modalServices.innerHTML = data.items.map(item => `<div class="modal-service">${item}</div>`).join('');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    modalCta.addEventListener('click', () => { closeModal(); document.getElementById('contact').scrollIntoView({behavior:'smooth'}); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // ===== FORM =====
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+        this.reset();
+    });
 </script>
 </body>
 </html>
