@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AppArtA IT — разработка сайтов, SEO, реклама, аналитика, автоматизация. Estonia, Tallinn, Baltics, Europe.">
-    <title>AppArtA IT — Digital-агентство в Таллинне</title>
+    <meta name="description" content="AppArtA IT — разработка сайтов, SEO, реклама, аналитика, автоматизация. Заработок для IT-специалистов.">
+    <title>AppArtA IT — Digital-агентство + Заработок</title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -28,6 +28,7 @@
             --shadow-card-hover: 0 12px 48px rgba(74,43,183,0.08);
             --radius: 16px;
             --radius-sm: 10px;
+            --success: #10b981;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -134,6 +135,7 @@
             transition: 0.3s;
             box-shadow: 0 4px 20px rgba(74,43,183,0.20);
             font-family: inherit;
+            cursor: pointer;
         }
 
         .btn-primary-custom:hover {
@@ -152,6 +154,7 @@
             color: var(--text-dark);
             transition: 0.3s;
             font-family: inherit;
+            cursor: pointer;
         }
 
         .btn-outline-custom:hover {
@@ -160,12 +163,85 @@
             transform: translateY(-2px);
         }
 
+        .btn-success-custom {
+            background: var(--success);
+            border: none;
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #fff;
+            transition: 0.3s;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .btn-success-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(16,185,129,0.30);
+            color: #fff;
+        }
+
+        .btn-auth {
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--primary);
+            transition: 0.3s;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .btn-auth:hover {
+            background: var(--gradient);
+            color: #fff;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(74,43,183,0.20);
+        }
+
         .mobile-toggle {
             background: none;
             border: none;
             font-size: 24px;
             color: var(--text-dark);
             padding: 4px 8px;
+        }
+
+        /* ===== LANGUAGE SWITCHER ===== */
+        .lang-switcher {
+            display: flex;
+            gap: 2px;
+            background: var(--bg-body);
+            border-radius: 50px;
+            padding: 3px;
+            border: 1px solid var(--border);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: 0.3s;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .lang-btn:hover {
+            color: var(--text-dark);
+        }
+
+        .lang-btn.active {
+            background: var(--bg-white);
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         /* ===== HERO ===== */
@@ -430,6 +506,99 @@
             transform: translateX(4px);
         }
 
+        /* ===== EARN CARDS ===== */
+        .earn-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: 0.3s;
+            height: 100%;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+        }
+
+        .earn-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .earn-card .icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 16px;
+            opacity: 0.7;
+        }
+
+        .earn-card h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .earn-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .earn-card .free-badge {
+            display: inline-block;
+            background: var(--success);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 14px;
+            border-radius: 50px;
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+
+        /* ===== TASK CATEGORY ===== */
+        .task-category {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            transition: 0.3s;
+            height: 100%;
+            box-shadow: var(--shadow-card);
+        }
+
+        .task-category:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .task-category .icon {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            opacity: 0.7;
+        }
+
+        .task-category h5 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .task-category p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .task-category .examples {
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
         /* ===== PROCESS ===== */
         .process-step {
             background: var(--bg-white);
@@ -554,6 +723,7 @@
             padding: 32px 28px;
             transition: 0.3s;
             box-shadow: var(--shadow-card);
+            height: 100%;
         }
 
         .form-card:hover {
@@ -591,7 +761,7 @@
         /* ===== FOOTER ===== */
         .footer {
             border-top: 1px solid var(--border);
-            padding: 48px 0 24px;
+            padding: 56px 0 32px;
             background: var(--bg-white);
             margin-top: 20px;
             box-shadow: 0 -2px 20px rgba(0,0,0,0.02);
@@ -608,6 +778,16 @@
             font-size: 16px;
         }
 
+        .footer strong {
+            font-weight: 600;
+            color: var(--text-dark);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
         .footer p {
             color: var(--text-muted);
             font-size: 14px;
@@ -615,53 +795,21 @@
             margin-bottom: 6px;
         }
 
-        .footer strong {
-            font-weight: 600;
-            color: var(--text-dark);
-            display: block;
-            margin-bottom: 6px;
-            font-size: 14px;
-        }
-
         .footer a {
-            color: var(--primary);
-            font-weight: 500;
+            color: var(--text-muted);
             transition: 0.2s;
         }
-        .footer a:hover { text-decoration: underline; color: var(--primary-dark); }
+        .footer a:hover { color: var(--primary); }
 
-        .footer-bottom {
-            padding-top: 20px;
-            margin-top: 20px;
-            border-top: 1px solid var(--border);
-            color: var(--text-light);
-            font-size: 13px;
-        }
-
-        .social-links {
+        .footer-links-grid {
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 4px;
         }
 
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: var(--bg-body);
-            color: var(--text-muted);
-            transition: 0.3s;
-            font-size: 15px;
-            flex-shrink: 0;
-        }
-
-        .social-links a:hover {
-            background: rgba(74,43,183,0.08);
-            color: var(--primary);
-            transform: translateY(-2px);
+        .footer-links-grid a {
+            font-size: 14px;
+            padding: 2px 0;
         }
 
         .footer-contact-line {
@@ -680,14 +828,56 @@
             flex-shrink: 0;
         }
 
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
+        .footer-contact-line a {
+            color: var(--text-muted);
+        }
+        .footer-contact-line a:hover {
+            color: var(--primary);
         }
 
-        .footer-links a {
-            font-size: 14px;
+        .footer-social {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--bg-body);
+            color: var(--text-muted);
+            transition: 0.3s;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .footer-social a:hover {
+            background: var(--gradient);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(74,43,183,0.20);
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+            margin-top: 32px;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        .footer-bottom a {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        .footer-bottom a:hover {
+            text-decoration: underline;
+            color: var(--primary-dark);
         }
 
         /* ===== MODAL ===== */
@@ -708,11 +898,11 @@
         .modal-box {
             background: var(--bg-white);
             border-radius: var(--radius);
-            max-width: 700px;
+            max-width: 550px;
             width: 100%;
-            max-height: 80vh;
+            max-height: 90vh;
             overflow-y: auto;
-            padding: 28px 32px;
+            padding: 32px;
             box-shadow: 0 30px 80px rgba(0,0,0,0.08);
             border: 1px solid var(--border);
         }
@@ -721,11 +911,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .modal-header-custom h2 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
         }
 
@@ -768,6 +958,39 @@
             background: rgba(74,43,183,0.02);
         }
 
+        .modal-tabs {
+            display: flex;
+            gap: 4px;
+            background: var(--bg-body);
+            border-radius: var(--radius-sm);
+            padding: 4px;
+            margin-bottom: 20px;
+        }
+
+        .modal-tab {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: transparent;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+
+        .modal-tab.active {
+            background: var(--bg-white);
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .modal-tab:hover:not(.active) {
+            color: var(--text-dark);
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 991px) {
             .hero-section { padding: 120px 0 60px; }
@@ -784,28 +1007,32 @@
             .cta-block h3 { font-size: 22px; }
             .modal-services { grid-template-columns: 1fr; }
             .form-card { padding: 20px; }
-            .footer { padding: 32px 0 20px; }
+            .footer { padding: 40px 0 24px; }
             .footer .row > div { margin-bottom: 24px; }
             .footer .row > div:last-child { margin-bottom: 0; }
-            .social-links { justify-content: flex-start; }
+            .footer-social { justify-content: flex-start; }
         }
 
         @media (max-width: 576px) {
-            .footer .row > div { 
-                text-align: center; 
+            .footer .row > div {
+                text-align: center;
             }
-            .social-links { 
-                justify-content: center; 
+            .footer-social {
+                justify-content: center;
             }
             .footer-contact-line {
                 justify-content: center;
             }
-            .footer-links {
+            .footer-links-grid {
                 align-items: center;
             }
             .brand {
                 justify-content: center;
             }
+            .lang-switcher {
+                margin: 0 auto;
+            }
+            .modal-box { padding: 20px; }
         }
     </style>
 </head>
@@ -824,26 +1051,47 @@
                 <i class="fas fa-bars"></i>
             </button>
 
-            <div class="d-none d-md-flex align-items-center gap-4" id="navLinks">
+            <div class="d-none d-md-flex align-items-center gap-3" id="navLinks">
                 <a href="#services" class="nav-link-custom">Услуги</a>
+                <a href="#earn" class="nav-link-custom" style="color: var(--primary) !important; font-weight: 700;">💰 Заработок</a>
                 <a href="#process" class="nav-link-custom">Процесс</a>
-                <a href="#growth" class="nav-link-custom">Продвижение</a>
                 <a href="#contact" class="nav-link-custom">Контакты</a>
-                <button class="btn-primary-custom" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-                    Обсудить проект
+
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="ru">RU</button>
+                    <button class="lang-btn" data-lang="et">ET</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+
+                <button class="btn-auth" onclick="openAuthModal()">
+                    <i class="fas fa-user me-1"></i> Войти
+                </button>
+
+                <button class="btn-success-custom" onclick="openAuthModal()">
+                    <i class="fas fa-rocket me-1"></i> Начать зарабатывать
                 </button>
             </div>
         </div>
 
-        <!-- Mobile menu -->
         <div class="d-md-none mt-3" id="mobileMenu" style="display:none;">
             <div class="d-flex flex-column gap-3 pb-2">
                 <a href="#services" class="nav-link-custom">Услуги</a>
+                <a href="#earn" class="nav-link-custom" style="color: var(--primary) !important; font-weight: 700;">💰 Заработок</a>
                 <a href="#process" class="nav-link-custom">Процесс</a>
-                <a href="#growth" class="nav-link-custom">Продвижение</a>
                 <a href="#contact" class="nav-link-custom">Контакты</a>
-                <button class="btn-primary-custom w-100" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-                    Обсудить проект
+
+                <div class="lang-switcher" style="width: fit-content;">
+                    <button class="lang-btn active" data-lang="ru">RU</button>
+                    <button class="lang-btn" data-lang="et">ET</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+
+                <button class="btn-auth" onclick="openAuthModal()">
+                    <i class="fas fa-user me-1"></i> Войти
+                </button>
+
+                <button class="btn-success-custom w-100" onclick="openAuthModal()">
+                    <i class="fas fa-rocket me-1"></i> Начать зарабатывать
                 </button>
             </div>
         </div>
@@ -871,8 +1119,8 @@
                     <button class="btn-primary-custom" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
                         Получить предложение
                     </button>
-                    <button class="btn-outline-custom" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
-                        Смотреть услуги
+                    <button class="btn-outline-custom" onclick="document.getElementById('earn').scrollIntoView({behavior:'smooth'})">
+                        Начать зарабатывать
                     </button>
                 </div>
                 <div class="row g-3">
@@ -1013,8 +1261,107 @@
     </div>
 </section>
 
+<!-- ===== EARN (ЗАРАБОТОК) ===== -->
+<section class="py-5 bg-white" id="earn">
+    <div class="container-custom">
+        <div class="text-center mb-5">
+            <span class="section-label">💰 Заработок</span>
+            <h2 class="section-title">Зарабатывай с AppArtA IT</h2>
+            <p class="section-sub" style="max-width: 600px; margin: 0 auto;">Регистрируйся бесплатно, выполняй задания и получай деньги. Вывод от 100 €.</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-md-3">
+                <div class="earn-card">
+                    <div class="icon"><i class="fas fa-user-plus"></i></div>
+                    <h4>Регистрация</h4>
+                    <p>Создай аккаунт бесплатно</p>
+                    <span class="free-badge">Бесплатно</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="earn-card">
+                    <div class="icon"><i class="fas fa-tasks"></i></div>
+                    <h4>Выполняй задания</h4>
+                    <p>Получай доступ к задачам от AppArtA IT</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="earn-card">
+                    <div class="icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <h4>Зарабатывай</h4>
+                    <p>Копи деньги на своём счету</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="earn-card">
+                    <div class="icon"><i class="fas fa-credit-card"></i></div>
+                    <h4>Выводи</h4>
+                    <p>Вывод на карту от 100 €</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12">
+                <h3 class="text-center mb-4" style="font-weight: 700;">Какие задания мы даём?</h3>
+            </div>
+            <div class="col-md-4">
+                <div class="task-category">
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    <h5>Разработка</h5>
+                    <p>Написание кода, доработка сайтов, создание небольших модулей</p>
+                    <div class="examples">Примеры: правки CSS, установка плагинов, мелкий фикс багов</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="task-category">
+                    <div class="icon"><i class="fas fa-pen-fancy"></i></div>
+                    <h5>Контент</h5>
+                    <p>Написание статей, переводы, создание описаний товаров</p>
+                    <div class="examples">Примеры: SEO-статьи, описания на EE/RU/EN, посты для соцсетей</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="task-category">
+                    <div class="icon"><i class="fas fa-bullhorn"></i></div>
+                    <h5>Продвижение</h5>
+                    <p>Подписки, лайки, комментарии, участие в группах</p>
+                    <div class="examples">Примеры: вступление в группы, лайки постов, подписки на каналы</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <div class="col-md-6">
+                <div class="task-category">
+                    <div class="icon"><i class="fas fa-search"></i></div>
+                    <h5>Аналитика</h5>
+                    <p>Сбор данных, анализ конкурентов, исследования</p>
+                    <div class="examples">Примеры: сбор ключевых слов, анализ сайтов конкурентов</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="task-category">
+                    <div class="icon"><i class="fas fa-robot"></i></div>
+                    <h5>Автоматизация</h5>
+                    <p>Простые скрипты, настройка ботов, интеграции</p>
+                    <div class="examples">Примеры: настройка Telegram-бота, создание простого парсера</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <p class="text-muted">* Доступ к заданиям открывается сразу после регистрации. Вывод средств от 100 €.</p>
+            <button class="btn-success-custom mt-2" onclick="openAuthModal()">
+                <i class="fas fa-rocket me-2"></i> Зарегистрироваться и начать
+            </button>
+        </div>
+    </div>
+</section>
+
 <!-- ===== PROCESS ===== -->
-<section class="py-5 bg-white" id="process">
+<section class="py-5" id="process">
     <div class="container-custom">
         <div class="mb-4">
             <span class="section-label">Process</span>
@@ -1054,37 +1401,8 @@
     </div>
 </section>
 
-<!-- ===== GROWTH ===== -->
-<section class="py-5" id="growth">
-    <div class="container-custom">
-        <div class="row g-4 align-items-stretch">
-            <div class="col-lg-6">
-                <span class="section-label">AppArtA IT</span>
-                <h2 class="section-title">Один подрядчик<br>вместо пяти</h2>
-                <p class="text-muted fs-5" style="max-width: 500px;">
-                    Разработка, SEO, реклама, аналитика и автоматизация — всё в одной экосистеме.
-                    Экономьте время и деньги, работая с одной командой.
-                </p>
-            </div>
-            <div class="col-lg-6">
-                <div class="feature-panel">
-                    <h4>Что мы закрываем</h4>
-                    <ul class="checklist">
-                        <li>Custom Web Development</li>
-                        <li>SEO и органический рост</li>
-                        <li>Google Ads & Meta Ads</li>
-                        <li>GA4, GTM, конверсионный трекинг</li>
-                        <li>CRM, API, автоматизация</li>
-                        <li>Поддержка после запуска</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- ===== CTA ===== -->
-<section class="py-5">
+<section class="py-5 bg-white">
     <div class="container-custom">
         <div class="cta-block">
             <div>
@@ -1099,14 +1417,15 @@
 </section>
 
 <!-- ===== CONTACT ===== -->
-<section class="py-5 bg-white" id="contact">
+<section class="py-5" id="contact">
     <div class="container-custom">
-        <div class="row g-5">
-            <div class="col-lg-5">
+        <div class="row g-5 align-items-stretch">
+            <!-- Левая колонка -->
+            <div class="col-lg-5 d-flex flex-column">
                 <span class="section-label">Start a project</span>
                 <h2 class="section-title">Расскажите<br>о своём проекте</h2>
-                <p class="text-muted fs-5">Форма готова к отправке. Мы свяжемся с вами для обсуждения деталей.</p>
-                <div class="feature-panel mt-4">
+                <p class="text-muted fs-5">Заполните форму и получите индивидуальное предложение от нашей команды.</p>
+                <div class="feature-panel mt-auto">
                     <ul class="checklist">
                         <li>Опишите проект</li>
                         <li>Выберите направление</li>
@@ -1116,12 +1435,13 @@
                 </div>
             </div>
 
-            <div class="col-lg-7">
-                <div class="form-card">
+            <!-- Правая колонка - форма -->
+            <div class="col-lg-7 d-flex">
+                <div class="form-card w-100">
                     <form id="contactForm" action="#" method="POST">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label-custom">Ваше имя</label>
+                                <label class="form-label-custom">Ваше имя *</label>
                                 <input type="text" class="form-control form-control-custom" placeholder="Иван Иванов" required>
                             </div>
                             <div class="col-md-6">
@@ -1129,11 +1449,11 @@
                                 <input type="text" class="form-control form-control-custom" placeholder="Название компании">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label-custom">Email</label>
+                                <label class="form-label-custom">Email *</label>
                                 <input type="email" class="form-control form-control-custom" placeholder="ivan@company.com" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label-custom">Телефон</label>
+                                <label class="form-label-custom">Телефон *</label>
                                 <input type="tel" class="form-control form-control-custom" placeholder="+372 5555 5555" required>
                             </div>
                             <div class="col-md-6">
@@ -1151,25 +1471,38 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label-custom">Бюджет</label>
+                                <label class="form-label-custom">Бюджет проекта, €</label>
                                 <select class="form-control form-control-custom">
                                     <option value="">Не указывать</option>
                                     <option>до 500 €</option>
                                     <option>500–1 000 €</option>
                                     <option>1 000–2 500 €</option>
                                     <option>2 500–5 000 €</option>
-                                    <option>5 000 €+</option>
+                                    <option>5 000–10 000 €</option>
+                                    <option>10 000 €+</option>
                                 </select>
                             </div>
                             <div class="col-12">
-                                <label class="form-label-custom">Описание проекта</label>
+                                <label class="form-label-custom">Описание проекта *</label>
                                 <textarea class="form-control form-control-custom" rows="4" placeholder="Что нужно сделать? Какие цели и пожелания?" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label-custom">Ссылка на сайт (если есть)</label>
+                                <input type="url" class="form-control form-control-custom" placeholder="https://ваш-сайт.ee">
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                    <label class="form-check-label" for="agreeTerms" style="font-size: 13px; color: var(--text-muted);">
+                                        Я согласен(на) с <a href="#" style="color: var(--primary);">политикой конфиденциальности</a> и даю согласие на обработку данных
+                                    </label>
+                                </div>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn-primary-custom w-100 py-3">
                                     <i class="fas fa-paper-plane me-2"></i> Отправить заявку
                                 </button>
-                                <div class="text-muted mt-2 small">* Мы свяжемся с вами в течение 24 часов</div>
+                                <div class="text-muted mt-2 small text-center">* Мы свяжемся с вами в течение 24 часов</div>
                             </div>
                         </div>
                     </form>
@@ -1183,16 +1516,15 @@
 <footer class="footer">
     <div class="container-custom">
         <div class="row g-4">
-            <!-- Колонка 1: Логотип + описание + соцсети -->
-            <div class="col-12 col-md-5 col-lg-4">
+            <div class="col-12 col-md-4 col-lg-4">
                 <a href="#" class="brand">
                     <span class="brand-icon">A</span>
                     <span>AppArtA IT</span>
                 </a>
-                <p class="mt-2" style="max-width: 300px;">
-                    Web Development • SEO • Google Ads • Meta Ads • Analytics • Automation
+                <p class="mt-2" style="max-width: 280px;">
+                    Web Development · SEO · Google Ads · Meta Ads · Analytics · Automation · Заработок
                 </p>
-                <div class="social-links">
+                <div class="footer-social">
                     <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -1201,17 +1533,19 @@
                 </div>
             </div>
 
-            <!-- Колонка 2: Владелец + Адрес -->
-            <div class="col-6 col-md-4 col-lg-3">
-                <strong>Владелец</strong>
-                <p>Артём Артюхин</p>
-
-                <strong>Адрес</strong>
-                <p>Tallinn, Estonia</p>
+            <div class="col-6 col-md-3 col-lg-2">
+                <strong>Услуги</strong>
+                <div class="footer-links-grid">
+                    <a href="#services">Web Development</a>
+                    <a href="#services">SEO</a>
+                    <a href="#services">Google Ads</a>
+                    <a href="#services">Meta & Social</a>
+                    <a href="#services">Analytics</a>
+                    <a href="#services">Automation</a>
+                </div>
             </div>
 
-            <!-- Колонка 3: Контакты + якоря -->
-            <div class="col-6 col-md-3 col-lg-5">
+            <div class="col-6 col-md-5 col-lg-3">
                 <strong>Контакты</strong>
                 <div class="footer-contact-line">
                     <i class="fas fa-envelope"></i>
@@ -1221,34 +1555,105 @@
                     <i class="fas fa-phone"></i>
                     <a href="tel:+3725555555">+372 5555 5555</a>
                 </div>
+                <div class="footer-contact-line">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Tallinn, Estonia</span>
+                </div>
+                <div class="footer-contact-line">
+                    <i class="fas fa-user"></i>
+                    <span>Артём Артюхин</span>
+                </div>
+            </div>
 
-                <strong class="mt-2">Разделы</strong>
-                <div class="footer-links">
-                    <a href="#services">Услуги</a>
-                    <a href="#process">Процесс</a>
-                    <a href="#growth">Продвижение</a>
-                    <a href="#contact">Контакты</a>
+            <div class="col-12 col-md-12 col-lg-3">
+                <strong>Навигация</strong>
+                <div class="row">
+                    <div class="col-6 col-md-4 col-lg-12">
+                        <div class="footer-links-grid">
+                            <a href="#services">Услуги</a>
+                            <a href="#earn" style="color: var(--primary); font-weight: 600;">💰 Заработок</a>
+                            <a href="#process">Процесс</a>
+                            <a href="#contact">Контакты</a>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-12 mt-2 mt-md-0">
+                        <div class="footer-links-grid">
+                            <a href="#" onclick="openAuthModal(); return false;">Войти</a>
+                            <a href="#" onclick="openAuthModal(); return false;">Регистрация</a>
+                            <a href="#">Политика конфиденциальности</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center">
             <span>© 2025 AppArtA IT. Все права защищены.</span>
-            <span>Сделано в Таллинне 🇪🇪</span>
+            <span>Сделано в Таллинне <i class="fas fa-heart" style="color: var(--primary);"></i></span>
         </div>
     </div>
 </footer>
 
-<!-- ===== MODAL ===== -->
-<div class="modal-custom" id="serviceModal">
+<!-- ===== MODAL АВТОРИЗАЦИЯ ===== -->
+<div class="modal-custom" id="authModal">
     <div class="modal-box">
         <div class="modal-header-custom">
-            <h2 id="modalTitle">Услуги</h2>
-            <button class="modal-close" id="modalClose">✕</button>
+            <h2>Вход / Регистрация</h2>
+            <button class="modal-close" onclick="closeAuthModal()">✕</button>
         </div>
-        <p id="modalDescription" style="color: var(--text-muted);"></p>
-        <div class="modal-services" id="modalServices"></div>
-        <button class="btn-primary-custom w-100" id="modalCta">Обсудить проект</button>
+
+        <div class="modal-tabs">
+            <button class="modal-tab active" onclick="switchAuthTab('login', this)">Вход</button>
+            <button class="modal-tab" onclick="switchAuthTab('register', this)">Регистрация</button>
+        </div>
+
+        <div id="loginForm">
+            <form onsubmit="handleLogin(event)">
+                <div class="mb-3">
+                    <label class="form-label-custom">Email</label>
+                    <input type="email" class="form-control form-control-custom" placeholder="ivan@company.com" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label-custom">Пароль</label>
+                    <input type="password" class="form-control form-control-custom" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary-custom w-100 py-2">Войти</button>
+                <div class="text-center mt-3">
+                    <a href="#" style="color: var(--primary); font-size: 13px;">Забыли пароль?</a>
+                </div>
+            </form>
+        </div>
+
+        <div id="registerForm" style="display:none;">
+            <form onsubmit="handleRegister(event)">
+                <div class="mb-3">
+                    <label class="form-label-custom">Имя и фамилия</label>
+                    <input type="text" class="form-control form-control-custom" placeholder="Иван Иванов" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label-custom">Email</label>
+                    <input type="email" class="form-control form-control-custom" placeholder="ivan@company.com" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label-custom">Пароль</label>
+                    <input type="password" class="form-control form-control-custom" placeholder="Минимум 6 символов" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label-custom">Кто вы?</label>
+                    <select class="form-control form-control-custom">
+                        <option value="client">Заказчик (хочу заказать услугу)</option>
+                        <option value="worker" selected>Работник (хочу зарабатывать)</option>
+                        <option value="both">И то, и другое</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-success-custom w-100 py-2">
+                    <i class="fas fa-user-plus me-2"></i> Зарегистрироваться
+                </button>
+                <div class="text-center mt-3">
+                    <span style="color: var(--text-muted); font-size: 13px;">Регистрируясь, вы соглашаетесь с <a href="#" style="color: var(--primary);">условиями</a></span>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -1267,6 +1672,46 @@
     document.querySelectorAll('#mobileMenu a').forEach(link => {
         link.addEventListener('click', () => { mobileMenu.style.display = 'none'; });
     });
+
+    // ===== LANGUAGE SWITCHER =====
+    const langBtns = document.querySelectorAll('.lang-btn');
+    langBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            langBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            console.log('Language switched to:', this.dataset.lang);
+        });
+    });
+
+    // ===== AUTH MODAL =====
+    function openAuthModal() {
+        document.getElementById('authModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeAuthModal() {
+        document.getElementById('authModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function switchAuthTab(tab, btn) {
+        document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
+        document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
+    }
+
+    function handleLogin(e) {
+        e.preventDefault();
+        alert('✅ Вход выполнен! Добро пожаловать в AppArtA IT.');
+        closeAuthModal();
+    }
+
+    function handleRegister(e) {
+        e.preventDefault();
+        alert('✅ Регистрация успешна! Доступ к заданиям открыт. Ждите новые задачи!');
+        closeAuthModal();
+    }
 
     // ===== SERVICES DATA =====
     const servicesData = {
@@ -1318,11 +1763,21 @@
     modalCta.addEventListener('click', () => { closeModal(); document.getElementById('contact').scrollIntoView({behavior:'smooth'}); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-    // ===== FORM =====
+    // ===== FORM CONTACT =====
     document.getElementById('contactForm').addEventListener('submit', function(e) {
         e.preventDefault();
         alert('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
         this.reset();
+    });
+
+    // Закрытие модалок по клику вне окна
+    document.querySelectorAll('.modal-custom').forEach(m => {
+        m.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
     });
 </script>
 </body>
