@@ -1,1784 +1,832 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AppArtA IT — разработка сайтов, SEO, реклама, аналитика, автоматизация. Заработок для IT-специалистов.">
-    <title>AppArtA IT — Digital-агентство + Заработок</title>
-
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --primary: #4a2bb7;
-            --primary-light: #6b4fd9;
-            --primary-dark: #351f8a;
-            --accent: #2b7be4;
-            --gradient: linear-gradient(135deg, #4a2bb7 0%, #2b7be4 100%);
-            --text-dark: #0f111a;
-            --text-muted: #5a6278;
-            --text-light: #8e96ab;
-            --bg-body: #eef1f7;
-            --bg-white: #ffffff;
-            --border: #e2e6ef;
-            --shadow-card: 0 4px 24px rgba(0,0,0,0.04);
-            --shadow-card-hover: 0 12px 48px rgba(74,43,183,0.08);
-            --radius: 16px;
-            --radius-sm: 10px;
-            --success: #10b981;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg-body);
-            color: var(--text-dark);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a { text-decoration: none; color: inherit; }
-        img { max-width: 100%; }
-
-        .container-custom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* ===== HEADER ===== */
-        .navbar-custom {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 14px 0;
-            background: rgba(255,255,255,0.90);
-            backdrop-filter: blur(16px) saturate(180%);
-            border-bottom: 1px solid rgba(0,0,0,0.04);
-            transition: 0.3s;
-        }
-
-        .navbar-custom.scrolled {
-            box-shadow: 0 2px 20px rgba(0,0,0,0.04);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 800;
-            font-size: 20px;
-            letter-spacing: -0.3px;
-            color: var(--text-dark);
-        }
-
-        .brand-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: var(--gradient);
-            display: grid;
-            place-items: center;
-            font-size: 18px;
-            font-weight: 900;
-            color: #fff;
-            box-shadow: 0 4px 14px rgba(74,43,183,0.25);
-        }
-
-        .brand span {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .nav-link-custom {
-            color: var(--text-muted) !important;
-            font-weight: 500;
-            font-size: 14px;
-            transition: 0.2s;
-            padding: 6px 0 !important;
-            position: relative;
-        }
-
-        .nav-link-custom::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient);
-            transition: 0.3s;
-            border-radius: 4px;
-        }
-
-        .nav-link-custom:hover {
-            color: var(--text-dark) !important;
-        }
-        .nav-link-custom:hover::after { width: 100%; }
-
-        .btn-primary-custom {
-            background: var(--gradient);
-            border: none;
-            padding: 10px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 14px;
-            color: #fff;
-            transition: 0.3s;
-            box-shadow: 0 4px 20px rgba(74,43,183,0.20);
-            font-family: inherit;
-            cursor: pointer;
-        }
-
-        .btn-primary-custom:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(74,43,183,0.30);
-            color: #fff;
-        }
-
-        .btn-outline-custom {
-            background: transparent;
-            border: 1.5px solid var(--border);
-            padding: 10px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--text-dark);
-            transition: 0.3s;
-            font-family: inherit;
-            cursor: pointer;
-        }
-
-        .btn-outline-custom:hover {
-            border-color: var(--primary);
-            background: rgba(74,43,183,0.04);
-            transform: translateY(-2px);
-        }
-
-        .btn-success-custom {
-            background: var(--success);
-            border: none;
-            padding: 10px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 14px;
-            color: #fff;
-            transition: 0.3s;
-            font-family: inherit;
-            cursor: pointer;
-        }
-
-        .btn-success-custom:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(16,185,129,0.30);
-            color: #fff;
-        }
-
-        .btn-auth {
-            background: transparent;
-            border: 1.5px solid var(--primary);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 13px;
-            color: var(--primary);
-            transition: 0.3s;
-            font-family: inherit;
-            cursor: pointer;
-        }
-
-        .btn-auth:hover {
-            background: var(--gradient);
-            color: #fff;
-            border-color: transparent;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(74,43,183,0.20);
-        }
-
-        .mobile-toggle {
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--text-dark);
-            padding: 4px 8px;
-        }
-
-        /* ===== LANGUAGE SWITCHER ===== */
-        .lang-switcher {
-            display: flex;
-            gap: 2px;
-            background: var(--bg-body);
-            border-radius: 50px;
-            padding: 3px;
-            border: 1px solid var(--border);
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: none;
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-muted);
-            transition: 0.3s;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        .lang-btn:hover {
-            color: var(--text-dark);
-        }
-
-        .lang-btn.active {
-            background: var(--bg-white);
-            color: var(--primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        /* ===== HERO ===== */
-        .hero-section {
-            padding: 140px 0 80px;
-            background: linear-gradient(165deg, #e8ecf6 0%, #ffffff 50%, #f4f2fa 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(74,43,183,0.04), transparent 70%);
-            top: -150px;
-            right: -100px;
-            pointer-events: none;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 4px 14px 4px 10px;
-            border-radius: 50px;
-            background: rgba(74,43,183,0.06);
-            border: 1px solid rgba(74,43,183,0.08);
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--primary);
-        }
-
-        .hero-badge .dot-pulse {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: inline-block;
-            animation: pulse-dot 2s infinite;
-        }
-
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(0.7); }
-        }
-
-        .hero-title {
-            font-size: clamp(40px, 6vw, 68px);
-            line-height: 1.0;
-            letter-spacing: -2.5px;
-            font-weight: 900;
-            color: var(--text-dark);
-        }
-
-        .hero-title .highlight {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero-desc {
-            font-size: 18px;
-            color: var(--text-muted);
-            line-height: 1.8;
-            max-width: 480px;
-        }
-
-        /* ===== STATS ===== */
-        .stat-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 16px 20px;
-            transition: 0.3s;
-            box-shadow: var(--shadow-card);
-        }
-
-        .stat-card:hover {
-            border-color: var(--primary-light);
-            box-shadow: var(--shadow-card-hover);
-            transform: translateY(-2px);
-        }
-
-        .stat-card .num {
-            font-size: 26px;
-            font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .stat-card .label {
-            color: var(--text-light);
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        /* ===== TERMINAL ===== */
-        .terminal-wrapper {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 14px;
-            box-shadow: 0 20px 60px rgba(74,43,183,0.06);
-            transition: 0.3s;
-        }
-
-        .terminal-wrapper:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 24px 72px rgba(74,43,183,0.10);
-        }
-
-        .terminal {
-            background: #0b0d17;
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-        }
-
-        .terminal-head {
-            display: flex;
-            gap: 8px;
-            padding: 12px 16px;
-            background: #141824;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-        .dot:nth-child(1) { background: #ff5f56; }
-        .dot:nth-child(2) { background: #ffbd2e; }
-        .dot:nth-child(3) { background: #27c93f; }
-
-        .terminal-body {
-            padding: 24px 22px;
-            font-family: 'Fira Code', 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: #b8c4dd;
-            line-height: 2.2;
-        }
-
-        .terminal-body .tk { color: #c084fc; }
-        .terminal-body .str { color: #6ee7b7; }
-        .terminal-body .fn { color: #60a5fa; }
-        .terminal-body .val { color: #fcd34d; }
-
-        .terminal-body .cursor-line {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .terminal-body .cursor-line span {
-            display: inline-block;
-            width: 8px;
-            height: 16px;
-            background: #60a5fa;
-            animation: blink 1s step-end infinite;
-            border-radius: 2px;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* ===== SECTION HEADERS ===== */
-        .section-label {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--primary);
-            background: rgba(74,43,183,0.06);
-            padding: 4px 14px;
-            border-radius: 50px;
-            border: 1px solid rgba(74,43,183,0.06);
-        }
-
-        .section-title {
-            font-size: clamp(30px, 4vw, 44px);
-            font-weight: 800;
-            letter-spacing: -1.5px;
-            line-height: 1.05;
-            margin-top: 6px;
-        }
-
-        .section-sub {
-            color: var(--text-muted);
-            font-size: 17px;
-            max-width: 480px;
-        }
-
-        /* ===== SERVICE CARDS ===== */
-        .service-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 28px 24px;
-            cursor: pointer;
-            transition: 0.3s;
-            height: 100%;
-            position: relative;
-            min-height: 200px;
-            box-shadow: var(--shadow-card);
-        }
-
-        .service-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--primary-light);
-            box-shadow: var(--shadow-card-hover);
-        }
-
-        .service-card .icon {
-            font-size: 28px;
-            color: var(--primary);
-            margin-bottom: 10px;
-            opacity: 0.7;
-        }
-
-        .service-card .num {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--primary);
-            opacity: 0.3;
-        }
-
-        .service-card h5 {
-            font-size: 18px;
-            font-weight: 700;
-            margin: 8px 0 4px;
-        }
-
-        .service-card p {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 0;
-        }
-
-        .service-card .arrow {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            font-size: 16px;
-            color: var(--primary);
-            opacity: 0.2;
-            transition: 0.3s;
-        }
-
-        .service-card:hover .arrow {
-            opacity: 1;
-            transform: translateX(4px);
-        }
-
-        /* ===== EARN CARDS ===== */
-        .earn-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 32px 28px;
-            transition: 0.3s;
-            height: 100%;
-            text-align: center;
-            box-shadow: var(--shadow-card);
-        }
-
-        .earn-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--primary-light);
-            box-shadow: var(--shadow-card-hover);
-        }
-
-        .earn-card .icon {
-            font-size: 40px;
-            color: var(--primary);
-            margin-bottom: 16px;
-            opacity: 0.7;
-        }
-
-        .earn-card h4 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .earn-card p {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 0;
-        }
-
-        .earn-card .free-badge {
-            display: inline-block;
-            background: var(--success);
-            color: #fff;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 2px 14px;
-            border-radius: 50px;
-            margin-top: 8px;
-            text-transform: uppercase;
-        }
-
-        /* ===== TASK CATEGORY ===== */
-        .task-category {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 28px 24px;
-            transition: 0.3s;
-            height: 100%;
-            box-shadow: var(--shadow-card);
-        }
-
-        .task-category:hover {
-            transform: translateY(-4px);
-            border-color: var(--primary-light);
-            box-shadow: var(--shadow-card-hover);
-        }
-
-        .task-category .icon {
-            font-size: 32px;
-            color: var(--primary);
-            margin-bottom: 10px;
-            opacity: 0.7;
-        }
-
-        .task-category h5 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .task-category p {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 0;
-        }
-
-        .task-category .examples {
-            margin-top: 10px;
-            font-size: 12px;
-            color: var(--text-light);
-        }
-
-        /* ===== PROCESS ===== */
-        .process-step {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 28px 24px;
-            transition: 0.3s;
-            height: 100%;
-            box-shadow: var(--shadow-card);
-        }
-
-        .process-step:hover {
-            border-color: var(--primary-light);
-            box-shadow: var(--shadow-card-hover);
-            transform: translateY(-4px);
-        }
-
-        .process-step .num {
-            font-size: 36px;
-            font-weight: 900;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            opacity: 0.12;
-        }
-
-        .process-step h5 {
-            font-size: 18px;
-            font-weight: 700;
-            margin: 4px 0 2px;
-        }
-
-        .process-step p {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 0;
-        }
-
-        /* ===== FEATURE ===== */
-        .feature-panel {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 36px 32px;
-            transition: 0.3s;
-            height: 100%;
-            box-shadow: var(--shadow-card);
-        }
-
-        .feature-panel:hover {
-            box-shadow: var(--shadow-card-hover);
-        }
-
-        .feature-panel h4 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 14px;
-        }
-
-        .checklist {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .checklist li {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        .checklist li:last-child { border-bottom: none; }
-        .checklist li::before {
-            content: "◆";
-            color: var(--primary);
-            font-size: 12px;
-            font-weight: 900;
-        }
-
-        /* ===== CTA ===== */
-        .cta-block {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 40px 44px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            transition: 0.3s;
-            box-shadow: var(--shadow-card);
-            background: linear-gradient(135deg, #ffffff 0%, #f8f7fc 100%);
-        }
-
-        .cta-block:hover {
-            box-shadow: var(--shadow-card-hover);
-        }
-
-        .cta-block h3 {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .cta-block p {
-            color: var(--text-muted);
-            font-size: 16px;
-            margin-bottom: 0;
-        }
-
-        /* ===== FORM ===== */
-        .form-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 32px 28px;
-            transition: 0.3s;
-            box-shadow: var(--shadow-card);
-            height: 100%;
-        }
-
-        .form-card:hover {
-            box-shadow: var(--shadow-card-hover);
-        }
-
-        .form-control-custom {
-            background: var(--bg-body);
-            border: 1.5px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 12px 16px;
-            font-size: 14px;
-            color: var(--text-dark);
-            transition: 0.3s;
-            font-family: inherit;
-        }
-
-        .form-control-custom:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(74,43,183,0.06);
-            background: var(--bg-white);
-        }
-
-        .form-control-custom::placeholder {
-            color: var(--text-light);
-        }
-
-        .form-label-custom {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            border-top: 1px solid var(--border);
-            padding: 56px 0 32px;
-            background: var(--bg-white);
-            margin-top: 20px;
-            box-shadow: 0 -2px 20px rgba(0,0,0,0.02);
-        }
-
-        .footer .brand {
-            font-size: 18px;
-            display: inline-flex;
-        }
-
-        .footer .brand-icon {
-            width: 36px;
-            height: 36px;
-            font-size: 16px;
-        }
-
-        .footer strong {
-            font-weight: 600;
-            color: var(--text-dark);
-            display: block;
-            margin-bottom: 8px;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .footer p {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 6px;
-        }
-
-        .footer a {
-            color: var(--text-muted);
-            transition: 0.2s;
-        }
-        .footer a:hover { color: var(--primary); }
-
-        .footer-links-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .footer-links-grid a {
-            font-size: 14px;
-            padding: 2px 0;
-        }
-
-        .footer-contact-line {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
-
-        .footer-contact-line i {
-            width: 18px;
-            color: var(--primary);
-            font-size: 14px;
-            flex-shrink: 0;
-        }
-
-        .footer-contact-line a {
-            color: var(--text-muted);
-        }
-        .footer-contact-line a:hover {
-            color: var(--primary);
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 4px;
-        }
-
-        .footer-social a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: var(--bg-body);
-            color: var(--text-muted);
-            transition: 0.3s;
-            font-size: 15px;
-            flex-shrink: 0;
-        }
-
-        .footer-social a:hover {
-            background: var(--gradient);
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(74,43,183,0.20);
-        }
-
-        .footer-bottom {
-            padding-top: 24px;
-            margin-top: 32px;
-            border-top: 1px solid var(--border);
-            color: var(--text-light);
-            font-size: 13px;
-        }
-
-        .footer-bottom a {
-            color: var(--primary);
-            font-weight: 500;
-        }
-        .footer-bottom a:hover {
-            text-decoration: underline;
-            color: var(--primary-dark);
-        }
-
-        /* ===== MODAL ===== */
-        .modal-custom {
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
-            background: rgba(0,0,0,0.35);
-            backdrop-filter: blur(6px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-        }
-
-        .modal-custom.active { display: flex; }
-
-        .modal-box {
-            background: var(--bg-white);
-            border-radius: var(--radius);
-            max-width: 550px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 32px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.08);
-            border: 1px solid var(--border);
-        }
-
-        .modal-header-custom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .modal-header-custom h2 {
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        .modal-close {
-            background: var(--bg-body);
-            border: 1px solid var(--border);
-            color: var(--text-dark);
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .modal-close:hover {
-            border-color: var(--primary);
-            background: rgba(74,43,183,0.04);
-        }
-
-        .modal-services {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin: 12px 0 20px;
-        }
-
-        .modal-service {
-            background: var(--bg-body);
-            padding: 10px 14px;
-            border-radius: var(--radius-sm);
-            color: var(--text-muted);
-            font-size: 13px;
-            border: 1px solid var(--border);
-            transition: 0.3s;
-        }
-
-        .modal-service:hover {
-            border-color: var(--primary-light);
-            background: rgba(74,43,183,0.02);
-        }
-
-        .modal-tabs {
-            display: flex;
-            gap: 4px;
-            background: var(--bg-body);
-            border-radius: var(--radius-sm);
-            padding: 4px;
-            margin-bottom: 20px;
-        }
-
-        .modal-tab {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: var(--radius-sm);
-            background: transparent;
-            font-weight: 600;
-            font-size: 13px;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: inherit;
-        }
-
-        .modal-tab.active {
-            background: var(--bg-white);
-            color: var(--primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        .modal-tab:hover:not(.active) {
-            color: var(--text-dark);
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 991px) {
-            .hero-section { padding: 120px 0 60px; }
-            .hero-title { font-size: 40px; letter-spacing: -1.5px; }
-        }
-
-        @media (max-width: 768px) {
-            .hero-section { padding: 100px 0 40px; }
-            .hero-title { font-size: 32px; letter-spacing: -1px; }
-            .hero-desc { font-size: 16px; }
-            .stat-card .num { font-size: 22px; }
-            .service-card { min-height: 160px; padding: 20px; }
-            .cta-block { padding: 28px 24px; text-align: center; flex-direction: column; }
-            .cta-block h3 { font-size: 22px; }
-            .modal-services { grid-template-columns: 1fr; }
-            .form-card { padding: 20px; }
-            .footer { padding: 40px 0 24px; }
-            .footer .row > div { margin-bottom: 24px; }
-            .footer .row > div:last-child { margin-bottom: 0; }
-            .footer-social { justify-content: flex-start; }
-        }
-
-        @media (max-width: 576px) {
-            .footer .row > div {
-                text-align: center;
-            }
-            .footer-social {
-                justify-content: center;
-            }
-            .footer-contact-line {
-                justify-content: center;
-            }
-            .footer-links-grid {
-                align-items: center;
-            }
-            .brand {
-                justify-content: center;
-            }
-            .lang-switcher {
-                margin: 0 auto;
-            }
-            .modal-box { padding: 20px; }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ArtAHome — весь дом. Одна система.</title>
+  <meta name="description" content="ArtAHome — современная платформа для жильцов, председателей, правления и управляющих компаний. Финансы, документы, заявки, голосования, обслуживание и управление домом в одном месте.">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --ah-bg:#f5f7fb;
+      --ah-bg2:#edf2fb;
+      --ah-card:#fff;
+      --ah-text:#0b1220;
+      --ah-muted:#697386;
+      --ah-line:rgba(15,23,42,.08);
+      --ah-blue:#315efb;
+      --ah-violet:#7c4dff;
+      --ah-cyan:#12b9ff;
+      --ah-dark:#0b1220;
+      --ah-green:#17a673;
+      --ah-radius:24px;
+      --ah-shadow:0 24px 70px rgba(15,23,42,.10);
+      --ah-soft:0 10px 30px rgba(15,23,42,.06);
+    }
+
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ah-text);
+      background:
+        radial-gradient(circle at 12% 0%,rgba(49,94,251,.08),transparent 22%),
+        radial-gradient(circle at 88% 7%,rgba(124,77,255,.08),transparent 24%),
+        #fff;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    a{text-decoration:none}
+    .section{padding:96px 0}
+    .section-soft{background:linear-gradient(180deg,#f7f9fd 0%,#fbfcfe 100%)}
+    .text-muted-ah{color:var(--ah-muted)!important}
+    .max-760{max-width:760px}
+    .max-860{max-width:860px}
+
+    .navbar{
+      min-height:76px;
+      background:rgba(255,255,255,.84)!important;
+      backdrop-filter:blur(15px);
+      border-bottom:1px solid rgba(15,23,42,.06);
+    }
+    .navbar-brand{
+      font-size:25px;
+      font-weight:900;
+      letter-spacing:-1.1px;
+      color:var(--ah-text)!important;
+    }
+    .navbar-brand .arta{
+      background:linear-gradient(135deg,var(--ah-blue),var(--ah-violet));
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .brand-dot{
+      display:inline-block;
+      width:8px;height:8px;border-radius:50%;
+      margin-left:5px;
+      background:linear-gradient(135deg,var(--ah-cyan),var(--ah-violet));
+      box-shadow:0 0 16px rgba(49,94,251,.45);
+    }
+    .navbar .nav-link{
+      font-size:14px;
+      font-weight:700;
+      color:#4a5568;
+      padding:.75rem .8rem!important;
+    }
+    .navbar .nav-link:hover{color:var(--ah-blue)}
+    .btn{
+      border-radius:14px;
+      font-weight:800;
+      min-height:46px;
+      padding:.72rem 1.15rem;
+    }
+    .btn-ah{
+      color:#fff;
+      border:0;
+      background:linear-gradient(135deg,var(--ah-blue),var(--ah-violet));
+      box-shadow:0 12px 30px rgba(49,94,251,.22);
+    }
+    .btn-ah:hover{color:#fff;transform:translateY(-1px);box-shadow:0 16px 38px rgba(49,94,251,.28)}
+    .btn-light-ah{
+      background:#fff;
+      color:var(--ah-text);
+      border:1px solid var(--ah-line);
+      box-shadow:0 8px 24px rgba(15,23,42,.04);
+    }
+    .lang-switch{
+      display:flex;
+      gap:3px;
+      padding:4px;
+      border:1px solid var(--ah-line);
+      border-radius:999px;
+      background:#fff;
+    }
+    .lang-switch button{
+      border:0;background:transparent;
+      color:#667085;
+      font-size:12px;
+      font-weight:800;
+      padding:6px 9px;
+      border-radius:999px;
+    }
+    .lang-switch button.active{background:var(--ah-dark);color:#fff}
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:104px 0 86px;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      width:520px;height:520px;border-radius:50%;
+      right:-140px;top:-160px;
+      background:radial-gradient(circle,rgba(124,77,255,.16),transparent 68%);
+      pointer-events:none;
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:400px;height:400px;border-radius:50%;
+      left:-150px;bottom:-180px;
+      background:radial-gradient(circle,rgba(18,185,255,.13),transparent 68%);
+      pointer-events:none;
+    }
+    .hero .container{position:relative;z-index:1}
+    .hero-badge,.eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(49,94,251,.08);
+      color:var(--ah-blue);
+      font-size:12px;
+      font-weight:850;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .hero-badge:before{
+      content:"";
+      width:7px;height:7px;border-radius:50%;
+      background:linear-gradient(135deg,var(--ah-blue),var(--ah-cyan));
+      box-shadow:0 0 0 5px rgba(49,94,251,.08);
+    }
+    .hero h1{
+      margin:18px 0 24px;
+      font-size:clamp(52px,7vw,88px);
+      line-height:.95;
+      letter-spacing:-4.5px;
+      font-weight:900;
+    }
+    .hero .lead{
+      font-size:20px;
+      color:var(--ah-muted);
+      max-width:700px;
+    }
+    .price-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 14px;
+      border:1px solid var(--ah-line);
+      border-radius:16px;
+      background:rgba(255,255,255,.82);
+      box-shadow:var(--ah-soft);
+    }
+    .price-pill strong{font-size:17px}
+    .price-pill span{font-size:13px;color:var(--ah-muted)}
+
+    .product-window{
+      position:relative;
+      padding:12px;
+      border-radius:32px;
+      background:linear-gradient(145deg,#111a2e,#1b2745);
+      box-shadow:0 38px 90px rgba(15,23,42,.20);
+    }
+    .window-top{
+      display:flex;align-items:center;gap:7px;
+      padding:4px 5px 13px;
+    }
+    .window-top i{
+      width:9px;height:9px;border-radius:50%;background:#47536e;display:block;
+    }
+    .window-address{
+      flex:1;height:23px;border-radius:999px;margin-left:8px;
+      background:rgba(255,255,255,.07);
+    }
+    .dashboard{
+      background:linear-gradient(180deg,#f9fbff,#f2f5fa);
+      border-radius:22px;
+      padding:18px;
+    }
+    .dashboard-head{
+      display:flex;justify-content:space-between;align-items:center;
+      margin-bottom:14px;
+    }
+    .dashboard-head strong{font-size:18px}
+    .online{
+      font-size:11px;font-weight:800;color:var(--ah-blue);
+      background:#eaf0ff;border-radius:999px;padding:7px 10px;
+    }
+    .metric{
+      background:#fff;
+      border:1px solid var(--ah-line);
+      border-radius:15px;
+      padding:14px;
+      min-height:100%;
+    }
+    .metric b{display:block;font-size:25px;margin-top:5px}
+    .metric small{color:var(--ah-muted)}
+    .dash-card{
+      background:#fff;
+      border:1px solid var(--ah-line);
+      border-radius:17px;
+      padding:15px;
+      height:100%;
+    }
+    .event{
+      display:flex;align-items:center;gap:9px;
+      padding:10px 11px;margin-top:8px;
+      border:1px solid var(--ah-line);
+      border-radius:12px;
+      font-size:12px;
+      background:#fff;
+    }
+    .chart-bars{
+      display:flex;align-items:flex-end;gap:7px;height:110px;margin-top:13px;
+    }
+    .chart-bars span{
+      flex:1;border-radius:7px 7px 3px 3px;
+      background:linear-gradient(180deg,var(--ah-cyan),var(--ah-blue));
+    }
+    .chart-bars span:nth-child(1){height:31%}
+    .chart-bars span:nth-child(2){height:48%}
+    .chart-bars span:nth-child(3){height:68%}
+    .chart-bars span:nth-child(4){height:56%}
+    .chart-bars span:nth-child(5){height:88%}
+    .chart-bars span:nth-child(6){height:71%}
+
+    .section-title{
+      font-size:clamp(35px,4.7vw,56px);
+      line-height:1.05;
+      letter-spacing:-2.3px;
+      font-weight:900;
+      margin:14px 0 18px;
+    }
+
+    .feature-card,.audience-card,.role-card,.mini-module,.why-card,.step-card{
+      background:#fff;
+      border:1px solid var(--ah-line);
+      box-shadow:0 12px 34px rgba(15,23,42,.045);
+    }
+    .feature-card{
+      height:100%;
+      padding:22px;
+      border-radius:20px;
+      transition:.2s ease;
+    }
+    .feature-card:hover{transform:translateY(-4px);box-shadow:0 20px 42px rgba(15,23,42,.08)}
+    .icon-box{
+      width:47px;height:47px;border-radius:14px;
+      display:grid;place-items:center;
+      margin-bottom:17px;
+      font-size:22px;
+      background:linear-gradient(145deg,#edf3ff,#fafcff);
+      border:1px solid rgba(49,94,251,.08);
+    }
+    .feature-card h3,.audience-card h3{font-weight:850;font-size:19px}
+    .feature-card p,.audience-card p{color:var(--ah-muted);font-size:14px;margin-bottom:0}
+
+    .audience-card{
+      padding:30px;border-radius:25px;height:100%;
+    }
+
+    .role-card{
+      border-radius:17px;
+      padding:16px;
+      display:flex;align-items:center;gap:13px;
+    }
+    .role-level{
+      margin-left:auto;
+      font-size:11px;font-weight:850;color:var(--ah-muted);
+      background:#f3f5f8;
+      padding:6px 9px;border-radius:999px;
+    }
+
+    .astra-section{
+      position:relative;
+      overflow:hidden;
+      color:#fff;
+      background:
+        radial-gradient(circle at 15% 10%,rgba(18,185,255,.18),transparent 30%),
+        radial-gradient(circle at 85% 18%,rgba(124,77,255,.25),transparent 34%),
+        linear-gradient(135deg,#101a34,#172555 52%,#211746);
+    }
+    .astra-section:after{
+      content:"";
+      position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+      background-size:36px 36px;
+      pointer-events:none;
+    }
+    .astra-section .container{position:relative;z-index:1}
+    .astra-panel{
+      border:1px solid rgba(255,255,255,.13);
+      background:rgba(255,255,255,.055);
+      backdrop-filter:blur(8px);
+      border-radius:22px;
+      padding:22px;
+    }
+    .astra-item{
+      padding:14px 15px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background:rgba(255,255,255,.05);
+      font-weight:700;
+      height:100%;
+    }
+    .astra-chip{
+      display:inline-flex;
+      padding:7px 10px;border-radius:999px;
+      background:rgba(255,255,255,.09);
+      font-size:12px;font-weight:850;
+    }
+
+    .mini-module{
+      padding:14px 15px;border-radius:14px;
+      font-weight:720;height:100%;
+    }
+
+    .price-card{
+      position:relative;
+      max-width:520px;
+      margin:0 auto;
+      padding:38px;
+      border-radius:30px;
+      background:linear-gradient(180deg,#fff,#f9fbff);
+      border:1px solid rgba(49,94,251,.12);
+      box-shadow:0 34px 90px rgba(49,94,251,.12);
+    }
+    .popular{
+      position:absolute;right:18px;top:18px;
+      font-size:11px;font-weight:900;color:var(--ah-blue);
+      background:#ebf0ff;padding:7px 10px;border-radius:999px;
+    }
+    .price-main{display:flex;align-items:flex-end;gap:10px}
+    .price-main strong{
+      font-size:66px;line-height:.95;letter-spacing:-3px;
+    }
+    .price-main span{padding-bottom:8px;color:var(--ah-muted)}
+    .price-list{list-style:none;padding:0;margin:24px 0;display:grid;gap:10px}
+    .price-list li{font-weight:700}
+    .price-list li:before{content:"✓";color:var(--ah-green);font-weight:950;margin-right:9px}
+
+    .why-card{
+      padding:19px;border-radius:16px;height:100%;
+      font-weight:720;
+    }
+    .why-card b{color:var(--ah-blue);margin-right:6px}
+    .step-card{
+      padding:22px;border-radius:19px;height:100%;
+    }
+    .step-num{
+      width:38px;height:38px;border-radius:50%;
+      display:grid;place-items:center;
+      color:#fff;font-weight:900;margin-bottom:15px;
+      background:linear-gradient(135deg,var(--ah-blue),var(--ah-violet));
+    }
+
+    .accordion-item{
+      border:1px solid var(--ah-line)!important;
+      border-radius:15px!important;
+      overflow:hidden;
+      margin-bottom:10px;
+      box-shadow:0 8px 24px rgba(15,23,42,.035);
+    }
+    .accordion-button{font-weight:800}
+    .accordion-button:not(.collapsed){color:var(--ah-blue);background:#f5f8ff;box-shadow:none}
+    .accordion-button:focus{box-shadow:none}
+
+    .owner-card{
+      padding:34px;
+      border-radius:28px;
+      background:linear-gradient(145deg,#fff,#f4f7ff);
+      border:1px solid rgba(49,94,251,.12);
+      box-shadow:var(--ah-soft);
+    }
+    .owner-card small{color:var(--ah-muted);font-weight:700}
+    .owner-card strong{display:block;font-size:38px;letter-spacing:-1.5px;margin-top:7px}
+    .owner-badge{
+      display:inline-flex;margin-top:10px;
+      padding:7px 10px;border-radius:999px;
+      background:#eaf0ff;color:var(--ah-blue);font-size:12px;font-weight:850;
+    }
+
+    .final-cta{
+      color:#fff;
+      background:
+        radial-gradient(circle at 15% 20%,rgba(18,185,255,.2),transparent 28%),
+        radial-gradient(circle at 82% 20%,rgba(124,77,255,.22),transparent 30%),
+        linear-gradient(135deg,#122044,#202f66 48%,#211843);
+    }
+    .final-cta p{color:#dfe6ff}
+
+    footer{border-top:1px solid var(--ah-line);background:#fff}
+    .footer-text{color:var(--ah-muted);font-size:13px}
+
+    @media(max-width:991.98px){
+      .hero{padding-top:74px}
+      .hero h1{letter-spacing:-3px}
+      .product-window{margin-top:25px}
+      .navbar-collapse{padding:12px 0 16px}
+    }
+    @media(max-width:575.98px){
+      .section{padding:72px 0}
+      .hero h1{font-size:51px}
+      .hero .lead{font-size:17px}
+      .price-pill{align-items:flex-start;flex-direction:column;gap:2px}
+      .lang-switch{display:none}
+      .product-window{padding:9px}
+      .dashboard{padding:13px}
+      .price-card{padding:28px 22px}
+      .price-main strong{font-size:58px}
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ===== NAVBAR ===== -->
-<nav class="navbar-custom" id="navbar">
-    <div class="container-custom">
-        <div class="d-flex align-items-center justify-content-between">
-            <a href="#" class="brand">
-                <span class="brand-icon">A</span>
-                <span>AppArtA IT</span>
-            </a>
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#home"><span class="arta">ArtA</span>Home<span class="brand-dot"></span></a>
 
-            <button class="mobile-toggle d-md-none" id="mobileToggle">
-                <i class="fas fa-bars"></i>
-            </button>
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Открыть меню">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-            <div class="d-none d-md-flex align-items-center gap-3" id="navLinks">
-                <a href="#services" class="nav-link-custom">Услуги</a>
-                <a href="#earn" class="nav-link-custom" style="color: var(--primary) !important; font-weight: 700;">💰 Заработок</a>
-                <a href="#process" class="nav-link-custom">Процесс</a>
-                <a href="#contact" class="nav-link-custom">Контакты</a>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto me-lg-3">
+        <li class="nav-item"><a class="nav-link" href="#features">Возможности</a></li>
+        <li class="nav-item"><a class="nav-link" href="#forwho">Для кого</a></li>
+        <li class="nav-item"><a class="nav-link" href="#astra">Astra AI</a></li>
+        <li class="nav-item"><a class="nav-link" href="#price">Цена</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+      </ul>
 
-                <div class="lang-switcher">
-                    <button class="lang-btn active" data-lang="ru">RU</button>
-                    <button class="lang-btn" data-lang="et">ET</button>
-                    <button class="lang-btn" data-lang="en">EN</button>
-                </div>
-
-                <button class="btn-auth" onclick="openAuthModal()">
-                    <i class="fas fa-user me-1"></i> Войти
-                </button>
-
-                <button class="btn-success-custom" onclick="openAuthModal()">
-                    <i class="fas fa-rocket me-1"></i> Начать зарабатывать
-                </button>
-            </div>
+      <div class="d-flex align-items-center gap-2">
+        <div class="lang-switch">
+          <button class="active">RU</button>
+          <button>EE</button>
+          <button>EN</button>
         </div>
-
-        <div class="d-md-none mt-3" id="mobileMenu" style="display:none;">
-            <div class="d-flex flex-column gap-3 pb-2">
-                <a href="#services" class="nav-link-custom">Услуги</a>
-                <a href="#earn" class="nav-link-custom" style="color: var(--primary) !important; font-weight: 700;">💰 Заработок</a>
-                <a href="#process" class="nav-link-custom">Процесс</a>
-                <a href="#contact" class="nav-link-custom">Контакты</a>
-
-                <div class="lang-switcher" style="width: fit-content;">
-                    <button class="lang-btn active" data-lang="ru">RU</button>
-                    <button class="lang-btn" data-lang="et">ET</button>
-                    <button class="lang-btn" data-lang="en">EN</button>
-                </div>
-
-                <button class="btn-auth" onclick="openAuthModal()">
-                    <i class="fas fa-user me-1"></i> Войти
-                </button>
-
-                <button class="btn-success-custom w-100" onclick="openAuthModal()">
-                    <i class="fas fa-rocket me-1"></i> Начать зарабатывать
-                </button>
-            </div>
-        </div>
+        <a class="btn btn-light-ah" href="login.html">Войти</a>
+      </div>
     </div>
+  </div>
 </nav>
 
-<!-- ===== HERO ===== -->
-<section class="hero-section">
-    <div class="container-custom">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-                <div class="hero-badge mb-3">
-                    <span class="dot-pulse"></span>
-                    Tallinn · Estonia · Baltics · Europe
-                </div>
-                <h1 class="hero-title">
-                    Мы делаем <br>
-                    <span class="highlight">бизнес видимым</span>
-                </h1>
-                <p class="hero-desc mb-4">
-                    Сайты, SEO, Google Ads, Meta Ads, аналитика и автоматизация — всё в одном месте.
-                    Работаем по всей Европе, базируемся в Таллинне.
-                </p>
-                <div class="d-flex gap-3 flex-wrap mb-4">
-                    <button class="btn-primary-custom" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-                        Получить предложение
-                    </button>
-                    <button class="btn-outline-custom" onclick="document.getElementById('earn').scrollIntoView({behavior:'smooth'})">
-                        Начать зарабатывать
-                    </button>
-                </div>
-                <div class="row g-3">
-                    <div class="col-4">
-                        <div class="stat-card">
-                            <div class="num">8</div>
-                            <div class="label">направлений</div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="stat-card">
-                            <div class="num">360°</div>
-                            <div class="label">полный цикл</div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="stat-card">
-                            <div class="num">EE/RU/EN</div>
-                            <div class="label">многоязычность</div>
-                        </div>
-                    </div>
-                </div>
+<main id="home">
+
+<section class="hero">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="hero-badge">Платформа для многоквартирных домов</div>
+        <h1>Весь дом.<br>Одна система.</h1>
+        <p class="lead">
+          ArtAHome объединяет жильцов, администрацию, документы, финансы, заявки,
+          голосования, обслуживание и повседневные процессы дома в одной современной платформе.
+        </p>
+
+        <div class="d-flex flex-wrap gap-2 mt-4 mb-3">
+          <a class="btn btn-ah" href="#price">Попробовать ArtAHome</a>
+          <a class="btn btn-light-ah" href="#features">Посмотреть возможности</a>
+        </div>
+
+        <div class="price-pill mt-2">
+          <strong>15 € / месяц</strong>
+          <span>за весь дом — без оплаты за каждого жильца</span>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mt-4">
+          <span class="badge rounded-pill text-bg-light border px-3 py-2">👤 Для жильцов</span>
+          <span class="badge rounded-pill text-bg-light border px-3 py-2">🛡️ Для администрации</span>
+          <span class="badge rounded-pill text-bg-light border px-3 py-2">🏢 Для управляющих компаний</span>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="product-window">
+          <div class="window-top"><i></i><i></i><i></i><div class="window-address"></div></div>
+
+          <div class="dashboard">
+            <div class="dashboard-head">
+              <strong>ArtAHome Dashboard</strong>
+              <span class="online">● Дом онлайн</span>
             </div>
 
-            <div class="col-lg-6">
-                <div class="terminal-wrapper">
-                    <div class="terminal">
-                        <div class="terminal-head">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </div>
-                        <div class="terminal-body">
-                            <div><span class="tk">&lt;AppArtA_IT&gt;</span></div>
-                            <div>&nbsp;&nbsp;<span class="val">website</span> = <span class="str">"high-conversion"</span>;</div>
-                            <div>&nbsp;&nbsp;<span class="val">seo</span> = <span class="str">"top-rank"</span>;</div>
-                            <div>&nbsp;&nbsp;<span class="val">ads</span> = <span class="str">"qualified-leads"</span>;</div>
-                            <div>&nbsp;&nbsp;<span class="val">analytics</span> = <span class="str">"data-driven"</span>;</div>
-                            <div>&nbsp;&nbsp;<span class="val">automation</span> = <span class="str">"scalable"</span>;</div>
-                            <div><span class="tk">&lt;/AppArtA_IT&gt;</span></div>
-                            <div class="cursor-line">
-                                <span style="color: #60a5fa;">➜</span> system ready
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row g-2 mb-2">
+              <div class="col-4"><div class="metric">🏠<b>84</b><small>Квартиры</small></div></div>
+              <div class="col-4"><div class="metric">👥<b>126</b><small>Жильцы</small></div></div>
+              <div class="col-4"><div class="metric">🚨<b>3</b><small>Заявки</small></div></div>
             </div>
+
+            <div class="row g-2">
+              <div class="col-md-7">
+                <div class="dash-card">
+                  <strong>Последние события</strong>
+                  <div class="event">📢 Завтра обслуживание водоснабжения</div>
+                  <div class="event">🗳️ Голосование по парковке — 2 дня</div>
+                  <div class="event">🔧 Обслуживание лифта завершено</div>
+                  <div class="event">💶 Финансовый отчёт опубликован</div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="dash-card">
+                  <strong>Активность дома</strong>
+                  <div class="chart-bars">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                  <small class="text-muted-ah">Последние 6 месяцев</small>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- ===== SERVICES ===== -->
-<section class="py-5" id="services">
-    <div class="container-custom">
-        <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
-            <div>
-                <span class="section-label">Services</span>
-                <h2 class="section-title">Всё, что нужно<br>для digital-лидерства</h2>
-            </div>
-            <p class="section-sub">Нажмите на карточку — полный список работ внутри направления.</p>
-        </div>
-
-        <div class="row g-4" id="servicesGrid">
-            <div class="col-md-6 col-lg-3">
-                <div class="service-card" data-service="web">
-                    <div class="icon"><i class="fas fa-code"></i></div>
-                    <span class="num">01</span>
-                    <h5>Web Development</h5>
-                    <p>Сайты, магазины, кабинеты, API</p>
-                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="service-card" data-service="seo">
-                    <div class="icon"><i class="fas fa-chart-line"></i></div>
-                    <span class="num">02</span>
-                    <h5>SEO</h5>
-                    <p>Google, локальный рост, трафик</p>
-                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="service-card" data-service="google">
-                    <div class="icon"><i class="fab fa-google"></i></div>
-                    <span class="num">03</span>
-                    <h5>Google Ads</h5>
-                    <p>Поиск, Performance Max, лиды</p>
-                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="service-card" data-service="social">
-                    <div class="icon"><i class="fas fa-share-alt"></i></div>
-                    <span class="num">04</span>
-                    <h5>Meta & Social</h5>
-                    <p>Facebook, Instagram, TikTok</p>
-                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="service-card" data-service="analytics">
-                    <div class="icon"><i class="fas fa-database"></i></div>
-                    <span class="num">05</span>
-                    <h5>Analytics</h5>
-                    <p>GA4, GTM, конверсии, воронки</p>
-                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="service-card" data-service="automation">
-                    <div class="icon"><i class="fas fa-robot"></i></div>
-                    <span class="num">06</span>
-                    <h5>Automation</h5>
-                    <p>CRM, боты, API, интеграции</p>
-                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="service-card" data-service="support">
-                    <div class="icon"><i class="fas fa-headset"></i></div>
-                    <span class="num">07</span>
-                    <h5>Support</h5>
-                    <p>Поддержка, хостинг, доработки</p>
-                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="service-card" data-service="full">
-                    <div class="icon"><i class="fas fa-rocket"></i></div>
-                    <span class="num">08</span>
-                    <h5>Full Solution</h5>
-                    <p>Всё включено: сайт + трафик + рост</p>
-                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="section pt-4">
+  <div class="container text-center">
+    <div class="eyebrow">Один цифровой дом</div>
+    <h2 class="section-title mx-auto max-860">Хватит управлять домом через чаты, таблицы и бумажные папки</h2>
+    <p class="lead mx-auto max-860 text-muted-ah">
+      ArtAHome создаёт единое цифровое пространство, где жильцы и администрация
+      получают всю важную информацию, документы и инструменты из одного места.
+    </p>
+  </div>
 </section>
 
-<!-- ===== EARN (ЗАРАБОТОК) ===== -->
-<section class="py-5 bg-white" id="earn">
-    <div class="container-custom">
-        <div class="text-center mb-5">
-            <span class="section-label">💰 Заработок</span>
-            <h2 class="section-title">Зарабатывай с AppArtA IT</h2>
-            <p class="section-sub" style="max-width: 600px; margin: 0 auto;">Регистрируйся бесплатно, выполняй задания и получай деньги. Вывод от 100 €.</p>
-        </div>
-
-        <div class="row g-4 mb-5">
-            <div class="col-md-3">
-                <div class="earn-card">
-                    <div class="icon"><i class="fas fa-user-plus"></i></div>
-                    <h4>Регистрация</h4>
-                    <p>Создай аккаунт бесплатно</p>
-                    <span class="free-badge">Бесплатно</span>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="earn-card">
-                    <div class="icon"><i class="fas fa-tasks"></i></div>
-                    <h4>Выполняй задания</h4>
-                    <p>Получай доступ к задачам от AppArtA IT</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="earn-card">
-                    <div class="icon"><i class="fas fa-money-bill-wave"></i></div>
-                    <h4>Зарабатывай</h4>
-                    <p>Копи деньги на своём счету</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="earn-card">
-                    <div class="icon"><i class="fas fa-credit-card"></i></div>
-                    <h4>Выводи</h4>
-                    <p>Вывод на карту от 100 €</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-12">
-                <h3 class="text-center mb-4" style="font-weight: 700;">Какие задания мы даём?</h3>
-            </div>
-            <div class="col-md-4">
-                <div class="task-category">
-                    <div class="icon"><i class="fas fa-code"></i></div>
-                    <h5>Разработка</h5>
-                    <p>Написание кода, доработка сайтов, создание небольших модулей</p>
-                    <div class="examples">Примеры: правки CSS, установка плагинов, мелкий фикс багов</div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="task-category">
-                    <div class="icon"><i class="fas fa-pen-fancy"></i></div>
-                    <h5>Контент</h5>
-                    <p>Написание статей, переводы, создание описаний товаров</p>
-                    <div class="examples">Примеры: SEO-статьи, описания на EE/RU/EN, посты для соцсетей</div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="task-category">
-                    <div class="icon"><i class="fas fa-bullhorn"></i></div>
-                    <h5>Продвижение</h5>
-                    <p>Подписки, лайки, комментарии, участие в группах</p>
-                    <div class="examples">Примеры: вступление в группы, лайки постов, подписки на каналы</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row g-4 mt-2">
-            <div class="col-md-6">
-                <div class="task-category">
-                    <div class="icon"><i class="fas fa-search"></i></div>
-                    <h5>Аналитика</h5>
-                    <p>Сбор данных, анализ конкурентов, исследования</p>
-                    <div class="examples">Примеры: сбор ключевых слов, анализ сайтов конкурентов</div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="task-category">
-                    <div class="icon"><i class="fas fa-robot"></i></div>
-                    <h5>Автоматизация</h5>
-                    <p>Простые скрипты, настройка ботов, интеграции</p>
-                    <div class="examples">Примеры: настройка Telegram-бота, создание простого парсера</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-center mt-5">
-            <p class="text-muted">* Доступ к заданиям открывается сразу после регистрации. Вывод средств от 100 €.</p>
-            <button class="btn-success-custom mt-2" onclick="openAuthModal()">
-                <i class="fas fa-rocket me-2"></i> Зарегистрироваться и начать
-            </button>
-        </div>
+<section class="section section-soft" id="features">
+  <div class="container">
+    <div class="max-760 mb-5">
+      <div class="eyebrow">Возможности платформы</div>
+      <h2 class="section-title">Всё, что нужно современному дому</h2>
+      <p class="lead text-muted-ah">От общения с жильцами до финансов, обслуживания, голосований, парковки и контроля работ.</p>
     </div>
+
+    <div class="row g-3">
+      <div class="col-sm-6 col-xl-3"><div class="feature-card"><div class="icon-box">📢</div><h3>Объявления и лента</h3><p>Новости дома, уведомления и важные события.</p></div></div>
+      <div class="col-sm-6 col-xl-3"><div class="feature-card"><div class="icon-box">💬</div><h3>Чаты и сообщения</h3><p>Общий чат, чаты подъездов и личная связь.</p></div></div>
+      <div class="col-sm-6 col-xl-3"><div class="feature-card"><div class="icon-box">🚨</div><h3>Заявки о проблемах</h3><p>Фото, описание, статус и контроль выполнения.</p></div></div>
+      <div class="col-sm-6 col-xl-3"><div class="feature-card"><div class="icon-box">🗳️</div><h3>Голосования и опросы</h3><p>Удобное принятие решений внутри дома.</p></div></div>
+
+      <div class="col-sm-6 col-xl-3"><div class="feature-card"><div class="icon-box">💶</div><h3>Счета и платежи</h3><p>Счета жильцов, платежи и задолженности.</p></div></div>
+      <div class="col-sm-6 col-xl-3"><div class="feature-card"><div class="icon-box">🚰</div><h3>Показания счётчиков</h3><p>Передача показаний и умные счётчики.</p></div></div>
+      <div class="col-sm-6 col-xl-3"><div class="feature-card"><div class="icon-box">📄</div><h3>Документы</h3><p>Протоколы, папки, поиск и история изменений.</p></div></div>
+      <div class="col-sm-6 col-xl-3"><div class="feature-card"><div class="icon-box">📊</div><h3>Финансы дома</h3><p>Бюджет, доходы, расходы и ремонтный фонд.</p></div></div>
+
+      <div class="col-sm-6 col-xl-3"><div class="feature-card"><div class="icon-box">🔧</div><h3>Ремонты</h3><p>Плановые работы, сроки и журнал обслуживания.</p></div></div>
+      <div class="col-sm-6 col-xl-3"><div class="feature-card"><div class="icon-box">👷</div><h3>Подрядчики</h3><p>Договоры, оценки и коммерческие предложения.</p></div></div>
+      <div class="col-sm-6 col-xl-3"><div class="feature-card"><div class="icon-box">🚗</div><h3>Парковка и доступ</h3><p>Автомобили, гостевые разрешения и ключи.</p></div></div>
+      <div class="col-sm-6 col-xl-3"><div class="feature-card"><div class="icon-box">📅</div><h3>Календарь</h3><p>Напоминания, события и экстренные сообщения.</p></div></div>
+    </div>
+  </div>
 </section>
 
-<!-- ===== PROCESS ===== -->
-<section class="py-5" id="process">
-    <div class="container-custom">
-        <div class="mb-4">
-            <span class="section-label">Process</span>
-            <h2 class="section-title">От идеи<br>до результата</h2>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-3">
-                <div class="process-step">
-                    <div class="num">01</div>
-                    <h5>Заявка</h5>
-                    <p>Вы описываете задачу и цели</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="process-step">
-                    <div class="num">02</div>
-                    <h5>Обсуждение</h5>
-                    <p>Детали, сроки, приоритеты</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="process-step">
-                    <div class="num">03</div>
-                    <h5>Предложение</h5>
-                    <p>Объём работ и индивидуальная цена</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="process-step">
-                    <div class="num">04</div>
-                    <h5>Реализация</h5>
-                    <p>Разработка, запуск, продвижение</p>
-                </div>
-            </div>
-        </div>
+<section class="section" id="forwho">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="eyebrow">Для всех участников дома</div>
+      <h2 class="section-title">Одна платформа — разные возможности</h2>
     </div>
+
+    <div class="row g-3">
+      <div class="col-lg-4"><div class="audience-card"><div class="icon-box">👤</div><h3>Для жильцов</h3><p>Счета, объявления, документы, голосования, заявки, показания счётчиков и связь с администрацией.</p></div></div>
+      <div class="col-lg-4"><div class="audience-card"><div class="icon-box">🛡️</div><h3>Для администрации</h3><p>Жильцы, финансы, документы, ремонты, подрядчики, задачи, голосования и контроль процессов.</p></div></div>
+      <div class="col-lg-4"><div class="audience-card"><div class="icon-box">🏢</div><h3>Для управляющих компаний</h3><p>Несколько домов в одном аккаунте, отдельные роли, права доступа и единая панель управления.</p></div></div>
+    </div>
+  </div>
 </section>
 
-<!-- ===== CTA ===== -->
-<section class="py-5 bg-white">
-    <div class="container-custom">
-        <div class="cta-block">
-            <div>
-                <h3>Kirjelda oma projekti</h3>
-                <p>Опишите проект → получите индивидуальное предложение</p>
-            </div>
-            <button class="btn-primary-custom" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-                Оставить заявку
-            </button>
+<section class="section section-soft">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="eyebrow">Система доступа</div>
+        <h2 class="section-title">Гибкие роли без хаоса</h2>
+        <p class="lead text-muted-ah">
+          Три уровня доступа. Главный администратор сам создаёт названия ролей и
+          назначает права каждому администратору.
+        </p>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="d-grid gap-3">
+          <div class="role-card"><div class="icon-box mb-0">👤</div><div><strong>Жилец</strong><div class="small text-muted-ah">Обычный пользователь дома</div></div><span class="role-level">Level 0</span></div>
+          <div class="role-card"><div class="icon-box mb-0">🛡️</div><div><strong>Администратор</strong><div class="small text-muted-ah">Права задаёт главный администратор</div></div><span class="role-level">Level 1</span></div>
+          <div class="role-card"><div class="icon-box mb-0">👑</div><div><strong>Главный администратор</strong><div class="small text-muted-ah">Полный контроль над домом</div></div><span class="role-level">Level 2</span></div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- ===== CONTACT ===== -->
-<section class="py-5" id="contact">
-    <div class="container-custom">
-        <div class="row g-5 align-items-stretch">
-            <!-- Левая колонка -->
-            <div class="col-lg-5 d-flex flex-column">
-                <span class="section-label">Start a project</span>
-                <h2 class="section-title">Расскажите<br>о своём проекте</h2>
-                <p class="text-muted fs-5">Заполните форму и получите индивидуальное предложение от нашей команды.</p>
-                <div class="feature-panel mt-auto">
-                    <ul class="checklist">
-                        <li>Опишите проект</li>
-                        <li>Выберите направление</li>
-                        <li>Укажите контакт</li>
-                        <li>Получите предложение</li>
-                    </ul>
-                </div>
-            </div>
+<section class="section astra-section" id="astra">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5">
+        <span class="astra-chip">Astra AI</span>
+        <h2 class="section-title mt-3">Умный помощник внутри ArtAHome</h2>
+        <p class="lead" style="color:#cfd8f5">
+          Astra помогает администрации и жильцам быстрее работать с документами,
+          финансами, обращениями и информацией дома.
+        </p>
+        <p class="mb-0" style="color:#aeb9da">Не отдельный сервис — встроенная часть платформы.</p>
+      </div>
 
-            <!-- Правая колонка - форма -->
-            <div class="col-lg-7 d-flex">
-                <div class="form-card w-100">
-                    <form id="contactForm" action="#" method="POST">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label-custom">Ваше имя *</label>
-                                <input type="text" class="form-control form-control-custom" placeholder="Иван Иванов" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label-custom">Компания</label>
-                                <input type="text" class="form-control form-control-custom" placeholder="Название компании">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label-custom">Email *</label>
-                                <input type="email" class="form-control form-control-custom" placeholder="ivan@company.com" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label-custom">Телефон *</label>
-                                <input type="tel" class="form-control form-control-custom" placeholder="+372 5555 5555" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label-custom">Направление</label>
-                                <select class="form-control form-control-custom">
-                                    <option value="">Выберите услугу</option>
-                                    <option>Web Development</option>
-                                    <option>SEO</option>
-                                    <option>Google Ads</option>
-                                    <option>Meta & Social</option>
-                                    <option>Analytics</option>
-                                    <option>Automation</option>
-                                    <option>Support</option>
-                                    <option>Full Solution</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label-custom">Бюджет проекта, €</label>
-                                <select class="form-control form-control-custom">
-                                    <option value="">Не указывать</option>
-                                    <option>до 500 €</option>
-                                    <option>500–1 000 €</option>
-                                    <option>1 000–2 500 €</option>
-                                    <option>2 500–5 000 €</option>
-                                    <option>5 000–10 000 €</option>
-                                    <option>10 000 €+</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label-custom">Описание проекта *</label>
-                                <textarea class="form-control form-control-custom" rows="4" placeholder="Что нужно сделать? Какие цели и пожелания?" required></textarea>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label-custom">Ссылка на сайт (если есть)</label>
-                                <input type="url" class="form-control form-control-custom" placeholder="https://ваш-сайт.ee">
-                            </div>
-                            <div class="col-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="agreeTerms" required>
-                                    <label class="form-check-label" for="agreeTerms" style="font-size: 13px; color: var(--text-muted);">
-                                        Я согласен(на) с <a href="#" style="color: var(--primary);">политикой конфиденциальности</a> и даю согласие на обработку данных
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn-primary-custom w-100 py-3">
-                                    <i class="fas fa-paper-plane me-2"></i> Отправить заявку
-                                </button>
-                                <div class="text-muted mt-2 small text-center">* Мы свяжемся с вами в течение 24 часов</div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+      <div class="col-lg-7">
+        <div class="astra-panel">
+          <div class="row g-3">
+            <div class="col-md-6"><div class="astra-item">✍️ Генерация объявлений</div></div>
+            <div class="col-md-6"><div class="astra-item">📄 Анализ документов</div></div>
+            <div class="col-md-6"><div class="astra-item">💰 Анализ финансов</div></div>
+            <div class="col-md-6"><div class="astra-item">💬 Подготовка ответов жильцам</div></div>
+            <div class="col-md-6"><div class="astra-item">📊 Формирование отчётов</div></div>
+            <div class="col-md-6"><div class="astra-item">🔍 Поиск по данным дома</div></div>
+            <div class="col-md-6"><div class="astra-item">🌐 Автоперевод сообщений</div></div>
+            <div class="col-md-6"><div class="astra-item">📌 Помощь с задачами администрации</div></div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-    <div class="container-custom">
-        <div class="row g-4">
-            <div class="col-12 col-md-4 col-lg-4">
-                <a href="#" class="brand">
-                    <span class="brand-icon">A</span>
-                    <span>AppArtA IT</span>
-                </a>
-                <p class="mt-2" style="max-width: 280px;">
-                    Web Development · SEO · Google Ads · Meta Ads · Analytics · Automation · Заработок
-                </p>
-                <div class="footer-social">
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-3 col-lg-2">
-                <strong>Услуги</strong>
-                <div class="footer-links-grid">
-                    <a href="#services">Web Development</a>
-                    <a href="#services">SEO</a>
-                    <a href="#services">Google Ads</a>
-                    <a href="#services">Meta & Social</a>
-                    <a href="#services">Analytics</a>
-                    <a href="#services">Automation</a>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-5 col-lg-3">
-                <strong>Контакты</strong>
-                <div class="footer-contact-line">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:hello@apparta.ee">hello@apparta.ee</a>
-                </div>
-                <div class="footer-contact-line">
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:+3725555555">+372 5555 5555</a>
-                </div>
-                <div class="footer-contact-line">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Tallinn, Estonia</span>
-                </div>
-                <div class="footer-contact-line">
-                    <i class="fas fa-user"></i>
-                    <span>Артём Артюхин</span>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-12 col-lg-3">
-                <strong>Навигация</strong>
-                <div class="row">
-                    <div class="col-6 col-md-4 col-lg-12">
-                        <div class="footer-links-grid">
-                            <a href="#services">Услуги</a>
-                            <a href="#earn" style="color: var(--primary); font-weight: 600;">💰 Заработок</a>
-                            <a href="#process">Процесс</a>
-                            <a href="#contact">Контакты</a>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-12 mt-2 mt-md-0">
-                        <div class="footer-links-grid">
-                            <a href="#" onclick="openAuthModal(); return false;">Войти</a>
-                            <a href="#" onclick="openAuthModal(); return false;">Регистрация</a>
-                            <a href="#">Политика конфиденциальности</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center">
-            <span>© 2025 AppArtA IT. Все права защищены.</span>
-            <span>Сделано в Таллинне <i class="fas fa-heart" style="color: var(--primary);"></i></span>
-        </div>
+<section class="section">
+  <div class="container">
+    <div class="max-760 mb-5">
+      <div class="eyebrow">130+ возможностей</div>
+      <h2 class="section-title">ArtAHome растёт вместе с вашим домом</h2>
+      <p class="lead text-muted-ah">Платформа проектируется как полноценная экосистема, а не как один маленький сервис.</p>
     </div>
+
+    <div class="row g-2">
+      <div class="col-md-4"><div class="mini-module">🏢 Профиль дома</div></div>
+      <div class="col-md-4"><div class="mini-module">🚪 Подъезды</div></div>
+      <div class="col-md-4"><div class="mini-module">🏠 Квартиры</div></div>
+      <div class="col-md-4"><div class="mini-module">👥 Жильцы</div></div>
+      <div class="col-md-4"><div class="mini-module">📋 Собрания и повестки</div></div>
+      <div class="col-md-4"><div class="mini-module">✍️ Электронные подписи</div></div>
+      <div class="col-md-4"><div class="mini-module">🏦 Банковская интеграция</div></div>
+      <div class="col-md-4"><div class="mini-module">🔄 Сверка платежей</div></div>
+      <div class="col-md-4"><div class="mini-module">💼 Бухгалтерия</div></div>
+      <div class="col-md-4"><div class="mini-module">🧾 Электронные счета</div></div>
+      <div class="col-md-4"><div class="mini-module">📑 Годовые отчёты</div></div>
+      <div class="col-md-4"><div class="mini-module">🏗 План ремонтов</div></div>
+      <div class="col-md-4"><div class="mini-module">📦 Посылки</div></div>
+      <div class="col-md-4"><div class="mini-module">🧖 Бронирование помещений</div></div>
+      <div class="col-md-4"><div class="mini-module">🅿️ Гостевая парковка</div></div>
+      <div class="col-md-4"><div class="mini-module">🚪 Управление дверями</div></div>
+      <div class="col-md-4"><div class="mini-module">🚧 Шлагбаумы</div></div>
+      <div class="col-md-4"><div class="mini-module">🔑 Цифровые ключи</div></div>
+      <div class="col-md-4"><div class="mini-module">📹 Камеры</div></div>
+      <div class="col-md-4"><div class="mini-module">🔥 Пожарная безопасность</div></div>
+      <div class="col-md-4"><div class="mini-module">🧹 Графики уборки</div></div>
+      <div class="col-md-4"><div class="mini-module">🛗 Лифты</div></div>
+      <div class="col-md-4"><div class="mini-module">📚 Архив дома</div></div>
+      <div class="col-md-4"><div class="mini-module">🔌 API и интеграции</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-soft" id="price">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="eyebrow">Цена</div>
+      <h2 class="section-title">Одна понятная цена для всего дома</h2>
+      <p class="lead mx-auto text-muted-ah">Без сложных тарифов и оплаты за каждого жильца.</p>
+    </div>
+
+    <div class="price-card">
+      <span class="popular">Основной тариф</span>
+      <div class="price-main"><strong>15 €</strong><span>в месяц</span></div>
+      <p class="text-muted-ah mt-2">Одна подписка для всего дома.</p>
+
+      <ul class="price-list">
+        <li>Все основные функции</li>
+        <li>Жильцы и администрация</li>
+        <li>Гибкие роли и права доступа</li>
+        <li>Эстонский, русский и английский</li>
+        <li>Веб-версия и мобильный доступ</li>
+        <li>Astra AI</li>
+        <li>Обновления платформы</li>
+      </ul>
+
+      <a class="btn btn-ah w-100" href="register.html">Подключить дом</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="max-760 mb-5">
+      <div class="eyebrow">Почему ArtAHome</div>
+      <h2 class="section-title">Одна система вместо множества сервисов</h2>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-6 col-lg-4"><div class="why-card"><b>✓</b>Простой интерфейс для людей любого возраста</div></div>
+      <div class="col-md-6 col-lg-4"><div class="why-card"><b>✓</b>Гибкие роли и права доступа</div></div>
+      <div class="col-md-6 col-lg-4"><div class="why-card"><b>✓</b>Прозрачность для жильцов</div></div>
+      <div class="col-md-6 col-lg-4"><div class="why-card"><b>✓</b>Автоматизация работы администрации</div></div>
+      <div class="col-md-6 col-lg-4"><div class="why-card"><b>✓</b>Поддержка нескольких языков</div></div>
+      <div class="col-md-6 col-lg-4"><div class="why-card"><b>✓</b>От одного дома до управляющей компании</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-soft">
+  <div class="container text-center">
+    <div class="eyebrow">4 шага</div>
+    <h2 class="section-title">Начать просто</h2>
+
+    <div class="row g-3 mt-4 text-start">
+      <div class="col-md-6 col-lg-3"><div class="step-card"><div class="step-num">1</div><strong>Создайте дом</strong><p class="small text-muted-ah mb-0 mt-2">Добавьте основную информацию о доме.</p></div></div>
+      <div class="col-md-6 col-lg-3"><div class="step-card"><div class="step-num">2</div><strong>Добавьте квартиры и жильцов</strong><p class="small text-muted-ah mb-0 mt-2">Создайте структуру дома и пользователей.</p></div></div>
+      <div class="col-md-6 col-lg-3"><div class="step-card"><div class="step-num">3</div><strong>Назначьте администрацию</strong><p class="small text-muted-ah mb-0 mt-2">Создайте роли и выдайте нужные права.</p></div></div>
+      <div class="col-md-6 col-lg-3"><div class="step-card"><div class="step-num">4</div><strong>Работайте в ArtAHome</strong><p class="small text-muted-ah mb-0 mt-2">Все процессы дома в одном месте.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="container">
+    <div class="text-center">
+      <div class="eyebrow">FAQ</div>
+      <h2 class="section-title">Частые вопросы</h2>
+    </div>
+
+    <div class="accordion max-860 mx-auto mt-5" id="faqAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">Нужно ли платить за каждого жильца?</button></h2>
+        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion"><div class="accordion-body text-muted-ah">Нет. 15 € в месяц — это цена за весь дом.</div></div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">Можно ли использовать платформу на русском и эстонском?</button></h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body text-muted-ah">Да. ArtAHome предусматривает русский, эстонский и английский языки.</div></div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">Можно ли создавать свои роли?</button></h2>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body text-muted-ah">Да. Главный администратор создаёт собственные роли и выбирает права доступа для каждой роли.</div></div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">Подходит ли ArtAHome управляющим компаниям?</button></h2>
+        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body text-muted-ah">Да. В одном аккаунте можно управлять несколькими домами.</div></div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">Что такое Astra AI?</button></h2>
+        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body text-muted-ah">Astra — встроенный помощник ArtAHome для работы с объявлениями, документами, финансами, отчётами и информацией дома.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-soft">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <div class="eyebrow">О проекте</div>
+        <h2 class="section-title">ArtAHome создаётся для современного управления домами</h2>
+        <p class="lead text-muted-ah">
+          Независимый технологический проект для квартирных товариществ, жильцов,
+          председателей, правления и управляющих компаний. Старт — Эстония.
+          Дальнейшее развитие — страны Балтии и Европа.
+        </p>
+      </div>
+      <div class="col-lg-5">
+        <div class="owner-card">
+          <small>Владелец и руководитель проекта</small>
+          <strong>Artjom A.</strong>
+          <span class="owner-badge">Founder & Project Lead</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section final-cta">
+  <div class="container text-center">
+    <h2 class="section-title">Сделайте управление домом проще</h2>
+    <p class="lead mx-auto max-760">ArtAHome — жильцы, администрация, финансы, документы и все процессы дома в одной системе.</p>
+    <div class="d-flex justify-content-center flex-wrap gap-2 mt-4">
+      <a class="btn btn-light" href="register.html">Начать пользоваться</a>
+      <a class="btn btn-outline-light" href="mailto:info@artahome.ee">Связаться</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="py-4">
+  <div class="container d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+    <a class="navbar-brand mb-0" href="#home"><span class="arta">ArtA</span>Home<span class="brand-dot"></span></a>
+    <div class="footer-text">ArtAHome — весь дом. Одна система.</div>
+    <div class="footer-text">© 2026 ArtAHome</div>
+  </div>
 </footer>
 
-<!-- ===== MODAL АВТОРИЗАЦИЯ ===== -->
-<div class="modal-custom" id="authModal">
-    <div class="modal-box">
-        <div class="modal-header-custom">
-            <h2>Вход / Регистрация</h2>
-            <button class="modal-close" onclick="closeAuthModal()">✕</button>
-        </div>
-
-        <div class="modal-tabs">
-            <button class="modal-tab active" onclick="switchAuthTab('login', this)">Вход</button>
-            <button class="modal-tab" onclick="switchAuthTab('register', this)">Регистрация</button>
-        </div>
-
-        <div id="loginForm">
-            <form onsubmit="handleLogin(event)">
-                <div class="mb-3">
-                    <label class="form-label-custom">Email</label>
-                    <input type="email" class="form-control form-control-custom" placeholder="ivan@company.com" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label-custom">Пароль</label>
-                    <input type="password" class="form-control form-control-custom" placeholder="••••••••" required>
-                </div>
-                <button type="submit" class="btn-primary-custom w-100 py-2">Войти</button>
-                <div class="text-center mt-3">
-                    <a href="#" style="color: var(--primary); font-size: 13px;">Забыли пароль?</a>
-                </div>
-            </form>
-        </div>
-
-        <div id="registerForm" style="display:none;">
-            <form onsubmit="handleRegister(event)">
-                <div class="mb-3">
-                    <label class="form-label-custom">Имя и фамилия</label>
-                    <input type="text" class="form-control form-control-custom" placeholder="Иван Иванов" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label-custom">Email</label>
-                    <input type="email" class="form-control form-control-custom" placeholder="ivan@company.com" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label-custom">Пароль</label>
-                    <input type="password" class="form-control form-control-custom" placeholder="Минимум 6 символов" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label-custom">Кто вы?</label>
-                    <select class="form-control form-control-custom">
-                        <option value="client">Заказчик (хочу заказать услугу)</option>
-                        <option value="worker" selected>Работник (хочу зарабатывать)</option>
-                        <option value="both">И то, и другое</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-success-custom w-100 py-2">
-                    <i class="fas fa-user-plus me-2"></i> Зарегистрироваться
-                </button>
-                <div class="text-center mt-3">
-                    <span style="color: var(--text-muted); font-size: 13px;">Регистрируясь, вы соглашаетесь с <a href="#" style="color: var(--primary);">условиями</a></span>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<script>
-    // ===== NAVBAR SCROLL =====
-    window.addEventListener('scroll', () => {
-        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
-    });
-
-    // ===== MOBILE TOGGLE =====
-    const mobileToggle = document.getElementById('mobileToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileToggle.addEventListener('click', () => {
-        mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
-    });
-    document.querySelectorAll('#mobileMenu a').forEach(link => {
-        link.addEventListener('click', () => { mobileMenu.style.display = 'none'; });
-    });
-
-    // ===== LANGUAGE SWITCHER =====
-    const langBtns = document.querySelectorAll('.lang-btn');
-    langBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            langBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            console.log('Language switched to:', this.dataset.lang);
-        });
-    });
-
-    // ===== AUTH MODAL =====
-    function openAuthModal() {
-        document.getElementById('authModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeAuthModal() {
-        document.getElementById('authModal').classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    function switchAuthTab(tab, btn) {
-        document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
-        document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
-    }
-
-    function handleLogin(e) {
-        e.preventDefault();
-        alert('✅ Вход выполнен! Добро пожаловать в AppArtA IT.');
-        closeAuthModal();
-    }
-
-    function handleRegister(e) {
-        e.preventDefault();
-        alert('✅ Регистрация успешна! Доступ к заданиям открыт. Ждите новые задачи!');
-        closeAuthModal();
-    }
-
-    // ===== SERVICES DATA =====
-    const servicesData = {
-        web: { title: "Web Development", description: "Разработка сайтов и веб-систем под ключ.",
-            items: ["Сайты под ключ", "Landing Page", "Корпоративные сайты", "Интернет-магазины", "Каталоги", "Мультиязычные сайты", "Custom PHP", "Личные кабинеты", "Админ-панели", "CRM", "Онлайн-запись", "Калькуляторы", "API-интеграции", "Платёжные системы", "Редизайн", "Оптимизация скорости", "Мобильная адаптация"] },
-        seo: { title: "SEO", description: "Увеличение видимости и органического трафика.",
-            items: ["SEO-аудит", "Техническое SEO", "Local SEO", "SEO для Эстонии", "SEO для Балтии", "Анализ конкурентов", "Сбор ключевых слов", "On-page SEO", "Title/Description", "H1-H6", "Внутренняя перелинковка", "Индексация", "Google Search Console", "Core Web Vitals", "Multilingual SEO", "Hreflang", "Мониторинг позиций"] },
-        google: { title: "Google Ads", description: "Настройка рекламы с упором на заявки и продажи.",
-            items: ["Google Search Ads", "Performance Max", "Display Ads", "Remarketing", "Google Maps Ads", "Local Business Ads", "E-commerce Ads", "Подбор ключевых слов", "Минус-слова", "Создание объявлений", "Геотаргетинг", "Conversion Tracking", "Оптимизация бюджета", "Оптимизация стоимости лида", "Ежемесячное ведение"] },
-        social: { title: "Meta & Social", description: "Продвижение в социальных сетях и Meta Ads.",
-            items: ["Facebook Ads", "Instagram Ads", "Meta Ads", "Lead Ads", "Stories Ads", "Reels Ads", "Реклама на сообщения", "Retargeting", "Meta Pixel", "Настройка аудиторий", "Lookalike Audiences", "Instagram Growth", "Facebook Growth", "TikTok Promotion", "YouTube Promotion", "Контент-стратегия", "Social Analytics"] },
-        analytics: { title: "Analytics", description: "Настройка измерения трафика, конверсий и эффективности.",
-            items: ["Google Analytics 4", "Google Tag Manager", "Google Search Console", "Meta Pixel", "Google Ads Conversion Tracking", "Meta Conversion Tracking", "Events", "Goals", "Lead Tracking", "Purchase Tracking", "Click Tracking", "Traffic Analysis", "Ad Performance Reports", "Marketing Dashboards"] },
-        automation: { title: "Automation", description: "Автоматизация процессов и коммуникаций.",
-            items: ["CRM-интеграции", "Telegram-боты", "Боты для бизнеса", "Автоматизация заявок", "Email automation", "Уведомления", "Системы бронирования", "Order automation", "Internal dashboards", "API integrations", "Интеграция мессенджеров"] },
-        support: { title: "Support", description: "Поддержка, обслуживание и развитие проектов.",
-            items: ["Техническая поддержка", "Исправление ошибок", "Добавление функций", "Добавление страниц", "Перенос сайтов", "Настройка домена", "DNS", "Хостинг", "SSL", "Backups", "Monitoring", "Performance Optimization", "Обновление контента"] },
-        full: { title: "Full Solution", description: "Комплексное решение: сайт + трафик + рост.",
-            items: ["Сайт + SEO", "Сайт + Google Ads", "Сайт + Meta Ads", "Сайт + SEO + Ads", "Сайт + Analytics", "Сайт + Automation", "Development + Promotion", "Full Online Launch", "Digital Strategy", "Traffic Acquisition", "Conversion Tracking", "Monthly Growth Support"] }
-    };
-
-    // ===== MODAL =====
-    const modal = document.getElementById('serviceModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDesc = document.getElementById('modalDescription');
-    const modalServices = document.getElementById('modalServices');
-    const modalClose = document.getElementById('modalClose');
-    const modalCta = document.getElementById('modalCta');
-
-    document.querySelectorAll('.service-card').forEach(card => {
-        card.addEventListener('click', () => {
-            const key = card.dataset.service;
-            const data = servicesData[key];
-            if (!data) return;
-            modalTitle.textContent = data.title;
-            modalDesc.textContent = data.description;
-            modalServices.innerHTML = data.items.map(item => `<div class="modal-service">${item}</div>`).join('');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    });
-
-    const closeModal = () => {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    };
-    modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    modalCta.addEventListener('click', () => { closeModal(); document.getElementById('contact').scrollIntoView({behavior:'smooth'}); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-    // ===== FORM CONTACT =====
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
-        this.reset();
-    });
-
-    // Закрытие модалок по клику вне окна
-    document.querySelectorAll('.modal-custom').forEach(m => {
-        m.addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    });
-</script>
+<!-- Bootstrap JS. defer = не блокирует первичную загрузку страницы -->
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
