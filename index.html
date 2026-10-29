@@ -6,8 +6,8 @@ $year = date('Y');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ArtAHome — управление домом без хаоса</title>
-  <meta name="description" content="ArtAHome — понятная цифровая платформа для квартирных товариществ: жильцы, заявки, документы, финансы, голосования и обслуживание в одном месте.">
+  <title>ArtAHome — домашние дела наконец вместе. Расходы, документы и задачи семьи в одном месте</title>
+  <meta name="description" content="ArtAHome — семейное пространство: расходы, документы, задачи и чат в одном месте. Первый месяц бесплатно, далее 1 €/мес за всю семью. Больше не искать чек в переписке.">
   <meta name="theme-color" content="#f7f9ff">
 
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -48,10 +48,12 @@ $year = date('Y');
       line-height:1.6;
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
+      overflow-x:hidden;
     }
     a{text-decoration:none}
     button,input{font:inherit}
-    .container{max-width:1180px}
+    img{max-width:100%;height:auto;display:block}
+    .container{max-width:1180px;width:100%}
     .section{padding:86px 0}
     .soft-section{background:linear-gradient(180deg,#fbfcff 0%,#f6f8fd 100%)}
 
@@ -61,17 +63,21 @@ $year = date('Y');
       color:#3857d7;background:var(--blue-soft);
       border:1px solid #dce4ff;
       font-size:12px;font-weight:850;letter-spacing:.06em;text-transform:uppercase;
+      line-height:1.1;
     }
-    .eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#5fc7ff);box-shadow:0 0 0 5px rgba(49,94,251,.08)}
+    .eyebrow:before{content:"";width:8px;height:8px;flex:0 0 auto;border-radius:50%;background:linear-gradient(135deg,var(--blue),#5fc7ff);box-shadow:0 0 0 5px rgba(49,94,251,.08)}
     .section-title{
       max-width:820px;margin:14px 0 16px;
       font-size:clamp(38px,5vw,60px);line-height:1.02;letter-spacing:-2.6px;font-weight:900;
+      overflow-wrap:anywhere;
     }
     .section-copy{max-width:760px;margin:0;color:var(--muted);font-size:18px;line-height:1.7}
 
     .btn{
       min-height:52px;padding:.84rem 1.28rem;border-radius:15px;
       font-weight:850;font-size:15px;transition:.2s ease;
+      display:inline-flex;align-items:center;justify-content:center;gap:6px;
+      text-align:center;
     }
     .btn-main{color:#fff!important;border:0;background:linear-gradient(135deg,var(--blue),var(--blue-2));box-shadow:0 14px 32px rgba(49,94,251,.24)}
     .btn-main:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(49,94,251,.31)}
@@ -85,7 +91,7 @@ $year = date('Y');
     }
     .brand{display:inline-flex;align-items:center;gap:10px;color:var(--ink)!important;font-size:23px;font-weight:950;letter-spacing:-1px}
     .brand-mark{
-      position:relative;overflow:hidden;width:37px;height:37px;display:grid;place-items:center;border-radius:12px;color:#fff;
+      position:relative;overflow:hidden;width:37px;height:37px;flex:0 0 auto;display:grid;place-items:center;border-radius:12px;color:#fff;
       background:linear-gradient(135deg,var(--blue),var(--blue-2) 70%,#51c8ff);box-shadow:0 10px 25px rgba(49,94,251,.24);
     }
     .brand-mark:after{content:"";position:absolute;width:20px;height:20px;right:-4px;top:-5px;border-radius:50%;background:rgba(255,255,255,.35)}
@@ -94,7 +100,7 @@ $year = date('Y');
     .desktop-nav a{padding:10px 11px;border-radius:11px;color:#5f6a7f;font-size:13px;font-weight:800}
     .desktop-nav a:hover{color:var(--ink);background:#f4f6fa}
     .lang-pill{display:flex;gap:2px;padding:4px;border:1px solid var(--line);border-radius:999px;background:#f7f8fb}
-    .lang-pill button{min-width:34px;height:31px;padding:0 8px;border:0;border-radius:999px;color:#7b8496;background:transparent;font-size:11px;font-weight:900}
+    .lang-pill button{min-width:34px;height:31px;padding:0 8px;border:0;border-radius:999px;color:#7b8496;background:transparent;font-size:11px;font-weight:900;cursor:pointer}
     .lang-pill button.active{color:#fff;background:var(--ink)}
 
     /* HERO */
@@ -107,159 +113,271 @@ $year = date('Y');
     }
     .hero:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(43,64,120,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(43,64,120,.025) 1px,transparent 1px);background-size:52px 52px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
     .hero .container{position:relative;z-index:1}
-    .hero h1{max-width:720px;margin:20px 0 22px;font-size:clamp(56px,7vw,84px);line-height:.98;letter-spacing:-4.5px;font-weight:950}
+    .hero h1{max-width:720px;margin:20px 0 22px;font-size:clamp(48px,7vw,84px);line-height:.98;letter-spacing:-4px;font-weight:950;overflow-wrap:anywhere}
     .hero h1 .accent{background:linear-gradient(92deg,var(--blue),var(--blue-2) 63%,#1cb9ed);-webkit-background-clip:text;background-clip:text;color:transparent}
     .hero-copy{max-width:680px;margin:0;color:#5f6b80;font-size:20px;line-height:1.7}
     .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
     .hero-proof{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-    .proof-chip{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;color:#566175;font-size:13px;font-weight:760;box-shadow:0 7px 20px rgba(24,37,67,.04)}
-    .proof-chip i{color:var(--green)}
+    .proof-chip{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;color:#566175;font-size:13px;font-weight:760;box-shadow:0 7px 20px rgba(24,37,67,.04);line-height:1.25}
+    .proof-chip i{color:var(--green);flex:0 0 auto}
     .hero-note{margin-top:14px;color:#7e8899;font-size:13px}
 
-    /* PRODUCT VISUAL */
-    .product-stage{position:relative}
-    .product-card{
-      position:relative;padding:10px;border:1px solid #dfe5f0;border-radius:31px;
-      background:rgba(255,255,255,.82);box-shadow:0 38px 90px rgba(42,58,96,.16);backdrop-filter:blur(12px);
+    /* PHONE DEMO */
+    .phone-stage{position:relative;display:flex;justify-content:center;padding:10px 0}
+    .phone-stage:before{content:"";position:absolute;width:340px;max-width:90%;height:340px;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(111,92,246,.18),transparent 65%);filter:blur(30px);z-index:0}
+    .phone{
+      position:relative;z-index:1;
+      width:100%;max-width:340px;
+      background:#0b1224;
+      border-radius:44px;
+      padding:12px;
+      box-shadow:0 40px 90px rgba(15,23,42,.35), 0 0 0 1px rgba(255,255,255,.06) inset;
     }
-    .product-card:before{content:"";position:absolute;width:260px;height:260px;right:-80px;top:-70px;border-radius:50%;background:rgba(111,92,246,.14);filter:blur(46px);z-index:-1}
-    .browser-top{height:38px;display:flex;align-items:center;gap:6px;padding:0 8px}
-    .browser-top span{width:9px;height:9px;border-radius:50%;background:#c2c9d5}
-    .browser-url{width:52%;height:20px;margin-left:8px;border-radius:999px;background:#eef1f6}
-    .app-demo{overflow:hidden;display:grid;grid-template-columns:145px 1fr;min-height:500px;border-radius:22px;background:#f7f9fc;border:1px solid #e6eaf1}
-    .app-side{padding:17px 11px;background:#fff;border-right:1px solid #e5e9f0}
-    .app-logo{display:flex;align-items:center;gap:7px;padding:3px 7px 16px;color:#2d3a52;font-size:13px;font-weight:900}
-    .app-logo i{color:var(--blue)}
-    .app-menu{display:grid;gap:5px}
-    .app-menu button{
-      width:100%;display:flex;align-items:center;gap:8px;padding:9px 10px;border:0;border-radius:10px;
-      color:#788398;background:transparent;text-align:left;font-size:12px;font-weight:780;cursor:pointer;transition:.18s ease;
+    .phone-screen{
+      position:relative;overflow:hidden;
+      height:640px;
+      border-radius:34px;
+      background:#f7f9fc;
+      display:flex;flex-direction:column;
     }
-    .app-menu button:hover{color:#2947cf;background:#f6f8ff}
-    .app-menu button.active{color:#2947cf;background:#eef2ff;box-shadow:inset 0 0 0 1px #dbe4ff}
-    .app-main{padding:18px}
-    .app-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
-    .app-head strong{display:block;font-size:17px}.app-head small{display:block;color:#8792a5;font-size:12px;margin-top:2px}
-    .online{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;color:#117254;background:var(--green-soft);font-size:11px;font-weight:900}
-    .online:before{content:"";width:6px;height:6px;border-radius:50%;background:#1dbb86}
-    .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
-    .metric{padding:14px;border:1px solid #e5e9f0;border-radius:14px;background:#fff}
-    .metric label{display:block;color:#8893a5;font-size:11px;font-weight:850;text-transform:uppercase;letter-spacing:.04em}
-    .metric b{display:block;margin-top:3px;font-size:25px;letter-spacing:-1px}
-    .dash-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:10px}
-    .dash-card{padding:14px;border:1px solid #e5e9f0;border-radius:14px;background:#fff}
-    .dash-title{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:900}.dash-title small{color:#8c96a6;font-size:11px}
-    .events{display:grid;gap:8px;margin-top:10px}
-    .event{display:grid;grid-template-columns:31px 1fr auto;gap:8px;align-items:center;padding:9px;border-radius:11px;background:#f7f9fc}
-    .event i{width:31px;height:31px;display:grid;place-items:center;border-radius:9px;color:var(--blue);background:#edf1ff}
-    .event strong{display:block;font-size:11px}.event span{display:block;color:#8b95a5;font-size:10px}.event time{color:#8b95a5;font-size:10px}
-    .bars{height:142px;display:flex;align-items:flex-end;gap:7px;padding-top:18px}
-    .bars span{flex:1;border-radius:7px 7px 3px 3px;background:linear-gradient(180deg,#9eabff,var(--blue))}
-    .bars span:nth-child(1){height:34%}.bars span:nth-child(2){height:50%}.bars span:nth-child(3){height:43%}.bars span:nth-child(4){height:71%}.bars span:nth-child(5){height:59%}.bars span:nth-child(6){height:88%}
-    .mini-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
-    .mini{padding:10px;border:1px solid #e5e9f0;border-radius:12px;background:#fff;font-size:12px;font-weight:900}.mini strong{display:block;font-size:18px;line-height:1.2}.mini span{display:block;color:#8d97a6;font-size:10px;font-weight:700;margin-top:3px}
-    .float-bubble{position:absolute;z-index:3;display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid #e2e7f0;border-radius:16px;background:#fff;box-shadow:var(--shadow-soft)}
-    .float-bubble i{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;color:var(--blue);background:#eef2ff}
-    .float-bubble strong{display:block;font-size:12px}.float-bubble span{display:block;color:#8994a6;font-size:11px;margin-top:1px}
-    .bubble-a{right:-24px;top:86px}.bubble-b{left:-28px;bottom:44px}
+    .phone-notch{
+      position:absolute;top:8px;left:50%;transform:translateX(-50%);
+      width:100px;height:22px;border-radius:999px;background:#0b1224;z-index:6;
+    }
+    .phone-status{
+      position:relative;z-index:5;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 20px 4px;color:#172033;font-size:11px;font-weight:800;
+    }
+    .phone-status .dots{display:flex;gap:4px;align-items:center}
+    .phone-status .dots i{font-size:11px}
 
-    .sim-note{display:flex;align-items:flex-start;gap:8px;margin-top:14px;color:#6f7b90;font-size:13px;line-height:1.5}
-    .sim-note i{margin-top:2px;color:var(--blue)}
+    .phone-app{
+      flex:1;display:flex;flex-direction:column;overflow:hidden;
+      padding:6px 0 0;min-height:0;
+    }
+    .phone-header{
+      padding:8px 18px 12px;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+    }
+    .phone-header .greet{min-width:0}
+    .phone-header .greet strong{display:block;font-size:15px;letter-spacing:-.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .phone-header .greet span{display:block;color:#8792a5;font-size:11px;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .phone-avatar{
+      width:34px;height:34px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;
+      color:#fff;font-weight:900;font-size:12px;
+      background:linear-gradient(135deg,var(--blue),var(--blue-2));
+      box-shadow:0 6px 16px rgba(49,94,251,.3);
+    }
+    .phone-body{
+      flex:1;overflow-y:auto;padding:4px 16px 14px;
+      scrollbar-width:none;min-height:0;
+    }
+    .phone-body::-webkit-scrollbar{display:none}
 
-    .mobile-demo-tabs{display:none;gap:7px;padding:10px 10px 0;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid #e5e9f0}
-    .mobile-demo-tabs::-webkit-scrollbar{display:none}
-    .mobile-demo-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;min-height:42px;padding:9px 12px;border:1px solid #e6eaf2;border-radius:12px 12px 0 0;color:#69758c;background:#f8faff;font-size:13px;font-weight:850;white-space:nowrap;transition:.18s ease}
-    .mobile-demo-tab.active{color:#2947cf;background:#eef2ff;border-color:#dbe4ff}
+    .phone-view{display:none;animation:fadeUp .25s ease}
+    .phone-view.active{display:block}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-    .mobile-cta-bar{display:none}
+    /* Cards inside phone */
+    .p-card{
+      padding:14px;border:1px solid #e6eaf2;border-radius:16px;background:#fff;
+      box-shadow:0 6px 18px rgba(29,45,82,.05);
+    }
+    .p-card + .p-card{margin-top:10px}
+    .p-card-title{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:900;color:#172033;gap:8px}
+    .p-card-title small{color:#8c96a6;font-size:10px;font-weight:700;flex:0 0 auto}
+
+    .p-hero-metric{
+      padding:16px;border-radius:18px;
+      background:linear-gradient(135deg,#315efb,#6f5cf6 70%,#51c8ff);
+      color:#fff;box-shadow:0 14px 30px rgba(49,94,251,.3);
+    }
+    .p-hero-metric small{display:block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+    .p-hero-metric strong{display:block;font-size:30px;letter-spacing:-1.2px;margin-top:4px;line-height:1}
+    .p-hero-metric .delta{display:inline-flex;align-items:center;gap:4px;margin-top:8px;padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.2);font-size:10px;font-weight:850}
+
+    .p-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+    .p-mini{padding:11px;border:1px solid #e6eaf2;border-radius:13px;background:#fff;min-width:0}
+    .p-mini small{display:block;color:#8893a5;font-size:9px;font-weight:850;text-transform:uppercase;letter-spacing:.04em}
+    .p-mini b{display:block;font-size:16px;letter-spacing:-.4px;margin-top:2px}
+
+    .p-row{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:9px;align-items:center;padding:10px;border-radius:12px;background:#f7f9fc}
+    .p-row + .p-row{margin-top:7px}
+    .p-row i{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;color:var(--blue);background:#edf1ff;font-size:14px;flex:0 0 auto}
+    .p-row strong{display:block;font-size:11px;line-height:1.25;overflow-wrap:anywhere}
+    .p-row span{display:block;color:#8b95a5;font-size:9px;line-height:1.25;margin-top:1px;overflow-wrap:anywhere}
+    .p-row em{font-style:normal;font-size:10px;font-weight:900;color:#147758;background:#e8f7f1;padding:3px 7px;border-radius:999px;white-space:nowrap}
+    .p-row em.warn{color:#9a6512;background:#fff3da}
+    .p-row em.info{color:#3b57d6;background:#e9edff}
+    .p-row em.amount{color:#172033;background:#f0f2f7}
+
+    .p-seg{
+      display:flex;gap:4px;padding:4px;border-radius:12px;background:#eef1f7;margin-bottom:10px;
+    }
+    .p-seg button{
+      flex:1;padding:7px 4px;border:0;border-radius:9px;background:transparent;
+      color:#6b7689;font-size:10px;font-weight:900;cursor:pointer;
+    }
+    .p-seg button.active{background:#fff;color:#2947cf;box-shadow:0 3px 10px rgba(29,45,82,.08)}
+
+    .p-bars{height:96px;display:flex;align-items:flex-end;gap:6px;padding-top:10px}
+    .p-bars span{flex:1;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#9eabff,var(--blue));transition:height .35s ease}
+
+    .p-chat{display:grid;gap:8px}
+    .p-bubble{max-width:85%;padding:9px 12px;border-radius:14px;font-size:11px;line-height:1.35;box-shadow:0 4px 12px rgba(29,45,82,.04);overflow-wrap:anywhere}
+    .p-bubble.them{background:#fff;border:1px solid #e6eaf2;color:#2a3548;border-bottom-left-radius:4px}
+    .p-bubble.me{margin-left:auto;background:linear-gradient(135deg,#315efb,#6f5cf6);color:#fff;border-bottom-right-radius:4px}
+    .p-bubble small{display:block;font-size:9px;opacity:.7;margin-top:3px}
+
+    .p-doc{display:flex;gap:10px;align-items:center;padding:11px;border-radius:13px;border:1px solid #e6eaf2;background:#fff}
+    .p-doc + .p-doc{margin-top:8px}
+    .p-doc .ic{width:38px;height:38px;flex:0 0 auto;border-radius:10px;display:grid;place-items:center;color:var(--blue);background:#edf1ff;font-size:15px}
+    .p-doc > div{min-width:0;flex:1}
+    .p-doc strong{display:block;font-size:11px;overflow-wrap:anywhere}
+    .p-doc span{display:block;color:#8b95a5;font-size:9px;margin-top:1px;overflow-wrap:anywhere}
+    .p-doc em{margin-left:auto;flex:0 0 auto;font-style:normal;font-size:9px;font-weight:900;color:#5064d4;background:#e9edff;padding:3px 7px;border-radius:999px}
+
+    .p-task{display:flex;gap:10px;align-items:flex-start;padding:11px;border-radius:13px;border:1px solid #e6eaf2;background:#fff}
+    .p-task + .p-task{margin-top:8px}
+    .p-check{width:20px;height:20px;border-radius:7px;border:2px solid #c9d2e4;flex:0 0 auto;margin-top:1px}
+    .p-task.done .p-check{background:var(--green);border-color:var(--green);position:relative}
+    .p-task.done .p-check:after{content:"";position:absolute;left:5px;top:1px;width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+    .p-task > div{min-width:0;flex:1}
+    .p-task strong{display:block;font-size:11px;line-height:1.3;overflow-wrap:anywhere}
+    .p-task span{display:block;color:#8b95a5;font-size:9px;margin-top:2px;overflow-wrap:anywhere}
+    .p-task .when{margin-left:auto;flex:0 0 auto;font-size:9px;font-weight:900;color:#9a6512;background:#fff3da;padding:3px 7px;border-radius:999px;white-space:nowrap}
+
+    /* Bottom nav inside phone */
+    .phone-nav{
+      display:grid;grid-template-columns:repeat(5,1fr);
+      padding:8px 6px calc(8px + env(safe-area-inset-bottom,0px));
+      background:#fff;border-top:1px solid #e6eaf2;
+    }
+    .phone-nav button{
+      display:flex;flex-direction:column;align-items:center;gap:3px;
+      padding:6px 2px;border:0;border-radius:12px;background:transparent;
+      color:#8b95a5;font-size:9px;font-weight:900;letter-spacing:.01em;
+      transition:.15s ease;cursor:pointer;min-width:0;
+    }
+    .phone-nav button span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+    .phone-nav button i{font-size:17px;transition:.15s ease}
+    .phone-nav button.active{color:#315efb}
+    .phone-nav button.active i{transform:translateY(-1px)}
+    .phone-nav button:hover{color:#2947cf}
+
+    .phone-hint{
+      display:flex;align-items:center;justify-content:center;gap:6px;
+      margin-top:16px;color:#6f7b90;font-size:12px;text-align:center;
+    }
+    .phone-hint i{color:var(--blue);flex:0 0 auto}
 
     /* VALUE */
     .value-strip{position:relative;z-index:4;margin-top:-26px}
     .value-shell{display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:var(--shadow)}
-    .value-item{padding:22px;border-right:1px solid var(--line)}.value-item:last-child{border-right:0}
+    .value-item{padding:22px;border-right:1px solid var(--line);min-width:0}.value-item:last-child{border-right:0}
     .value-item i{width:40px;height:40px;display:grid;place-items:center;margin-bottom:12px;border-radius:12px;color:var(--blue);background:var(--blue-soft);font-size:18px}
-    .value-item strong{display:block;font-size:16px}.value-item p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.55}
+    .value-item strong{display:block;font-size:16px;overflow-wrap:anywhere}.value-item p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.55;overflow-wrap:anywhere}
 
     /* TRANSFORMATION */
     .compare-shell{display:grid;grid-template-columns:1fr 64px 1fr;gap:18px;align-items:stretch;margin-top:34px}
-    .compare-card{padding:28px;border:1px solid var(--line);border-radius:26px;background:#fff;box-shadow:var(--shadow-soft)}
+    .compare-card{padding:28px;border:1px solid var(--line);border-radius:26px;background:#fff;box-shadow:var(--shadow-soft);min-width:0}
     .compare-card.before{background:#fffaf8;border-color:#f1e4dd}.compare-card.after{background:#f8fbff;border-color:#dfe7ff}
     .compare-label{display:inline-flex;padding:7px 10px;border-radius:999px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.07em}
     .before .compare-label{color:#9d5a35;background:#fff0e8}.after .compare-label{color:#3857d7;background:#eaf0ff}
-    .compare-card h3{margin:16px 0 16px;font-size:27px;letter-spacing:-1px;font-weight:900}
+    .compare-card h3{margin:16px 0 16px;font-size:27px;letter-spacing:-1px;font-weight:900;overflow-wrap:anywhere}
     .compare-list{display:grid;gap:10px;margin:0;padding:0;list-style:none}
-    .compare-list li{display:flex;align-items:flex-start;gap:10px;color:#4f5b70;font-size:15px}
-    .compare-list i{margin-top:2px}.before .compare-list i{color:#ce7650}.after .compare-list i{color:var(--green)}
+    .compare-list li{display:flex;align-items:flex-start;gap:10px;color:#4f5b70;font-size:15px;overflow-wrap:anywhere}
+    .compare-list i{margin-top:2px;flex:0 0 auto}.before .compare-list i{color:#ce7650}.after .compare-list i{color:var(--green)}
     .compare-arrow{display:grid;place-items:center;color:#8290a8;font-size:28px}
 
     /* FEATURES BENTO */
-    .features-top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:30px}
+    .features-top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:30px;flex-wrap:wrap}
     .bento{display:grid;grid-template-columns:1.15fr .85fr .85fr;grid-template-rows:220px 220px;gap:14px}
-    .bento-card{position:relative;overflow:hidden;padding:26px;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:0 10px 30px rgba(29,45,82,.04);transition:.2s ease}
+    .bento-card{position:relative;overflow:hidden;padding:26px;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:0 10px 30px rgba(29,45,82,.04);transition:.2s ease;min-width:0}
     .bento-card:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(29,45,82,.08)}
     .bento-card.large{grid-row:span 2;background:linear-gradient(145deg,#f2f6ff,#eef2ff 54%,#f7f3ff);border-color:#dfe6ff}
     .bento-card.wide{grid-column:span 2;background:linear-gradient(145deg,#f8fbff,#f4f8ff)}
     .bento-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:14px;color:var(--blue);background:#fff;box-shadow:0 8px 20px rgba(49,94,251,.08);font-size:20px}
-    .bento-card h3{margin:18px 0 8px;font-size:21px;letter-spacing:-.6px;font-weight:900}
-    .bento-card p{max-width:390px;margin:0;color:var(--muted);font-size:15px;line-height:1.6}
+    .bento-card h3{margin:18px 0 8px;font-size:21px;letter-spacing:-.6px;font-weight:900;overflow-wrap:anywhere}
+    .bento-card p{max-width:390px;margin:0;color:var(--muted);font-size:15px;line-height:1.6;overflow-wrap:anywhere}
     .bento-chip{position:absolute;right:18px;top:18px;padding:6px 9px;border-radius:999px;color:#687389;background:#f3f5f9;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.06em}
     .bento-card.large .bento-chip{background:#fff;color:#5164d0}
     .ticket-list{display:grid;gap:9px;margin-top:24px}
-    .ticket{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid #dfe6f8;border-radius:13px;background:rgba(255,255,255,.82)}
-    .ticket i{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;color:var(--blue);background:#eef2ff}.ticket strong{display:block;font-size:12px}.ticket span{display:block;color:#8994a6;font-size:11px}.ticket em{margin-left:auto;padding:5px 7px;border-radius:999px;color:#147758;background:#e8f7f1;font-size:10px;font-style:normal;font-weight:900}
+    .ticket{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid #dfe6f8;border-radius:13px;background:rgba(255,255,255,.82);min-width:0}
+    .ticket i{width:34px;height:34px;flex:0 0 auto;display:grid;place-items:center;border-radius:10px;color:var(--blue);background:#eef2ff}
+    .ticket > div{min-width:0;flex:1}
+    .ticket strong{display:block;font-size:12px;overflow-wrap:anywhere}
+    .ticket span{display:block;color:#8994a6;font-size:11px;overflow-wrap:anywhere}
+    .ticket em{margin-left:auto;flex:0 0 auto;padding:5px 7px;border-radius:999px;color:#147758;background:#e8f7f1;font-size:10px;font-style:normal;font-weight:900}
     .spark-bars{position:absolute;right:20px;bottom:18px;width:130px;height:72px;display:flex;align-items:flex-end;gap:6px}.spark-bars span{flex:1;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#a9b5ff,var(--blue))}.spark-bars span:nth-child(1){height:35%}.spark-bars span:nth-child(2){height:58%}.spark-bars span:nth-child(3){height:44%}.spark-bars span:nth-child(4){height:83%}.spark-bars span:nth-child(5){height:67%}
 
     /* AUDIENCE */
     .audience-wrap{margin-top:34px;padding:12px;border:1px solid var(--line);border-radius:28px;background:#f5f7fb}
     .audience-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-    .audience-tab{flex:1;min-width:180px;display:flex;align-items:center;justify-content:center;gap:9px;padding:14px;border:1px solid transparent;border-radius:15px;color:#657086;background:transparent;font-size:14px;font-weight:850}
+    .audience-tab{flex:1;min-width:180px;display:flex;align-items:center;justify-content:center;gap:9px;padding:14px;border:1px solid transparent;border-radius:15px;color:#657086;background:transparent;font-size:14px;font-weight:850;cursor:pointer;transition:.2s ease}
     .audience-tab.active{color:#2947cf;border-color:#dce4ff;background:#fff;box-shadow:0 8px 22px rgba(29,45,82,.06)}
     .audience-panel{display:grid;grid-template-columns:1.08fr .92fr;gap:24px;padding:34px;border:1px solid var(--line);border-radius:21px;background:#fff}
-    .audience-panel h3{margin:0 0 10px;font-size:34px;letter-spacing:-1.5px;font-weight:900}.audience-panel p{margin:0;color:var(--muted);font-size:17px;line-height:1.65}
-    .audience-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}.audience-list div{display:flex;align-items:center;gap:9px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fbfcff;color:#4d596e;font-size:13px;font-weight:800}.audience-list i{color:var(--green)}
-    .role-preview{padding:20px;border:1px solid #e4e9f1;border-radius:18px;background:#f8faff}.role-preview-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:13px}.role-preview-head strong{font-size:14px}.role-preview-head span{padding:6px 8px;border-radius:999px;color:#5064d4;background:#e9edff;font-size:10px;font-weight:900}
-    .role-line{display:flex;align-items:center;gap:9px;padding:11px;border:1px solid #e7ebf2;border-radius:12px;background:#fff}.role-line + .role-line{margin-top:8px}.role-line i{width:32px;height:32px;display:grid;place-items:center;border-radius:9px;color:var(--blue);background:#eef2ff}.role-line strong{display:block;font-size:12px}.role-line span{display:block;color:#8b95a5;font-size:11px}.role-line em{margin-left:auto;color:var(--green);font-size:10px;font-style:normal;font-weight:900}
+    .audience-panel > div{min-width:0}
+    .audience-panel h3{margin:0 0 10px;font-size:34px;letter-spacing:-1.5px;font-weight:900;overflow-wrap:anywhere}.audience-panel p{margin:0;color:var(--muted);font-size:17px;line-height:1.65;overflow-wrap:anywhere}
+    .audience-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}.audience-list div{display:flex;align-items:center;gap:9px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fbfcff;color:#4d596e;font-size:13px;font-weight:800;min-width:0;overflow-wrap:anywhere}.audience-list i{color:var(--green);flex:0 0 auto}
+    .role-preview{padding:20px;border:1px solid #e4e9f1;border-radius:18px;background:#f8faff;min-width:0}.role-preview-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:13px;flex-wrap:wrap}.role-preview-head strong{font-size:14px}.role-preview-head span{padding:6px 8px;border-radius:999px;color:#5064d4;background:#e9edff;font-size:10px;font-weight:900;white-space:nowrap}
+    .role-line{display:flex;align-items:center;gap:9px;padding:11px;border:1px solid #e7ebf2;border-radius:12px;background:#fff;min-width:0}.role-line + .role-line{margin-top:8px}.role-line i{width:32px;height:32px;flex:0 0 auto;display:grid;place-items:center;border-radius:9px;color:var(--blue);background:#eef2ff}.role-line > div{min-width:0;flex:1}.role-line strong{display:block;font-size:12px;overflow-wrap:anywhere}.role-line span{display:block;color:#8b95a5;font-size:11px;overflow-wrap:anywhere}.role-line em{margin-left:auto;flex:0 0 auto;color:var(--green);font-size:10px;font-style:normal;font-weight:900}
 
     /* PRICE + START */
     .conversion-grid{display:grid;grid-template-columns:1.03fr .97fr;gap:18px;align-items:stretch}
-    .price-card,.start-card{border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:var(--shadow-soft)}
+    .price-card,.start-card{border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:var(--shadow-soft);min-width:0}
     .price-card{padding:34px;position:relative;overflow:hidden;background:linear-gradient(145deg,#fff,#f5f8ff)}
-    .price-card:after{content:"";position:absolute;width:280px;height:280px;right:-120px;top:-120px;border-radius:50%;background:rgba(111,92,246,.10)}
+    .price-card:after{content:"";position:absolute;width:280px;height:280px;right:-120px;top:-120px;border-radius:50%;background:rgba(111,92,246,.10);pointer-events:none}
     .price-card > *{position:relative;z-index:1}
-    .price-label{display:inline-flex;padding:7px 10px;border-radius:999px;color:#3857d7;background:#eaf0ff;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.07em}
-    .price-main{display:flex;align-items:flex-end;gap:11px;margin:22px 0 6px}.price-main strong{font-size:76px;line-height:.88;letter-spacing:-4px;font-weight:950}.price-main span{padding-bottom:9px;color:#6f7a8e;font-size:15px}
+    .price-label{display:inline-flex;padding:7px 10px;border-radius:999px;color:#3857d7;background:#eaf0ff;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.07em;line-height:1.1}
+    .price-main{display:flex;align-items:flex-end;gap:11px;margin:22px 0 6px;flex-wrap:wrap}.price-main strong{font-size:clamp(56px,8vw,76px);line-height:.88;letter-spacing:-4px;font-weight:950}.price-main span{padding-bottom:9px;color:#6f7a8e;font-size:15px;line-height:1.3}
     .price-anchor{margin-top:10px;color:#425069;font-size:17px;font-weight:800}.price-anchor b{color:var(--blue)}
     .price-sub{margin-top:7px;color:var(--muted);font-size:14px}
-    .price-features{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:26px 0}.price-features div{display:flex;align-items:center;gap:8px;color:#4c596e;font-size:13px;font-weight:780}.price-features i{color:var(--green)}
+    .price-free-badge{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 12px;border-radius:999px;background:var(--green-soft);color:#117254;font-size:12px;font-weight:900}
+    .price-free-badge i{color:var(--green);flex:0 0 auto}
+    .price-features{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:26px 0}.price-features div{display:flex;align-items:center;gap:8px;color:#4c596e;font-size:13px;font-weight:780;min-width:0}.price-features i{color:var(--green);flex:0 0 auto}
     .price-actions{display:flex;gap:10px;flex-wrap:wrap}
-    .start-card{padding:32px}.start-card h3{margin:0 0 8px;font-size:29px;letter-spacing:-1.2px;font-weight:900}.start-card > p{margin:0 0 18px;color:var(--muted);font-size:15px}
-    .step{display:grid;grid-template-columns:44px 1fr;gap:13px;align-items:start;padding:15px 0;border-top:1px solid var(--line)}.step-num{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue-2));font-size:12px;font-weight:950}.step strong{display:block;font-size:14px}.step span{display:block;margin-top:3px;color:var(--muted);font-size:13px;line-height:1.5}
-    .reassure{display:flex;align-items:flex-start;gap:10px;margin-top:17px;padding:13px 14px;border-radius:14px;background:var(--green-soft);color:#2b654f;font-size:13px}.reassure i{margin-top:1px;color:var(--green)}
+    .start-card{padding:32px}.start-card h3{margin:0 0 8px;font-size:29px;letter-spacing:-1.2px;font-weight:900;overflow-wrap:anywhere}.start-card > p{margin:0 0 18px;color:var(--muted);font-size:15px}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:13px;align-items:start;padding:15px 0;border-top:1px solid var(--line)}.step-num{width:44px;height:44px;flex:0 0 auto;display:grid;place-items:center;border-radius:13px;color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue-2));font-size:12px;font-weight:950}.step > div{min-width:0}.step strong{display:block;font-size:14px;overflow-wrap:anywhere}.step span{display:block;margin-top:3px;color:var(--muted);font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+    .reassure{display:flex;align-items:flex-start;gap:10px;margin-top:17px;padding:13px 14px;border-radius:14px;background:var(--green-soft);color:#2b654f;font-size:13px}.reassure i{margin-top:1px;color:var(--green);flex:0 0 auto}
 
     /* FAQ */
     .faq-layout{display:grid;grid-template-columns:.78fr 1.22fr;gap:42px;align-items:start}.faq-side{position:sticky;top:102px}.faq-list{display:grid;gap:10px}.faq-item{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 7px 20px rgba(29,45,82,.035)}
-    .faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:19px 20px;border:0;background:transparent;color:var(--ink);text-align:left;font-size:15px;font-weight:850}.faq-q i{transition:.2s ease}.faq-item.open .faq-q i{transform:rotate(45deg)}.faq-a{display:none;padding:0 20px 20px;color:var(--muted);font-size:14px;line-height:1.65}.faq-item.open .faq-a{display:block}
+    .faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:19px 20px;border:0;background:transparent;color:var(--ink);text-align:left;font-size:15px;font-weight:850;cursor:pointer}.faq-q i{transition:.2s ease;flex:0 0 auto}.faq-item.open .faq-q i{transform:rotate(45deg)}.faq-a{display:none;padding:0 20px 20px;color:var(--muted);font-size:14px;line-height:1.65}.faq-item.open .faq-a{display:block}
 
     /* FINAL */
     .final-wrap{padding:0 0 74px;background:#fff}.final-card{position:relative;overflow:hidden;padding:56px 36px;border:1px solid #dfe6ff;border-radius:32px;text-align:center;background:linear-gradient(135deg,#eef3ff,#f8f6ff 58%,#eefaff);box-shadow:var(--shadow)}
-    .final-card:after{content:"";position:absolute;width:280px;height:280px;right:-100px;top:-120px;border-radius:50%;background:rgba(111,92,246,.12)}.final-card > *{position:relative;z-index:1}.final-card h2{max-width:850px;margin:0 auto 14px;font-size:clamp(40px,5vw,62px);line-height:1.02;letter-spacing:-2.8px;font-weight:950}.final-card p{max-width:720px;margin:0 auto;color:#647087;font-size:18px;line-height:1.65}.final-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:25px}
+    .final-card:after{content:"";position:absolute;width:280px;height:280px;right:-100px;top:-120px;border-radius:50%;background:rgba(111,92,246,.12);pointer-events:none}.final-card > *{position:relative;z-index:1}.final-card h2{max-width:850px;margin:0 auto 14px;font-size:clamp(34px,5vw,62px);line-height:1.02;letter-spacing:-2.8px;font-weight:950;overflow-wrap:anywhere}.final-card p{max-width:720px;margin:0 auto;color:#647087;font-size:18px;line-height:1.65}.final-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:25px}
 
-    footer{padding:34px 0;border-top:1px solid var(--line);background:#fff}.footer-note{color:#8a94a5;font-size:12px}.footer-links{display:flex;justify-content:flex-end;gap:14px;flex-wrap:wrap}.footer-links a{color:#6f7a8d;font-size:12px;font-weight:800}
+    /* FOOTER */
+    footer{padding:34px 0;border-top:1px solid var(--line);background:#fff}
+    .footer-brand{display:flex;align-items:center;justify-content:flex-start}
+    .footer-center{display:flex;align-items:center;justify-content:center;text-align:center}
+    .footer-links-wrap{display:flex;align-items:center;justify-content:flex-end}
+    .footer-note{color:#8a94a5;font-size:12px;line-height:1.4}
+    .footer-links{display:flex;justify-content:flex-end;gap:14px;flex-wrap:wrap}
+    .footer-links a{color:#6f7a8d;font-size:12px;font-weight:800}
+    .footer-links a:hover{color:var(--ink)}
 
     /* MODAL */
-    .feature-modal .modal-dialog{max-width:1120px}.feature-modal .modal-content{overflow:hidden;border:0;border-radius:28px;background:#f7f9fc;box-shadow:0 50px 150px rgba(4,11,23,.26)}.feature-modal .modal-header{padding:20px 22px;border-bottom:1px solid var(--line);background:#fff}.feature-modal .modal-title{font-size:21px;font-weight:950;letter-spacing:-.6px}.feature-modal .modal-body{padding:0}.feature-explorer{display:grid;grid-template-columns:240px 1fr;min-height:620px}.feature-side{padding:18px;border-right:1px solid var(--line);background:#fff}.feature-search{display:flex;align-items:center;gap:8px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#f8f9fc}.feature-search i{color:#8c96a5}.feature-search input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);font-size:13px}.feature-cats{display:grid;gap:5px;margin-top:14px}.feature-cat{width:100%;display:flex;align-items:center;gap:9px;padding:11px;border:0;border-radius:11px;color:#697487;background:transparent;text-align:left;font-size:12px;font-weight:850}.feature-cat i{width:28px;height:28px;display:grid;place-items:center;border-radius:8px;background:#f2f4f8}.feature-cat.active{color:var(--ink);background:#eef1ff}.feature-cat.active i{color:var(--blue);background:#fff}.feature-main{padding:24px;overflow:auto;max-height:72vh}.feature-main-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:18px}.feature-main-head h3{margin:0;font-size:27px;letter-spacing:-1px;font-weight:950}.feature-main-head p{margin:4px 0 0;color:var(--muted);font-size:13px}.feature-count{padding:7px 10px;border-radius:999px;color:#5366d8;background:#e9edff;font-size:11px;font-weight:950}.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.feature-entry{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:#4b5669;font-size:13px;font-weight:780}.feature-entry i{width:30px;height:30px;display:grid;place-items:center;border-radius:8px;color:#6277f2;background:#eef1ff}.feature-empty{display:none;padding:45px 20px;text-align:center;color:var(--muted);font-size:14px}
+    .feature-modal .modal-dialog{max-width:1120px}.feature-modal .modal-content{overflow:hidden;border:0;border-radius:28px;background:#f7f9fc;box-shadow:0 50px 150px rgba(4,11,23,.26)}.feature-modal .modal-header{padding:20px 22px;border-bottom:1px solid var(--line);background:#fff}.feature-modal .modal-title{font-size:21px;font-weight:950;letter-spacing:-.6px}.feature-modal .modal-body{padding:0}.feature-explorer{display:grid;grid-template-columns:240px 1fr;min-height:620px}.feature-side{padding:18px;border-right:1px solid var(--line);background:#fff}.feature-search{display:flex;align-items:center;gap:8px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#f8f9fc}.feature-search i{color:#8c96a5}.feature-search input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);font-size:13px}.feature-cats{display:grid;gap:5px;margin-top:14px}.feature-cat{width:100%;display:flex;align-items:center;gap:9px;padding:11px;border:0;border-radius:11px;color:#697487;background:transparent;text-align:left;font-size:12px;font-weight:850;cursor:pointer}.feature-cat i{width:28px;height:28px;display:grid;place-items:center;border-radius:8px;background:#f2f4f8;flex:0 0 auto}.feature-cat.active{color:var(--ink);background:#eef1ff}.feature-cat.active i{color:var(--blue);background:#fff}.feature-main{padding:24px;overflow:auto;max-height:72vh}.feature-main-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:18px;flex-wrap:wrap}.feature-main-head h3{margin:0;font-size:27px;letter-spacing:-1px;font-weight:950}.feature-main-head p{margin:4px 0 0;color:var(--muted);font-size:13px}.feature-count{padding:7px 10px;border-radius:999px;color:#5366d8;background:#e9edff;font-size:11px;font-weight:950;white-space:nowrap}.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.feature-entry{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:#4b5669;font-size:13px;font-weight:780;overflow-wrap:anywhere}.feature-entry i{width:30px;height:30px;flex:0 0 auto;display:grid;place-items:center;border-radius:8px;color:#6277f2;background:#eef1ff}.feature-empty{display:none;padding:45px 20px;text-align:center;color:var(--muted);font-size:14px}
 
     .offcanvas{background:#fff}.mobile-link{display:block;padding:13px 0;border-bottom:1px solid var(--line);color:var(--ink);font-weight:850;font-size:14px}.floating-top{position:fixed;z-index:1040;right:18px;bottom:18px;width:46px;height:46px;display:grid;place-items:center;border:1px solid var(--line);border-radius:14px;color:var(--ink);background:rgba(255,255,255,.95);box-shadow:0 12px 35px rgba(10,18,32,.12);opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s ease}.floating-top.show{opacity:1;visibility:visible;transform:none}
 
+    .mobile-cta-bar{display:none}
+
+    /* RESPONSIVE */
     @media(max-width:1199.98px){
-      .bubble-a{right:-5px}.bubble-b{left:-5px}
+      .phone{max-width:310px}
+      .phone-screen{height:600px}
     }
 
     @media(max-width:991.98px){
       .desktop-nav,.desktop-actions{display:none!important}
       .site-nav{min-height:70px}
       .hero{padding:98px 0 58px}
-      .product-stage{margin-top:26px}
+      .phone-stage{margin-top:26px}
       .value-shell{grid-template-columns:1fr 1fr}
       .value-item:nth-child(2){border-right:0}
       .value-item:nth-child(-n+2){border-bottom:1px solid var(--line)}
@@ -271,6 +389,8 @@ $year = date('Y');
       .audience-panel,.conversion-grid,.faq-layout{grid-template-columns:1fr}
       .faq-side{position:static}
       .feature-explorer{grid-template-columns:200px 1fr}
+      .footer-brand,.footer-center,.footer-links-wrap{justify-content:center;text-align:center}
+      .footer-links{justify-content:center}
     }
 
     @media(max-width:767.98px){
@@ -278,13 +398,13 @@ $year = date('Y');
       body{font-size:16px}
       .container{padding-left:18px;padding-right:18px}
       .section{padding:54px 0}
-      .section-title{font-size:38px;line-height:1.04;letter-spacing:-1.7px;margin-top:11px}
+      .section-title{font-size:clamp(28px,8vw,38px);line-height:1.04;letter-spacing:-1.4px;margin-top:11px}
       .section-copy{font-size:16px;line-height:1.62}
       .eyebrow{font-size:10px;padding:7px 10px;letter-spacing:.045em}
 
       .hero{padding:92px 0 48px}
       .hero .row{--bs-gutter-y:2rem}
-      .hero h1{font-size:46px;line-height:1.0;letter-spacing:-2.4px;margin:16px 0 16px}
+      .hero h1{font-size:clamp(34px,10vw,46px);line-height:1.02;letter-spacing:-2px;margin:16px 0 16px}
       .hero-copy{font-size:17px;line-height:1.58}
       .hero-actions{margin-top:22px;gap:9px}
       .hero-actions .btn{width:100%;min-height:54px;font-size:15px}
@@ -292,36 +412,11 @@ $year = date('Y');
       .proof-chip{width:100%;min-width:0;padding:9px 10px;border-radius:13px;font-size:12px;line-height:1.35}
       .hero-note{font-size:12px;line-height:1.5;margin-top:12px}
 
-      .product-stage{margin-top:4px}
-      .float-bubble{display:none}
-      .product-card{padding:5px;border-radius:24px;box-shadow:0 22px 52px rgba(42,58,96,.13)}
-      .browser-top{height:31px;padding:0 7px}
-      .browser-top span{width:7px;height:7px}
-      .browser-url{height:16px}
-      .app-demo{display:block;min-height:0;border-radius:18px}
-      .app-side{display:none}
-      .mobile-demo-tabs{display:flex}
-      .app-main{padding:13px}
-      .app-head{align-items:flex-start;margin-bottom:10px}
-      .app-head strong{font-size:16px}
-      .app-head small{font-size:11px}
-      .online{padding:6px 8px;font-size:10px;white-space:nowrap}
-      .metrics{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-bottom:8px}
-      .metric{padding:10px 8px;border-radius:12px}
-      .metric label{font-size:8px;line-height:1.25;letter-spacing:0}
-      .metric b{font-size:20px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-      .dash-grid{grid-template-columns:1fr;gap:8px}
-      .dash-card{padding:11px;border-radius:12px}
-      .dash-title{font-size:12px}.dash-title small{font-size:10px}
-      .events{gap:6px;margin-top:8px}
-      .event{grid-template-columns:29px 1fr auto;gap:7px;padding:8px}
-      .event i{width:29px;height:29px;font-size:12px}
-      .event strong{font-size:11px;line-height:1.25}
-      .event span,.event time{font-size:9px;line-height:1.25}
-      .bars{height:86px;padding-top:12px;gap:5px}
-      .mini-row{gap:7px}
-      .mini{padding:9px}.mini strong{font-size:16px}.mini span{font-size:9px}
-      .sim-note{margin-top:10px;padding:9px 10px;border-radius:12px;background:#f4f7ff;font-size:12px;color:#59667d}
+      .phone-stage{margin-top:6px}
+      .phone{max-width:100%;padding:9px;border-radius:38px}
+      .phone-screen{height:620px;border-radius:30px}
+      .phone-notch{width:92px;height:20px}
+      .phone-nav button{font-size:8.5px}
 
       .value-strip{margin-top:0;padding:18px 0 4px;background:#fff}
       .value-shell{
@@ -344,24 +439,9 @@ $year = date('Y');
         background:linear-gradient(180deg,#fff 0%,#fbfcff 100%);
         box-shadow:0 10px 28px rgba(29,45,82,.065);
       }
-      .value-item i{
-        width:38px;
-        height:38px;
-        margin-bottom:10px;
-        border-radius:12px;
-        font-size:17px;
-      }
-      .value-item strong{
-        display:block;
-        font-size:14px;
-        line-height:1.28;
-        letter-spacing:-.15px;
-      }
-      .value-item p{
-        margin-top:6px;
-        font-size:11.5px;
-        line-height:1.45;
-      }
+      .value-item i{width:38px;height:38px;margin-bottom:10px;border-radius:12px;font-size:17px}
+      .value-item strong{display:block;font-size:14px;line-height:1.28;letter-spacing:-.15px}
+      .value-item p{margin-top:6px;font-size:11.5px;line-height:1.45}
 
       .compare-shell{gap:10px;margin-top:24px}
       .compare-card{padding:20px;border-radius:20px}
@@ -384,11 +464,11 @@ $year = date('Y');
       .spark-bars{position:static;width:100%;height:68px;margin-top:16px}
 
       .audience-wrap{margin-top:24px;padding:8px;border-radius:20px}
-      .audience-tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:7px;margin-bottom:8px;scrollbar-width:none}
+      .audience-tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:7px;margin-bottom:8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
       .audience-tabs::-webkit-scrollbar{display:none}
       .audience-tab{flex:0 0 auto;min-width:auto;padding:11px 13px;font-size:13px;white-space:nowrap}
       .audience-panel{padding:20px;border-radius:16px}
-      .audience-panel h3{font-size:27px;line-height:1.08}
+      .audience-panel h3{font-size:clamp(22px,6vw,27px);line-height:1.08}
       .audience-panel p{font-size:15px}
       .audience-list{grid-template-columns:1fr;gap:7px;margin-top:16px}
       .audience-list div{font-size:12px;padding:10px}
@@ -396,24 +476,27 @@ $year = date('Y');
 
       .conversion-grid{gap:12px}
       .price-card,.start-card{padding:22px;border-radius:21px}
-      .price-main{margin-top:17px}.price-main strong{font-size:59px}.price-main span{font-size:13px}
+      .price-main{margin-top:17px;gap:8px}.price-main strong{font-size:clamp(44px,12vw,59px);letter-spacing:-2.5px}.price-main span{font-size:13px;padding-bottom:6px}
       .price-anchor{font-size:15px}
       .price-features{grid-template-columns:1fr;gap:8px;margin:19px 0}
       .price-actions .btn{width:100%}
-      .start-card h3{font-size:25px}
-      .step{grid-template-columns:39px 1fr;padding:12px 0}.step-num{width:39px;height:39px}
+      .start-card h3{font-size:clamp(21px,6vw,25px)}
+      .step{grid-template-columns:39px 1fr;gap:11px;padding:12px 0}.step-num{width:39px;height:39px;font-size:11px}
 
       .faq-layout{gap:22px}
       .faq-q{padding:16px;font-size:14px}.faq-a{padding:0 16px 16px;font-size:13px}
 
       .final-wrap{padding-bottom:92px}
       .final-card{padding:38px 20px;border-radius:23px}
-      .final-card h2{font-size:38px;line-height:1.04;letter-spacing:-1.7px}
+      .final-card h2{font-size:clamp(28px,8vw,38px);line-height:1.06;letter-spacing:-1.4px}
       .final-card p{font-size:16px}
       .final-actions .btn{width:100%}
 
       footer{padding:26px 0 100px}
+      .footer-brand,.footer-center,.footer-links-wrap{justify-content:flex-start;text-align:left}
+      .footer-center{margin-top:4px}
       .footer-links{justify-content:flex-start;gap:11px}
+      .footer-links a{font-size:11px}
 
       .feature-modal .modal-dialog{margin:0;max-width:none;height:100%;min-height:100%}
       .feature-modal .modal-content{height:100%;border-radius:0}
@@ -421,7 +504,7 @@ $year = date('Y');
       .feature-modal .modal-title{font-size:18px}
       .feature-explorer{grid-template-columns:1fr;min-height:0;height:calc(100vh - 73px)}
       .feature-side{padding:12px 14px;border-right:0;border-bottom:1px solid var(--line)}
-      .feature-cats{display:flex;overflow-x:auto;gap:6px;margin-top:10px;scrollbar-width:none}
+      .feature-cats{display:flex;overflow-x:auto;gap:6px;margin-top:10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
       .feature-cats::-webkit-scrollbar{display:none}
       .feature-cat{flex:0 0 auto;width:auto;justify-content:center;padding:8px 10px;font-size:11px;white-space:nowrap}
       .feature-cat span{display:inline}
@@ -431,26 +514,48 @@ $year = date('Y');
       .feature-grid{grid-template-columns:1fr;gap:7px}
       .feature-entry{padding:10px;font-size:12px}
 
-      .mobile-cta-bar{position:fixed;z-index:1045;left:10px;right:10px;bottom:10px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:9px 9px 9px 13px;border:1px solid #dde4f3;border-radius:17px;background:rgba(255,255,255,.95);box-shadow:0 16px 44px rgba(29,45,82,.18);backdrop-filter:blur(16px)}
-      .mobile-cta-copy strong{display:block;font-size:14px;line-height:1.15}.mobile-cta-copy span{display:block;margin-top:2px;color:var(--muted);font-size:10px}
-      .mobile-cta-bar .btn{min-height:44px;padding:.68rem .9rem;border-radius:12px;font-size:13px}
+      .mobile-cta-bar{
+        position:fixed;z-index:1045;left:10px;right:10px;bottom:10px;
+        display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;
+        padding:9px 9px 9px 13px;
+        border:1px solid #dde4f3;border-radius:17px;
+        background:rgba(255,255,255,.95);
+        box-shadow:0 16px 44px rgba(29,45,82,.18);
+        backdrop-filter:blur(16px);
+      }
+      .mobile-cta-copy{min-width:0}
+      .mobile-cta-copy strong{display:block;font-size:14px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .mobile-cta-copy span{display:block;margin-top:2px;color:var(--muted);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .mobile-cta-bar .btn{min-height:44px;padding:.68rem .9rem;border-radius:12px;font-size:13px;flex:0 0 auto}
       .floating-top{bottom:82px;width:42px;height:42px}
+    }
+
+    @media(max-width:480px){
+      .phone-screen{height:580px}
+      .hero h1{letter-spacing:-1.8px}
+      .p-hero-metric strong{font-size:26px}
+      .value-shell{grid-template-columns:1fr}
+      .audience-list{grid-template-columns:1fr}
     }
 
     @media(max-width:390px){
       .container{padding-left:14px;padding-right:14px}
-      .hero h1{font-size:41px}
+      .hero h1{font-size:clamp(30px,9vw,40px)}
       .hero-copy{font-size:16px}
       .hero-proof{grid-template-columns:1fr}
-      .value-shell{grid-template-columns:1fr;gap:9px}
       .value-item{padding:15px 14px}
       .value-item strong{font-size:14px}
       .value-item p{font-size:11.5px}
-      .metric b{font-size:18px}
-      .event time{display:none}
-      .section-title{font-size:34px}
-      .price-main strong{font-size:54px}
-      .final-card h2{font-size:34px}
+      .section-title{font-size:clamp(26px,8vw,32px)}
+      .price-main strong{font-size:clamp(40px,11vw,54px)}
+      .final-card h2{font-size:clamp(26px,8vw,32px)}
+      .phone-screen{height:540px}
+      .phone-nav button{font-size:8px}
+      .phone-nav button i{font-size:15px}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
     }
   </style>
 </head>
@@ -471,7 +576,7 @@ $year = date('Y');
     <div class="desktop-actions d-flex align-items-center gap-2">
       <div class="lang-pill" aria-label="Язык"><button class="active" type="button" data-lang="RU">RU</button><button type="button" data-lang="ET">ET</button><button type="button" data-lang="EN">EN</button></div>
       <a class="btn btn-soft" href="login.php">Войти</a>
-      <a class="btn btn-main" href="register.php">Подключить дом</a>
+      <a class="btn btn-main" href="register.php">Попробовать 30 дней бесплатно</a>
     </div>
 
     <button class="navbar-toggler border-0 shadow-none d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Открыть меню"><i class="bi bi-list fs-2"></i></button>
@@ -489,7 +594,7 @@ $year = date('Y');
     <a class="mobile-link" data-bs-dismiss="offcanvas" href="#forwho">Для кого</a>
     <a class="mobile-link" data-bs-dismiss="offcanvas" href="#price">Цена</a>
     <a class="mobile-link" data-bs-dismiss="offcanvas" href="#faq">FAQ</a>
-    <div class="d-grid gap-2 mt-4"><a class="btn btn-soft" href="login.php">Войти</a><a class="btn btn-main" href="register.php">Подключить дом</a></div>
+    <div class="d-grid gap-2 mt-4"><a class="btn btn-soft" href="login.php">Войти</a><a class="btn btn-main" href="register.php">Попробовать 30 дней бесплатно</a></div>
   </div>
 </div>
 
@@ -498,71 +603,157 @@ $year = date('Y');
     <div class="container">
       <div class="row align-items-center g-5">
         <div class="col-lg-6">
-          <span class="eyebrow">Для квартирных товариществ и управляющих компаний</span>
-          <h1>Управление домом <span class="accent">без хаоса.</span></h1>
-          <p class="hero-copy">ArtAHome собирает жильцов, заявки, документы, финансы, голосования и обслуживание в одном понятном месте — чтобы правлению было легче управлять, а жильцам проще получать информацию.</p>
+          <span class="eyebrow">Семейное пространство для дома</span>
+          <h1>Домашние дела — <span class="accent">наконец вместе.</span></h1>
+          <p class="hero-copy">Семья больше не ищет чек в переписке. Расходы, документы и задачи — в одном месте, под рукой. Спокойно, понятно и без лишних кнопок.</p>
 
           <div class="hero-actions">
-            <a class="btn btn-main btn-lg" href="register.php">Подключить дом за 15 € / мес <i class="bi bi-arrow-right ms-1"></i></a>
+            <a class="btn btn-main btn-lg" href="register.php">Попробовать 30 дней бесплатно <i class="bi bi-arrow-right ms-1"></i></a>
             <a class="btn btn-soft btn-lg" href="#why">Посмотреть, как это работает</a>
           </div>
 
           <div class="hero-proof">
-            <span class="proof-chip"><i class="bi bi-check-circle-fill"></i> 15 € за весь дом</span>
-            <span class="proof-chip"><i class="bi bi-check-circle-fill"></i> Без доплаты за жильцов</span>
+            <span class="proof-chip"><i class="bi bi-gift-fill"></i> 1-й месяц — 0 €</span>
+            <span class="proof-chip"><i class="bi bi-check-circle-fill"></i> Далее 1 €/мес за всю семью</span>
+            <span class="proof-chip"><i class="bi bi-check-circle-fill"></i> Без доплаты за участников</span>
             <span class="proof-chip"><i class="bi bi-check-circle-fill"></i> RU / ET / EN</span>
-            <span class="proof-chip"><i class="bi bi-check-circle-fill"></i> Можно внедрять поэтапно</span>
           </div>
-          <div class="hero-note">Не нужно менять все процессы за один день — начните с объявлений, заявок и документов.</div>
+          <div class="hero-note">Один владелец оплачивает — семья пользуется без ограничений. Все видят одни данные.</div>
         </div>
 
         <div class="col-lg-6">
-          <div class="product-stage">
-            <div class="float-bubble bubble-a"><i class="bi bi-check2-square"></i><div><strong>Голосование активно</strong><span>67% уже проголосовали</span></div></div>
-            <div class="float-bubble bubble-b"><i class="bi bi-tools"></i><div><strong>Заявка #184</strong><span>Подрядчик назначен</span></div></div>
-
-            <div class="product-card">
-              <div class="browser-top"><span></span><span></span><span></span><div class="browser-url"></div></div>
-              <div class="app-demo">
-                <aside class="app-side">
-                  <div class="app-logo"><i class="bi bi-grid-1x2-fill"></i> ArtAHome</div>
-                  <div class="app-menu">
-                    <button class="active" type="button" data-demo-view="overview"><i class="bi bi-house-door"></i> Обзор</button>
-                    <button type="button" data-demo-view="requests"><i class="bi bi-tools"></i> Заявки</button>
-                    <button type="button" data-demo-view="finance"><i class="bi bi-wallet2"></i> Финансы</button>
-                    <button type="button" data-demo-view="documents"><i class="bi bi-file-earmark-text"></i> Документы</button>
-                    <button type="button" data-demo-view="voting"><i class="bi bi-check2-square"></i> Голосования</button>
-                  </div>
-                </aside>
-                <div class="mobile-demo-tabs" aria-label="Разделы демо-кабинета">
-                  <button class="mobile-demo-tab active" type="button" data-demo-view="overview"><i class="bi bi-house-door"></i> Обзор</button>
-                  <button class="mobile-demo-tab" type="button" data-demo-view="requests"><i class="bi bi-tools"></i> Заявки</button>
-                  <button class="mobile-demo-tab" type="button" data-demo-view="finance"><i class="bi bi-wallet2"></i> Финансы</button>
-                  <button class="mobile-demo-tab" type="button" data-demo-view="documents"><i class="bi bi-file-earmark-text"></i> Документы</button>
-                  <button class="mobile-demo-tab" type="button" data-demo-view="voting"><i class="bi bi-check2-square"></i> Голосования</button>
+          <div class="phone-stage">
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="phone-notch"></div>
+                <div class="phone-status">
+                  <span>9:41</span>
+                  <span class="dots"><i class="bi bi-reception-4"></i><i class="bi bi-wifi"></i><i class="bi bi-battery-full"></i></span>
                 </div>
-                <div class="app-main">
-                  <div class="app-head"><div><strong id="demoHeading">Добрый вечер</strong><small id="demoSubheading">Ваш дом • Tallinn, Estonia</small></div><span class="online">Дом онлайн</span></div>
-                  <div class="metrics">
-                    <div class="metric"><label id="metricLabel1">Квартиры</label><b id="metricValue1">84</b></div>
-                    <div class="metric"><label id="metricLabel2">Жильцы</label><b id="metricValue2">126</b></div>
-                    <div class="metric"><label id="metricLabel3">Открытые заявки</label><b id="metricValue3">3</b></div>
+
+                <div class="phone-app">
+                  <div class="phone-header">
+                    <div class="greet">
+                      <strong id="phoneGreet">Привет, семья 👋</strong>
+                      <span id="phoneSub">Tallinn • Август</span>
+                    </div>
+                    <div class="phone-avatar">A</div>
                   </div>
-                  <div class="dash-grid">
-                    <div class="dash-card">
-                      <div class="dash-title"><span id="demoPrimaryTitle">Последние события</span><small id="demoPrimaryMeta">Сегодня</small></div>
-                      <div class="events" id="demoEvents"></div>
+
+                  <div class="phone-body">
+                    <div class="phone-view active" data-view="overview">
+                      <div class="p-hero-metric">
+                        <small>Расходы за август</small>
+                        <strong>€ 1 260</strong>
+                        <span class="delta"><i class="bi bi-arrow-down-right"></i> на 8% меньше июля</span>
+                      </div>
+
+                      <div class="p-grid-2">
+                        <div class="p-mini"><small>Документы</small><b>148</b></div>
+                        <div class="p-mini"><small>Открытые задачи</small><b>4</b></div>
+                      </div>
+
+                      <div class="p-card" style="margin-top:10px">
+                        <div class="p-card-title">Предстоящие дела <small>сегодня</small></div>
+                        <div style="margin-top:8px">
+                          <div class="p-row"><i class="bi bi-wrench"></i><div><strong>Сантехник</strong><span>Суббота, до 12:00</span></div><em class="warn">Скоро</em></div>
+                          <div class="p-row"><i class="bi bi-receipt"></i><div><strong>Оплатить интернет</strong><span>Напоминание на 25-е</span></div><em class="info">План</em></div>
+                          <div class="p-row"><i class="bi bi-chat-dots"></i><div><strong>3 новых сообщения</strong><span>В семейном чате</span></div><em>Чат</em></div>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <div class="dash-card"><div class="dash-title"><span id="demoSecondaryTitle">Активность</span><small id="demoSecondaryMeta">6 месяцев</small></div><div class="bars" id="demoBars"><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
-                      <div class="mini-row"><div class="mini"><strong id="demoMini1Value">€ 4 860</strong><span id="demoMini1Label">Ремонтный фонд</span></div><div class="mini"><strong id="demoMini2Value">7 / 9</strong><span id="demoMini2Label">Задач закрыто</span></div></div>
+
+                    <div class="phone-view" data-view="expenses">
+                      <div class="p-seg">
+                        <button class="active">Август</button>
+                        <button>Июль</button>
+                        <button>Июнь</button>
+                      </div>
+
+                      <div class="p-hero-metric">
+                        <small>Всего расходов</small>
+                        <strong>€ 1 260</strong>
+                        <span class="delta"><i class="bi bi-wallet2"></i> Оплачено 84%</span>
+                      </div>
+
+                      <div class="p-card" style="margin-top:10px">
+                        <div class="p-card-title">Последние счета <small>за месяц</small></div>
+                        <div style="margin-top:8px">
+                          <div class="p-row"><i class="bi bi-lightning"></i><div><strong>Электричество</strong><span>Оплачен</span></div><em class="amount">€ 84</em></div>
+                          <div class="p-row"><i class="bi bi-droplet"></i><div><strong>Вода и канализация</strong><span>Оплачен</span></div><em class="amount">€ 46</em></div>
+                          <div class="p-row"><i class="bi bi-wifi"></i><div><strong>Интернет</strong><span>Ежемесячный</span></div><em class="amount">€ 29</em></div>
+                          <div class="p-row"><i class="bi bi-fire"></i><div><strong>Отопление</strong><span>Ожидает оплаты</span></div><em class="warn">€ 112</em></div>
+                        </div>
+                      </div>
+
+                      <div class="p-card">
+                        <div class="p-card-title">Динамика <small>6 месяцев</small></div>
+                        <div class="p-bars" id="phoneBars">
+                          <span style="height:48%"></span><span style="height:55%"></span><span style="height:61%"></span>
+                          <span style="height:57%"></span><span style="height:73%"></span><span style="height:82%"></span>
+                        </div>
+                      </div>
                     </div>
+
+                    <div class="phone-view" data-view="archive">
+                      <div class="p-grid-2">
+                        <div class="p-mini"><small>Документы</small><b>148</b></div>
+                        <div class="p-mini"><small>Гарантии</small><b>12</b></div>
+                      </div>
+
+                      <div class="p-card" style="margin-top:10px">
+                        <div class="p-card-title">Последние документы <small>архив</small></div>
+                        <div style="margin-top:8px">
+                          <div class="p-doc"><div class="ic"><i class="bi bi-file-earmark-text"></i></div><div><strong>Договор на интернет</strong><span>Папка «Договоры»</span></div><em>PDF</em></div>
+                          <div class="p-doc"><div class="ic"><i class="bi bi-receipt"></i></div><div><strong>Чек за электричество</strong><span>Сохранён из чата</span></div><em>Чек</em></div>
+                          <div class="p-doc"><div class="ic"><i class="bi bi-shield-check"></i></div><div><strong>Гарантия на холодильник</strong><span>До 2027 года</span></div><em>Гарантия</em></div>
+                          <div class="p-doc"><div class="ic"><i class="bi bi-cpu"></i></div><div><strong>Инструкция на стиральную машину</strong><span>Бытовая техника</span></div><em>PDF</em></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="phone-view" data-view="tasks">
+                      <div class="p-grid-2">
+                        <div class="p-mini"><small>Активных</small><b>4</b></div>
+                        <div class="p-mini"><small>Выполнено</small><b>7</b></div>
+                      </div>
+
+                      <div class="p-card" style="margin-top:10px">
+                        <div class="p-card-title">Мои задачи <small>сегодня</small></div>
+                        <div style="margin-top:8px">
+                          <div class="p-task"><span class="p-check"></span><div><strong>Вызвать сантехника</strong><span>Суббота, до 12:00</span></div><span class="when">Скоро</span></div>
+                          <div class="p-task"><span class="p-check"></span><div><strong>Заменить лампочку на кухне</strong><span>Купить лампы E27</span></div><span class="when">Обычный</span></div>
+                          <div class="p-task"><span class="p-check"></span><div><strong>Заказать воду</strong><span>Доставка в пятницу</span></div><span class="when">План</span></div>
+                          <div class="p-task done"><span class="p-check"></span><div><strong>Оплатить интернет</strong><span>Выполнено 20-го</span></div><span class="when" style="color:#117254;background:#e8f7f1">Готово</span></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="phone-view" data-view="chat">
+                      <div class="p-card">
+                        <div class="p-card-title">Семейный чат <small>3 онлайн</small></div>
+                        <div class="p-chat" style="margin-top:10px">
+                          <div class="p-bubble them">Оплатил коммуналку, чек в архиве <small>Супруг • 18:20</small></div>
+                          <div class="p-bubble me">Спасибо! Сантехник в субботу, не забудь <small>Ты • 18:22</small></div>
+                          <div class="p-bubble them"><i class="bi bi-receipt"></i> Счёт за электричество — €84 <small>Карточка расхода • 18:25</small></div>
+                          <div class="p-bubble me">Создала задачу на оплату интернета ✅ <small>Ты • 18:27</small></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="phone-nav">
+                    <button class="active" type="button" data-phone-view="overview"><i class="bi bi-house-door"></i><span>Главная</span></button>
+                    <button type="button" data-phone-view="expenses"><i class="bi bi-wallet2"></i><span>Расходы</span></button>
+                    <button type="button" data-phone-view="archive"><i class="bi bi-folder2-open"></i><span>Архив</span></button>
+                    <button type="button" data-phone-view="tasks"><i class="bi bi-check2-square"></i><span>Задачи</span></button>
+                    <button type="button" data-phone-view="chat"><i class="bi bi-chat-dots"></i><span>Чат</span></button>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="sim-note"><i class="bi bi-hand-index-thumb"></i><span>Тестовое окно интерактивное: нажмите пункты меню слева и посмотрите, как меняется кабинет дома.</span></div>
           </div>
+          <div class="phone-hint"><i class="bi bi-hand-index-thumb"></i> Нажмите разделы внизу — это интерактивное демо</div>
         </div>
       </div>
     </div>
@@ -571,10 +762,10 @@ $year = date('Y');
   <section class="value-strip">
     <div class="container">
       <div class="value-shell">
-        <div class="value-item"><i class="bi bi-chat-square-dots"></i><strong>Не искать важное в чатах</strong><p>Объявления, решения и заявки остаются в системе.</p></div>
-        <div class="value-item"><i class="bi bi-eye"></i><strong>Больше прозрачности</strong><p>Жильцы видят информацию, правление — процессы и статусы.</p></div>
-        <div class="value-item"><i class="bi bi-lightning-charge"></i><strong>Меньше ручной рутины</strong><p>Статусы, роли и история вместо бесконечных сообщений.</p></div>
-        <div class="value-item"><i class="bi bi-cash-coin"></i><strong>Одна понятная цена</strong><p>15 € в месяц за весь дом, а не за каждого человека.</p></div>
+        <div class="value-item"><i class="bi bi-chat-square-dots"></i><strong>Больше не искать чек в переписке</strong><p>Все документы и чеки лежат на своих местах — а не теряются между сообщениями.</p></div>
+        <div class="value-item"><i class="bi bi-eye"></i><strong>Каждый евро — на виду</strong><p>Семья видит, куда уходят деньги и что уже оплачено. Без споров и догадок.</p></div>
+        <div class="value-item"><i class="bi bi-lightning-charge"></i><strong>Домашние дела не забываются</strong><p>Напоминания и статусы вместо бесконечных «а ты сделал?».</p></div>
+        <div class="value-item"><i class="bi bi-cash-coin"></i><strong>Один платёж на всю семью</strong><p>Первый месяц — бесплатно. Далее 1 €/мес за всех. Без доплат за участников.</p></div>
       </div>
     </div>
   </section>
@@ -582,31 +773,31 @@ $year = date('Y');
   <section class="section" id="why">
     <div class="container">
       <span class="eyebrow">Что меняется</span>
-      <h2 class="section-title">Из разрозненных инструментов — в одну рабочую систему.</h2>
-      <p class="section-copy">ArtAHome не заставляет дом «жить в IT». Он просто собирает ежедневные процессы в одном месте и делает их понятнее для всех участников.</p>
+      <h2 class="section-title">Больше не терять важное между чатами.</h2>
+      <p class="section-copy">ArtAHome не заставляет вести сложный учёт. Он просто собирает повседневные дела семьи в одном месте — и делает их понятными для всех.</p>
 
       <div class="compare-shell">
         <article class="compare-card before">
-          <span class="compare-label">Сейчас</span>
-          <h3>Информация разбросана</h3>
+          <span class="compare-label">Как сейчас</span>
+          <h3>Всё разбросано</h3>
           <ul class="compare-list">
             <li><i class="bi bi-x-circle-fill"></i> Важное теряется между чатами и почтой</li>
-            <li><i class="bi bi-x-circle-fill"></i> Статус заявки приходится уточнять вручную</li>
-            <li><i class="bi bi-x-circle-fill"></i> Документы лежат в разных папках</li>
-            <li><i class="bi bi-x-circle-fill"></i> Жильцам сложно понять, что происходит</li>
-            <li><i class="bi bi-x-circle-fill"></i> Правление тратит время на повторяющиеся вопросы</li>
+            <li><i class="bi bi-x-circle-fill"></i> Чек на коммуналку не найти, когда он нужен</li>
+            <li><i class="bi bi-x-circle-fill"></i> Документы лежат в разных папках и галереях</li>
+            <li><i class="bi bi-x-circle-fill"></i> Супруги не видят общую картину расходов</li>
+            <li><i class="bi bi-x-circle-fill"></i> Задачи забываются — и возвращаются снова</li>
           </ul>
         </article>
         <div class="compare-arrow"><i class="bi bi-arrow-right-circle-fill"></i></div>
         <article class="compare-card after">
           <span class="compare-label">С ArtAHome</span>
-          <h3>У каждого есть понятное место</h3>
+          <h3>У каждого — своё место</h3>
           <ul class="compare-list">
-            <li><i class="bi bi-check-circle-fill"></i> Объявления и документы всегда доступны</li>
-            <li><i class="bi bi-check-circle-fill"></i> У каждой заявки есть статус и история</li>
-            <li><i class="bi bi-check-circle-fill"></i> Решения и голосования не теряются</li>
-            <li><i class="bi bi-check-circle-fill"></i> Жилец видит только нужный ему интерфейс</li>
-            <li><i class="bi bi-check-circle-fill"></i> Правление получает единый рабочий кабинет</li>
+            <li><i class="bi bi-check-circle-fill"></i> Документы и чеки всегда под рукой</li>
+            <li><i class="bi bi-check-circle-fill"></i> У каждой задачи — дата и напоминание</li>
+            <li><i class="bi bi-check-circle-fill"></i> Расходы видны всем членам семьи</li>
+            <li><i class="bi bi-check-circle-fill"></i> Чат связан с документами и задачами</li>
+            <li><i class="bi bi-check-circle-fill"></i> Вся семья работает с одними данными</li>
           </ul>
         </article>
       </div>
@@ -618,28 +809,28 @@ $year = date('Y');
       <div class="features-top">
         <div>
           <span class="eyebrow">Главное на каждый день</span>
-          <h2 class="section-title">Не 140 кнопок перед глазами. Только то, что действительно нужно.</h2>
-          <p class="section-copy">На главной — основные рабочие процессы. Остальные возможности доступны внутри платформы, когда они действительно нужны.</p>
+          <h2 class="section-title">Пять разделов. Всё, что нужно семье.</h2>
+          <p class="section-copy">Главная — сводка. Дальше — расходы, архив, задачи и чат. Остальное — внутри, когда понадобится.</p>
         </div>
-        <button class="btn btn-soft flex-shrink-0" type="button" data-bs-toggle="modal" data-bs-target="#featureModal">Посмотреть 140 возможностей <i class="bi bi-arrow-up-right ms-1"></i></button>
+        <button class="btn btn-soft flex-shrink-0" type="button" data-bs-toggle="modal" data-bs-target="#featureModal">Посмотреть все возможности <i class="bi bi-arrow-up-right ms-1"></i></button>
       </div>
 
       <div class="bento">
         <article class="bento-card large">
-          <span class="bento-chip">Service desk</span>
-          <div class="bento-icon"><i class="bi bi-tools"></i></div>
-          <h3>Заявки и обслуживание</h3>
-          <p>Жилец сообщает о проблеме. Правление видит её, назначает ответственного и контролирует выполнение. История остаётся в системе.</p>
+          <span class="bento-chip">Чат</span>
+          <div class="bento-icon"><i class="bi bi-chat-dots"></i></div>
+          <h3>Семейный чат</h3>
+          <p>Одна переписка для всей семьи: сообщения, фото, реакции и поиск. Всё связано с документами и задачами — не нужно пересылать одно и то же.</p>
           <div class="ticket-list">
-            <div class="ticket"><i class="bi bi-droplet"></i><div><strong>Протечка в подъезде №2</strong><span>Квартира 47 • фото приложено</span></div><em>В работе</em></div>
-            <div class="ticket"><i class="bi bi-lightbulb"></i><div><strong>Освещение на 4 этаже</strong><span>Ответственный назначен</span></div><em>Принято</em></div>
-            <div class="ticket"><i class="bi bi-door-open"></i><div><strong>Доводчик входной двери</strong><span>Подрядчик подтвердил выезд</span></div><em>Сегодня</em></div>
+            <div class="ticket"><i class="bi bi-chat-left-text"></i><div><strong>Коммуналка за август</strong><span>Супруг: «Оплатил, чек в архиве»</span></div><em>В чате</em></div>
+            <div class="ticket"><i class="bi bi-receipt"></i><div><strong>Счёт за электричество</strong><span>Карточка расхода прикреплена</span></div><em>€ 84</em></div>
+            <div class="ticket"><i class="bi bi-check2-square"></i><div><strong>Вызвать сантехника в субботу</strong><span>Создана задача из сообщения</span></div><em>Задача</em></div>
           </div>
         </article>
 
-        <article class="bento-card"><span class="bento-chip">Решения</span><div class="bento-icon"><i class="bi bi-check2-square"></i></div><h3>Голосования</h3><p>Решения дома, опросы, результаты и единая история.</p></article>
-        <article class="bento-card"><span class="bento-chip">Документы</span><div class="bento-icon"><i class="bi bi-folder2-open"></i></div><h3>Архив дома</h3><p>Протоколы, договоры, файлы и поиск без бумажного хаоса.</p></article>
-        <article class="bento-card wide"><span class="bento-chip">Финансы</span><div class="bento-icon"><i class="bi bi-bar-chart-line"></i></div><h3>Деньги дома — понятно</h3><p>Бюджет, доходы, расходы, ремонтный фонд, счета и задолженности в одной структуре.</p><div class="spark-bars"><span></span><span></span><span></span><span></span><span></span></div></article>
+        <article class="bento-card"><span class="bento-chip">Расходы</span><div class="bento-icon"><i class="bi bi-wallet2"></i></div><h3>Деньги под контролем</h3><p>Бюджет, счета, история платежей и показания счётчиков — в одной картине.</p></article>
+        <article class="bento-card"><span class="bento-chip">Архив</span><div class="bento-icon"><i class="bi bi-folder2-open"></i></div><h3>Документы и гарантии</h3><p>Чеки, договоры, гарантии на технику — всегда под рукой, за пару секунд.</p></article>
+        <article class="bento-card wide"><span class="bento-chip">Задачи</span><div class="bento-icon"><i class="bi bi-check2-square"></i></div><h3>Домашние дела не забываются</h3><p>Напоминания, обслуживание, история ремонтов и бытовых дел — с датами и статусами.</p><div class="spark-bars"><span></span><span></span><span></span><span></span><span></span></div></article>
       </div>
     </div>
   </section>
@@ -647,32 +838,32 @@ $year = date('Y');
   <section class="section" id="forwho">
     <div class="container">
       <span class="eyebrow">Один продукт — разные роли</span>
-      <h2 class="section-title">Жильцу — просто. Правлению — полный контроль.</h2>
-      <p class="section-copy">Интерфейс и права меняются в зависимости от роли. Человеку не показывают то, чем он не пользуется.</p>
+      <h2 class="section-title">Владельцу — контроль. Семье — прозрачность.</h2>
+      <p class="section-copy">Интерфейс и права подстраиваются под роль. Каждый видит только то, что ему действительно нужно.</p>
 
       <div class="audience-wrap">
         <div class="audience-tabs">
-          <button class="audience-tab active" type="button" data-role="resident"><i class="bi bi-person"></i> Жилец</button>
-          <button class="audience-tab" type="button" data-role="board"><i class="bi bi-shield-check"></i> Правление</button>
-          <button class="audience-tab" type="button" data-role="company"><i class="bi bi-buildings"></i> Управляющая компания</button>
+          <button class="audience-tab active" type="button" data-role="resident"><i class="bi bi-person"></i> Владелец</button>
+          <button class="audience-tab" type="button" data-role="board"><i class="bi bi-people"></i> Семья</button>
+          <button class="audience-tab" type="button" data-role="company"><i class="bi bi-buildings"></i> Несколько квартир</button>
         </div>
         <div class="audience-panel">
           <div>
-            <h3 id="roleTitle">Понятно с первого входа.</h3>
-            <p id="roleText">Жилец сразу видит новости дома, свои заявки, документы, голосования, счета и показания счётчиков — без сложного административного интерфейса.</p>
+            <h3 id="roleTitle">Всё важное — в одном экране.</h3>
+            <p id="roleText">Владелец квартиры оплачивает подписку, приглашает семью и сразу видит расходы, документы, задачи и чат — без сложного административного интерфейса.</p>
             <div class="audience-list" id="roleList">
-              <div><i class="bi bi-check-circle-fill"></i> Объявления и уведомления</div>
-              <div><i class="bi bi-check-circle-fill"></i> Заявки и статусы</div>
-              <div><i class="bi bi-check-circle-fill"></i> Документы и голосования</div>
-              <div><i class="bi bi-check-circle-fill"></i> Счета и счётчики</div>
+              <div><i class="bi bi-check-circle-fill"></i> Оплата подписки</div>
+              <div><i class="bi bi-check-circle-fill"></i> Приглашение семьи</div>
+              <div><i class="bi bi-check-circle-fill"></i> Общие расходы</div>
+              <div><i class="bi bi-check-circle-fill"></i> Полный архив</div>
             </div>
           </div>
           <div class="role-preview">
-            <div class="role-preview-head"><strong id="rolePreviewTitle">Профиль жильца</strong><span id="rolePreviewBadge">LEVEL 0</span></div>
-            <div class="role-line"><i class="bi bi-megaphone"></i><div><strong>Объявления</strong><span>Читать и получать уведомления</span></div><em>Доступ</em></div>
-            <div class="role-line"><i class="bi bi-tools"></i><div><strong>Заявки</strong><span>Создавать и отслеживать</span></div><em>Доступ</em></div>
-            <div class="role-line"><i class="bi bi-wallet2"></i><div><strong>Финансы</strong><span id="financePermission">Просмотр своих данных</span></div><em>Доступ</em></div>
-            <div class="role-line"><i class="bi bi-gear"></i><div><strong>Управление</strong><span id="adminPermission">Административные настройки скрыты</span></div><em id="adminState" style="color:#9aa4b3">Нет</em></div>
+            <div class="role-preview-head"><strong id="rolePreviewTitle">Профиль владельца</strong><span id="rolePreviewBadge">LEVEL 0</span></div>
+            <div class="role-line"><i class="bi bi-wallet2"></i><div><strong>Расходы</strong><span>Все счета и платежи</span></div><em>Доступ</em></div>
+            <div class="role-line"><i class="bi bi-folder2-open"></i><div><strong>Архив</strong><span>Документы и чеки</span></div><em>Доступ</em></div>
+            <div class="role-line"><i class="bi bi-check2-square"></i><div><strong>Задачи</strong><span id="financePermission">Создание и контроль</span></div><em>Доступ</em></div>
+            <div class="role-line"><i class="bi bi-gear"></i><div><strong>Настройки</strong><span id="adminPermission">Управление семьёй и подпиской</span></div><em id="adminState" style="color:#12996f">Да</em></div>
           </div>
         </div>
       </div>
@@ -684,33 +875,34 @@ $year = date('Y');
       <div class="conversion-grid">
         <article class="price-card">
           <span class="price-label">Простая цена без сюрпризов</span>
-          <div class="price-main"><strong>15 €</strong><span>/ месяц за весь дом</span></div>
-          <div class="price-anchor">Это примерно <b>0,50 € в день</b> за единое цифровое пространство всего дома.</div>
-          <div class="price-sub">Не за пользователя. Не за квартиру. Одна подписка на дом.</div>
+          <div class="price-main"><strong>1 €</strong><span>/ месяц после первого месяца</span></div>
+          <div class="price-anchor">Первый месяц — <b>бесплатно</b>. Далее 1 € в месяц за всю семью.</div>
+          <div class="price-sub">Не за пользователя. Не за квартиру. Одна подписка на семью.</div>
+          <span class="price-free-badge"><i class="bi bi-gift-fill"></i> 30 дней бесплатно при подключении</span>
 
           <div class="price-features">
-            <div><i class="bi bi-check-circle-fill"></i> Жильцы без доплаты</div>
-            <div><i class="bi bi-check-circle-fill"></i> Правление и роли</div>
+            <div><i class="bi bi-check-circle-fill"></i> Все члены семьи без доплаты</div>
+            <div><i class="bi bi-check-circle-fill"></i> Расходы и счета</div>
+            <div><i class="bi bi-check-circle-fill"></i> Архив документов</div>
+            <div><i class="bi bi-check-circle-fill"></i> Задачи и напоминания</div>
+            <div><i class="bi bi-check-circle-fill"></i> Семейный чат</div>
             <div><i class="bi bi-check-circle-fill"></i> RU / ET / EN</div>
-            <div><i class="bi bi-check-circle-fill"></i> Доступ с телефона и ПК</div>
-            <div><i class="bi bi-check-circle-fill"></i> Основные модули</div>
-            <div><i class="bi bi-check-circle-fill"></i> Обновления платформы</div>
           </div>
 
           <div class="price-actions">
-            <a class="btn btn-main btn-lg" href="register.php">Подключить дом <i class="bi bi-arrow-right ms-1"></i></a>
+            <a class="btn btn-main btn-lg" href="register.php">Попробовать 30 дней бесплатно <i class="bi bi-arrow-right ms-1"></i></a>
             <button class="btn btn-soft btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#featureModal">Что входит</button>
           </div>
         </article>
 
         <article class="start-card">
           <span class="eyebrow">Лёгкий старт</span>
-          <h3 class="mt-3">Не нужно переносить весь дом за один день.</h3>
-          <p>Подключение можно делать постепенно — сначала самые полезные процессы, потом дополнительные модули.</p>
-          <div class="step"><div class="step-num">01</div><div><strong>Создайте структуру дома</strong><span>Подъезды, квартиры и основные данные.</span></div></div>
-          <div class="step"><div class="step-num">02</div><div><strong>Пригласите жильцов и правление</strong><span>Роли и права доступа задаются отдельно.</span></div></div>
-          <div class="step"><div class="step-num">03</div><div><strong>Запустите нужные процессы</strong><span>Например, объявления, заявки, документы и голосования.</span></div></div>
-          <div class="reassure"><i class="bi bi-shield-check"></i><span><strong>Главная идея:</strong> ArtAHome должен упрощать работу дома, а не заставлять людей изучать сложную систему.</span></div>
+          <h3 class="mt-3">Начните с малого — остальное подтянется.</h3>
+          <p>Не нужно переносить всё за один день. Начните с расходов и архива, а задачи и чат добавьте позже.</p>
+          <div class="step"><div class="step-num">01</div><div><strong>Создайте семейное пространство</strong><span>Укажите квартиру и основные данные.</span></div></div>
+          <div class="step"><div class="step-num">02</div><div><strong>Пригласите членов семьи</strong><span>Супруг, дети или другие участники.</span></div></div>
+          <div class="step"><div class="step-num">03</div><div><strong>Добавьте первые расходы и документы</strong><span>Начните с самого важного — остальное подтянется.</span></div></div>
+          <div class="reassure"><i class="bi bi-shield-check"></i><span><strong>Главная идея:</strong> ArtAHome должен упрощать быт, а не заставлять семью изучать сложную систему.</span></div>
         </article>
       </div>
     </div>
@@ -721,15 +913,15 @@ $year = date('Y');
       <div class="faq-layout">
         <div class="faq-side">
           <span class="eyebrow">FAQ</span>
-          <h2 class="section-title" style="font-size:clamp(36px,4vw,52px)">Вопросы перед подключением.</h2>
-          <p class="section-copy">Коротко и понятным языком — без мелкого текста и сложных тарифных условий.</p>
+          <h2 class="section-title" style="font-size:clamp(36px,4vw,52px)">Вопросы перед началом.</h2>
+          <p class="section-copy">Коротко и понятным языком — без мелкого текста и сложных условий.</p>
         </div>
         <div class="faq-list">
-          <div class="faq-item open"><button class="faq-q" type="button">15 € — это за каждого жильца?<i class="bi bi-plus-lg"></i></button><div class="faq-a">Нет. 15 € в месяц — это цена за весь дом, а не за каждого пользователя отдельно.</div></div>
-          <div class="faq-item"><button class="faq-q" type="button">Нужно ли сразу переносить всё в ArtAHome?<i class="bi bi-plus-lg"></i></button><div class="faq-a">Нет. Можно начать с нескольких процессов — например, объявлений, заявок и документов — и подключать остальное постепенно.</div></div>
-          <div class="faq-item"><button class="faq-q" type="button">Жильцам не будет слишком сложно?<i class="bi bi-plus-lg"></i></button><div class="faq-a">Идея системы как раз обратная: жильцу показывается простой интерфейс только с теми разделами, которыми он пользуется.</div></div>
-          <div class="faq-item"><button class="faq-q" type="button">Можно ли использовать русский и эстонский?<i class="bi bi-plus-lg"></i></button><div class="faq-a">Да. Архитектура интерфейса предусматривает русский, эстонский и английский языки.</div></div>
-          <div class="faq-item"><button class="faq-q" type="button">Подойдёт ли система управляющей компании?<i class="bi bi-plus-lg"></i></button><div class="faq-a">Архитектура предусматривает работу с несколькими домами, отдельными ролями, командами и разграничением доступа.</div></div>
+          <div class="faq-item open"><button class="faq-q" type="button">Первый месяц действительно бесплатный?<i class="bi bi-plus-lg"></i></button><div class="faq-a">Да. При подключении вы получаете 30 дней бесплатно. Далее — 1 € в месяц за всё семейное пространство. Карта потребуется только для продолжения после пробного периода.</div></div>
+          <div class="faq-item"><button class="faq-q" type="button">1 € — это за каждого члена семьи?<i class="bi bi-plus-lg"></i></button><div class="faq-a">Нет. 1 € в месяц — это цена за всё семейное пространство. Один владелец оплачивает подписку и приглашает всех участников без доплаты.</div></div>
+          <div class="faq-item"><button class="faq-q" type="button">Нужно ли сразу переносить всё в ArtAHome?<i class="bi bi-plus-lg"></i></button><div class="faq-a">Нет. Можно начать с расходов и архива документов, а задачи и чат подключить позже.</div></div>
+          <div class="faq-item"><button class="faq-q" type="button">Это полноценный мессенджер с звонками?<i class="bi bi-plus-lg"></i></button><div class="faq-a">Нет. Чат в ArtAHome нужен для обсуждения домашних дел: документов, расходов и задач. Мы не делаем аналог WhatsApp с видеозвонками — это усложнило бы продукт, не добавив ценности.</div></div>
+          <div class="faq-item"><button class="faq-q" type="button">Подойдёт ли сервис, если у семьи несколько квартир?<i class="bi bi-plus-lg"></i></button><div class="faq-a">Да. Архитектура предусматривает работу с несколькими объектами, отдельными ролями и разграничением доступа.</div></div>
         </div>
       </div>
     </div>
@@ -739,10 +931,10 @@ $year = date('Y');
     <div class="container">
       <div class="final-card">
         <span class="eyebrow">ArtAHome</span>
-        <h2>Один дом. Одна понятная система.</h2>
-        <p>Соберите ежедневные процессы дома в одном месте — так, чтобы правлению было проще управлять, а жильцам проще понимать, что происходит.</p>
+        <h2>Семья, которая ничего не теряет.</h2>
+        <p>Первый месяц бесплатно. Соберите расходы, документы, задачи и чат в одном месте — чтобы важное было под рукой, а не в переписке.</p>
         <div class="final-actions">
-          <a class="btn btn-main btn-lg" href="register.php">Подключить дом за 15 € / мес</a>
+          <a class="btn btn-main btn-lg" href="register.php">Попробовать 30 дней бесплатно</a>
           <button class="btn btn-soft btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#featureModal">Посмотреть все возможности</button>
         </div>
       </div>
@@ -753,9 +945,21 @@ $year = date('Y');
 <footer>
   <div class="container">
     <div class="row align-items-center g-3">
-      <div class="col-lg-4"><a class="brand" href="#top"><span class="brand-mark">A</span><span><span class="brand-accent">ArtA</span>Home</span></a></div>
-      <div class="col-lg-4 text-lg-center"><div class="footer-note">© <?= htmlspecialchars($year, ENT_QUOTES, 'UTF-8') ?> ArtAHome. Весь дом. Одна система.</div></div>
-      <div class="col-lg-4"><div class="footer-links"><a href="#why">Почему</a><a href="#features">Возможности</a><a href="#price">Цена</a><a href="#faq">FAQ</a><a href="mailto:info@artahome.ee">Контакты</a></div></div>
+      <div class="col-lg-4 col-12">
+        <div class="footer-brand">
+          <a class="brand" href="#top"><span class="brand-mark">A</span><span><span class="brand-accent">ArtA</span>Home</span></a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-12">
+        <div class="footer-center">
+          <div class="footer-note">© <?= htmlspecialchars($year, ENT_QUOTES, 'UTF-8') ?> ArtAHome. Всё для дома. Одна семья.</div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-12">
+        <div class="footer-links-wrap">
+          <div class="footer-links"><a href="#why">Почему</a><a href="#features">Возможности</a><a href="#price">Цена</a><a href="#faq">FAQ</a><a href="mailto:info@artahome.ee">Контакты</a></div>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
@@ -764,13 +968,13 @@ $year = date('Y');
   <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <div><div class="modal-title" id="featureModalLabel">Все возможности ArtAHome</div><div style="color:#7c879a;font-size:13px;margin-top:2px">Полный каталог находится здесь, чтобы главная страница оставалась короткой и понятной.</div></div>
+        <div><div class="modal-title" id="featureModalLabel">Все возможности ArtAHome</div><div style="color:#7c879a;font-size:13px;margin-top:2px">Полный каталог — здесь, чтобы главная оставалась короткой и понятной.</div></div>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
       </div>
       <div class="modal-body">
         <div class="feature-explorer">
           <aside class="feature-side"><label class="feature-search"><i class="bi bi-search"></i><input id="featureSearch" type="search" placeholder="Найти функцию"></label><div class="feature-cats" id="featureCats"></div></aside>
-          <section class="feature-main"><div class="feature-main-head"><div><h3 id="featureTitle">Дом и жильцы</h3><p id="featureSubtitle">Структура дома, пользователи и доступ.</p></div><span class="feature-count" id="featureCount">0 функций</span></div><div class="feature-grid" id="featureGrid"></div><div class="feature-empty" id="featureEmpty">Ничего не найдено. Попробуйте другой запрос.</div></section>
+          <section class="feature-main"><div class="feature-main-head"><div><h3 id="featureTitle">Главная</h3><p id="featureSubtitle">Сводка и быстрый доступ.</p></div><span class="feature-count" id="featureCount">0 функций</span></div><div class="feature-grid" id="featureGrid"></div><div class="feature-empty" id="featureEmpty">Ничего не найдено. Попробуйте другой запрос.</div></section>
         </div>
       </div>
     </div>
@@ -778,8 +982,8 @@ $year = date('Y');
 </div>
 
 <div class="mobile-cta-bar">
-  <div class="mobile-cta-copy"><strong>ArtAHome — 15 € / мес</strong><span>Одна подписка на весь дом</span></div>
-  <a class="btn btn-main" href="register.php">Подключить</a>
+  <div class="mobile-cta-copy"><strong>1-й месяц бесплатно</strong><span>Далее 1 €/мес за всю семью</span></div>
+  <a class="btn btn-main" href="register.php">Начать</a>
 </div>
 
 <a class="floating-top" id="toTop" href="#top" aria-label="Наверх"><i class="bi bi-arrow-up"></i></a>
@@ -790,141 +994,33 @@ $year = date('Y');
     button.addEventListener('click', () => document.querySelectorAll('[data-lang]').forEach(b => b.classList.toggle('active', b.dataset.lang === button.dataset.lang)));
   });
 
-
-  const demoData = {
-    overview:{
-      heading:'Добрый вечер',
-      subheading:'Ваш дом • Tallinn, Estonia',
-      metrics:[['Квартиры','84'],['Жильцы','126'],['Открытые заявки','3']],
-      primaryTitle:'Последние события',
-      primaryMeta:'Сегодня',
-      events:[
-        {icon:'bi-megaphone', title:'Обслуживание водоснабжения', text:'Объявление опубликовано', time:'18:20'},
-        {icon:'bi-check2-square', title:'Голосование по парковке', text:'Осталось 2 дня', time:'14:05'},
-        {icon:'bi-tools', title:'Обслуживание лифта', text:'Работы завершены', time:'11:42'},
-        {icon:'bi-cash-stack', title:'Финансовый отчёт', text:'Опубликован для жильцов', time:'09:15'}
-      ],
-      secondaryTitle:'Активность дома',
-      secondaryMeta:'6 месяцев',
-      mini1:['€ 4 860','Ремонтный фонд'],
-      mini2:['7 / 9','Задач закрыто'],
-      bars:[34,50,43,71,59,88]
-    },
-    requests:{
-      heading:'Модуль заявок',
-      subheading:'Контроль проблем по дому',
-      metrics:[['Новые заявки','12'],['В работе','4'],['Закрыто','29']],
-      primaryTitle:'Очередь заявок',
-      primaryMeta:'Сейчас',
-      events:[
-        {icon:'bi-droplet', title:'Протечка в подъезде №2', text:'Квартира 47 • фото приложено', time:'Высокий'},
-        {icon:'bi-lightbulb', title:'Не горит свет на 4 этаже', text:'Ответственный уже назначен', time:'Принято'},
-        {icon:'bi-door-open', title:'Доводчик входной двери', text:'Подрядчик подтвердил выезд', time:'Сегодня'},
-        {icon:'bi-trash3', title:'Нужен вывоз крупного мусора', text:'Ожидает согласования', time:'Новая'}
-      ],
-      secondaryTitle:'Динамика заявок',
-      secondaryMeta:'30 дней',
-      mini1:['2.4 дня','Среднее закрытие'],
-      mini2:['91%','В срок'],
-      bars:[66,59,71,54,78,61]
-    },
-    finance:{
-      heading:'Финансы дома',
-      subheading:'Прозрачные деньги и отчёты',
-      metrics:[['Бюджет','€ 18 400'],['Расходы','€ 6 920'],['Должники','5']],
-      primaryTitle:'Последние финансовые записи',
-      primaryMeta:'Этот месяц',
-      events:[
-        {icon:'bi-cash-stack', title:'Поступили платежи жильцов', text:'14 оплат за последние 24 часа', time:'€ 1 260'},
-        {icon:'bi-hammer', title:'Оплачен ремонт двери', text:'Подрядчик Baltic Fix OÜ', time:'€ 320'},
-        {icon:'bi-file-earmark-bar-graph', title:'Собран отчёт за август', text:'Доступен правлению и жильцам', time:'Готов'},
-        {icon:'bi-exclamation-circle', title:'Есть задолженности', text:'5 квартир требуют напоминания', time:'Важно'}
-      ],
-      secondaryTitle:'Финансовая динамика',
-      secondaryMeta:'6 месяцев',
-      mini1:['€ 11 480','Баланс дома'],
-      mini2:['€ 4 860','Ремонтный фонд'],
-      bars:[48,55,61,57,73,82]
-    },
-    documents:{
-      heading:'Документы дома',
-      subheading:'Все файлы лежат в одном архиве',
-      metrics:[['Документы','248'],['Новых','4'],['Подписано','12']],
-      primaryTitle:'Последние документы',
-      primaryMeta:'Архив',
-      events:[
-        {icon:'bi-file-earmark-text', title:'Протокол собрания №08', text:'Добавлен в папку «Собрания»', time:'PDF'},
-        {icon:'bi-folder2-open', title:'Договор на уборку', text:'Обновлена версия документа', time:'v2'},
-        {icon:'bi-pen', title:'Акт выполненных работ', text:'Ожидает электронную подпись', time:'Подпись'},
-        {icon:'bi-search', title:'Поиск по архиву', text:'Документы легко найти по тегам', time:'Быстро'}
-      ],
-      secondaryTitle:'Движение документов',
-      secondaryMeta:'90 дней',
-      mini1:['18','На подписи'],
-      mini2:['4 сек','Поиск по архиву'],
-      bars:[24,38,44,57,69,63]
-    },
-    voting:{
-      heading:'Голосования дома',
-      subheading:'Решения не теряются и не спорят в чатах',
-      metrics:[['Активных','2'],['Участие','67%'],['До конца','2 дня']],
-      primaryTitle:'Текущие голосования',
-      primaryMeta:'Онлайн',
-      events:[
-        {icon:'bi-check2-square', title:'Парковка во дворе', text:'Осталось 2 дня до завершения', time:'Активно'},
-        {icon:'bi-buildings', title:'Ремонт фасада', text:'Подготовка к внеочередному собранию', time:'Скоро'},
-        {icon:'bi-tree', title:'Озеленение территории', text:'Результаты уже опубликованы', time:'Готово'},
-        {icon:'bi-chat-left-dots', title:'Сбор мнений жильцов', text:'Опрос по новой уборке подъезда', time:'Опрос'}
-      ],
-      secondaryTitle:'Участие жильцов',
-      secondaryMeta:'Последние решения',
-      mini1:['84 / 126','Уже проголосовали'],
-      mini2:['12','Решений в архиве'],
-      bars:[41,63,52,79,71,67]
-    }
+  const phoneData = {
+    overview:{greet:'Привет, семья 👋', sub:'Tallinn • Август'},
+    expenses:{greet:'Расходы', sub:'Август • € 1 260'},
+    archive:{greet:'Архив дома', sub:'148 документов'},
+    tasks:{greet:'Задачи', sub:'4 активных • 7 закрыто'},
+    chat:{greet:'Семейный чат', sub:'3 участника онлайн'}
   };
-
-  function renderDemo(viewKey){
-    const view = demoData[viewKey] || demoData.overview;
-    document.getElementById('demoHeading').textContent = view.heading;
-    document.getElementById('demoSubheading').textContent = view.subheading;
-    view.metrics.forEach((item, index) => {
-      document.getElementById(`metricLabel${index+1}`).textContent = item[0];
-      document.getElementById(`metricValue${index+1}`).textContent = item[1];
+  const greetEl = document.getElementById('phoneGreet');
+  const subEl = document.getElementById('phoneSub');
+  document.querySelectorAll('[data-phone-view]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const view = btn.dataset.phoneView;
+      document.querySelectorAll('[data-phone-view]').forEach(b => b.classList.toggle('active', b === btn));
+      document.querySelectorAll('.phone-view').forEach(v => v.classList.toggle('active', v.dataset.view === view));
+      const d = phoneData[view] || phoneData.overview;
+      greetEl.textContent = d.greet; subEl.textContent = d.sub;
     });
-    document.getElementById('demoPrimaryTitle').textContent = view.primaryTitle;
-    document.getElementById('demoPrimaryMeta').textContent = view.primaryMeta;
-    document.getElementById('demoSecondaryTitle').textContent = view.secondaryTitle;
-    document.getElementById('demoSecondaryMeta').textContent = view.secondaryMeta;
-    document.getElementById('demoMini1Value').textContent = view.mini1[0];
-    document.getElementById('demoMini1Label').textContent = view.mini1[1];
-    document.getElementById('demoMini2Value').textContent = view.mini2[0];
-    document.getElementById('demoMini2Label').textContent = view.mini2[1];
-
-    document.getElementById('demoEvents').innerHTML = view.events.map(row => `
-      <div class="event">
-        <i class="bi ${row.icon}"></i>
-        <div><strong>${row.title}</strong><span>${row.text}</span></div>
-        <time>${row.time}</time>
-      </div>
-    `).join('');
-
-    document.querySelectorAll('#demoBars span').forEach((bar, index) => {
-      bar.style.height = `${view.bars[index] || 50}%`;
-    });
-
-    document.querySelectorAll('[data-demo-view]').forEach(btn => btn.classList.toggle('active', btn.dataset.demoView === viewKey));
-  }
-
-  document.querySelectorAll('[data-demo-view]').forEach(button => {
-    button.addEventListener('click', () => renderDemo(button.dataset.demoView));
   });
-  renderDemo('overview');
+
+  document.querySelectorAll('.p-seg button').forEach(btn => {
+    btn.addEventListener('click', () => btn.parentElement.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn)));
+  });
 
   const roleData = {
-    resident:{title:'Понятно с первого входа.',text:'Жилец сразу видит новости дома, свои заявки, документы, голосования, счета и показания счётчиков — без сложного административного интерфейса.',list:['Объявления и уведомления','Заявки и статусы','Документы и голосования','Счета и счётчики'],preview:'Профиль жильца',badge:'LEVEL 0',finance:'Просмотр своих данных',admin:'Административные настройки скрыты',state:'Нет'},
-    board:{title:'Рабочий кабинет правления.',text:'Правление получает единое место для жильцов, заявок, документов, финансов, подрядчиков, голосований и ежедневных задач.',list:['Квартиры и жильцы','Роли и права','Финансы и документы','Ремонты и подрядчики'],preview:'Профиль администратора',badge:'LEVEL 1',finance:'Бюджет и отчёты',admin:'Доступ определяется правами роли',state:'Да'},
-    company:{title:'Несколько домов. Один стандарт.',text:'Управляющая компания может работать с несколькими домами, разделять команды, роли и данные, не смешивая информацию между объектами.',list:['Несколько домов','Команды и доступ','Единые процессы','Контроль обслуживания'],preview:'Управляющая компания',badge:'MULTI-HOUSE',finance:'Финансы каждого дома отдельно',admin:'Управление несколькими объектами',state:'Да'}
+    resident:{title:'Всё важное — в одном экране.',text:'Владелец квартиры оплачивает подписку, приглашает семью и сразу видит расходы, документы, задачи и чат — без сложного административного интерфейса.',list:['Оплата подписки','Приглашение семьи','Общие расходы','Полный архив'],preview:'Профиль владельца',badge:'LEVEL 0',finance:'Создание и контроль',admin:'Управление семьёй и подпиской',state:'Да'},
+    board:{title:'Прозрачность для всей семьи.',text:'Члены семьи видят расходы, документы, задачи и чат в одном пространстве. Каждый может добавлять чеки, создавать задачи и обсуждать домашние дела.',list:['Общие расходы','Совместный архив','Создание задач','Семейный чат'],preview:'Профиль члена семьи',badge:'LEVEL 1',finance:'Просмотр и добавление',admin:'Настройки скрыты',state:'Нет'},
+    company:{title:'Несколько квартир. Один стандарт.',text:'Если у семьи несколько квартир, можно вести их отдельно — с отдельными расходами, архивами и задачами, не смешивая данные между объектами.',list:['Несколько квартир','Отдельные расходы','Раздельные архивы','Общий чат семьи'],preview:'Несколько квартир',badge:'MULTI-HOUSE',finance:'Финансы каждой квартиры отдельно',admin:'Управление несколькими объектами',state:'Да'}
   };
 
   document.querySelectorAll('.audience-tab').forEach(tab => {
@@ -952,44 +1048,28 @@ $year = date('Y');
 
   const featureCategories = [
     {
-      id:'home', icon:'bi-building', title:'Дом и жильцы', subtitle:'Структура дома, пользователи и доступ.',
-      items:['Профиль дома','Подъезды','Этажи','Квартиры','Жильцы','Собственники','Арендаторы','Члены правления','Контакты жильцов','Приглашения пользователей','Семейные профили','Роли пользователей','Гибкие права доступа','История изменений доступа']
+      id:'home', icon:'bi-house-door', title:'Главная', subtitle:'Сводка и быстрый доступ.',
+      items:['Сводка расходов','Предстоящие задачи','Последние документы','Новые сообщения','Быстрое добавление расхода','Быстрое создание задачи','Календарь напоминаний','Семейный бюджет','Статистика потребления','Уведомления о платежах','Итоги месяца','Быстрый переход в архив','Приветствие по времени','Настройка главной']
     },
     {
-      id:'communication', icon:'bi-chat-dots', title:'Общение', subtitle:'Информация и коммуникация без хаоса.',
-      items:['Лента дома','Объявления','Важные уведомления','Экстренные сообщения','Общий чат','Чаты подъездов','Личные сообщения','Комментарии к объявлениям','Файлы в сообщениях','Закреплённые публикации','Категории объявлений','Архив сообщений','Шаблоны объявлений','История уведомлений']
+      id:'expenses', icon:'bi-wallet2', title:'Расходы', subtitle:'Счета, платежи и статистика.',
+      items:['Бюджет семьи','Доходы','Расходы','Счета на оплату','История платежей','Задолженности','Категории расходов','Ремонтный фонд','Показания счётчиков','Фото счётчика','Статистика потребления','Графики расходов','Экспорт данных','Напоминания об оплате']
     },
     {
-      id:'service', icon:'bi-tools', title:'Заявки и обслуживание', subtitle:'От проблемы до выполненной работы.',
-      items:['Заявки жильцов','Фото к заявке','Видео к заявке','Категории проблем','Приоритет заявки','Статус заявки','Ответственный','Комментарии к заявке','Срок выполнения','История изменений','Плановые работы','Журнал обслуживания','Повторяющиеся задачи','Контроль SLA']
+      id:'archive', icon:'bi-folder2-open', title:'Архив', subtitle:'Документы, чеки и гарантии.',
+      items:['Папки документов','Чеки','Договоры','Гарантии на технику','Инструкции','Поиск по архиву','Теги документов','Версии документов','История изменений','Доступ по ролям','Скачивание файлов','Архив квартиры','Шаблоны документов','Электронные копии']
     },
     {
-      id:'finance', icon:'bi-wallet2', title:'Финансы', subtitle:'Бюджет, счета и прозрачность.',
-      items:['Бюджет дома','Доходы','Расходы','Ремонтный фонд','Счета жильцов','Задолженности','История платежей','Категории расходов','Поставщики услуг','Финансовые отчёты','Годовые отчёты','Сверка платежей','Экспорт данных','Банковские интеграции']
+      id:'tasks', icon:'bi-check2-square', title:'Задачи', subtitle:'Напоминания и обслуживание.',
+      items:['Создание задач','Дата и время','Напоминания','Приоритеты','Повторяющиеся задачи','Задачи из сообщений','История ремонтов','Сервисное обслуживание','Назначение ответственного','Комментарии к задаче','Статусы задач','Просроченные задачи','Календарь задач','Семейный список дел']
     },
     {
-      id:'meters', icon:'bi-speedometer2', title:'Счётчики и коммунальные услуги', subtitle:'Показания, потребление и расчёты.',
-      items:['Показания воды','Показания электричества','Показания газа','Показания отопления','История показаний','Напоминания о показаниях','Фото счётчика','Периоды передачи','Контроль пропусков','Импорт показаний','Экспорт показаний','Умные счётчики','Статистика потребления','Аномалии потребления']
+      id:'chat', icon:'bi-chat-dots', title:'Чат', subtitle:'Семейная переписка.',
+      items:['Текстовые сообщения','Фотографии','Ответы на сообщения','Реакции','Поиск по истории','Документы в чате','Карточки расходов','Задачи из переписки','Уведомления','Настройка уведомлений','Общий семейный чат','Личные сообщения','Архив переписки','Участники чата']
     },
     {
-      id:'documents', icon:'bi-folder2-open', title:'Документы', subtitle:'Цифровой архив дома.',
-      items:['Папки документов','Протоколы','Договоры','Счета и акты','Коммерческие предложения','Поиск по документам','Теги документов','Версии документов','История изменений','Доступ по ролям','Скачивание файлов','Архив дома','Шаблоны документов','Электронные подписи']
-    },
-    {
-      id:'decisions', icon:'bi-check2-square', title:'Собрания и решения', subtitle:'Голосования, опросы и история решений.',
-      items:['Голосования','Опросы','Собрания','Повестка собрания','Проекты решений','Результаты голосований','Кворум','Уведомления о голосовании','Напоминания','Протокол собрания','Комментарии к вопросу','История решений','Архив голосований','Подписи решений']
-    },
-    {
-      id:'contractors', icon:'bi-person-workspace', title:'Подрядчики и ремонты', subtitle:'Работы, предложения и контроль подрядчиков.',
-      items:['Каталог подрядчиков','Контакты подрядчиков','Договоры подрядчиков','Коммерческие предложения','Сравнение предложений','Рейтинги подрядчиков','План ремонтов','Этапы ремонта','Бюджет ремонта','Фото до и после','Акты выполненных работ','Гарантийные сроки','История работ','Задачи подрядчика']
-    },
-    {
-      id:'access', icon:'bi-key', title:'Доступ и территория', subtitle:'Парковка, ключи, двери и общие пространства.',
-      items:['Автомобили жильцов','Гостевая парковка','Парковочные места','Разрешения на въезд','Шлагбаумы','Цифровые ключи','Физические ключи','Управление дверями','Журнал доступа','Домофонные интеграции','Камеры','Бронирование помещений','Посылки','Временный доступ']
-    },
-    {
-      id:'operations', icon:'bi-calendar3', title:'Эксплуатация дома', subtitle:'Ежедневные процессы и безопасность.',
-      items:['Календарь дома','График уборки','Контроль уборки','Лифты','Обслуживание лифтов','Пожарная безопасность','Проверки оборудования','Технические журналы','Аварийные контакты','Напоминания администрации','Инвентарь дома','Общие помещения','План ТО','API и интеграции']
+      id:'family', icon:'bi-people', title:'Семья и доступ', subtitle:'Участники и роли.',
+      items:['Профиль владельца','Приглашение участников','Роли участников','Права доступа','Семейные профили','История изменений доступа','Несколько квартир','Раздельные пространства','Управление подпиской','Оплата подписки','Настройки уведомлений','Язык интерфейса','Безопасность','Выход из пространства']
     }
   ];
 
